@@ -62,6 +62,7 @@ from src.modules.vision.manager import VisionManager
 from src.modules.identity.manager import IdentityManager
 from src.modules.identity.personality import PERSONALITY_PRESETS
 
+from src.modules.tools.knowledge.web_search import WebSearchClient
 from src.modules.tools.registry import ToolRegistry
 from src.modules.tools.launcher.tool import LauncherTool
 from src.modules.tools.system.vscode import VSCodeTool
@@ -134,8 +135,31 @@ def register_services(
         personality=PERSONALITY_PRESETS["jarvis"],
     )
 
+    web_grounding_enabled = True
+    web_grounding_max_results = 3
+
+    if config is not None:
+        grounding_enabled = config.get("web_grounding_enabled")
+        if grounding_enabled is not None:
+            web_grounding_enabled = bool(grounding_enabled)
+
+        grounding_results = config.get("web_grounding_max_results")
+        if grounding_results is not None:
+            web_grounding_max_results = int(grounding_results)
+
+    logger.info(
+        "Web grounding is %s.",
+        "enabled (chat questions are looked up before answering)"
+        if web_grounding_enabled
+        else "disabled (set web_grounding_enabled=true in config/settings.json to turn it on)",
+    )
+
     brain = Brain(
         identity=identity,
+        knowledge=WebSearchClient(
+            enabled=web_grounding_enabled,
+            max_results=web_grounding_max_results,
+        ),
     )
 
     planner = PlannerManager()
