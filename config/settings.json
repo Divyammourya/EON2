@@ -47,5 +47,8 @@
   "web_grounding_max_results": 3,
 
   "conversation_memory_max_messages": 40,
-  "conversation_memory_keep_recent": 12
+  "conversation_memory_keep_recent": 12,
+
+  "skills_enabled": true,
+  "skills_lists_path": "data/lists.json"
 }
