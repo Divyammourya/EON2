@@ -132,6 +132,54 @@ def resolve_device_index(
     return None
 
 
+def ensure_stream_started(
+    *,
+    is_active: Callable[[], bool],
+    start: Callable[[], None],
+    stop: Callable[[], None],
+) -> str | None:
+    """Starts an audio stream, recovering from a stale started state.
+
+    Why this is needed: EON's wake-word listener opens and closes the
+    microphone stream every couple of seconds, and the barge-in listener
+    does the same while EON speaks. On Windows a ``start()`` can fail
+    outright if an earlier ``stop()`` had not fully settled — and the
+    wake-word listener swallows that failure and quietly tries again next
+    cycle, so the microphone *looks* fine while a one-off recording (the
+    console's ``listen`` command) is the one that surfaces the error.
+
+    Recovery is deliberately modest: if the stream is already running,
+    that is the state we wanted, so adopt it. Otherwise start it, and on
+    failure force it back to a known state with a stop/start pair before
+    giving up.
+
+    Args:
+        is_active: Whether the stream is currently running.
+        start: Starts the stream.
+        stop: Stops the stream.
+
+    Returns:
+        ``None`` on success, or a description of why it could not start —
+        so the caller can raise an error that actually says something.
+    """
+    if is_active():
+        return None
+
+    try:
+        start()
+        return None
+    except Exception as first:
+        first_error = str(first)
+
+    try:
+        if is_active():
+            stop()
+        start()
+        return None
+    except Exception as second:
+        return f"{first_error}; retry after stop/start failed: {second}"
+
+
 def resample_pcm16(raw: bytes, from_rate: int, to_rate: int) -> bytes:
     """Resamples signed 16-bit mono PCM between two sample rates.
 
