@@ -645,5 +645,5 @@ class VoiceService:
         """
         buffer = io.BytesIO(wav_bytes)
 
-        with wave.open(buffer, "rb") as wave_file:
+        with wave.open(buffer, "rb") as wav_file:
             return wav_file.readframes(wav_file.getnframes())
