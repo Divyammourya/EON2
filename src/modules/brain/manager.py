@@ -17,6 +17,7 @@ from src.modules.conversation.history import ConversationHistory
 
 from src.modules.identity.manager import IdentityManager
 from src.modules.tools.knowledge.web_search import WebPassage, WebSearchClient
+from src.modules.tools.utility.skills import LocalSkills
 
 logger = get_logger("Brain")
 
@@ -27,6 +28,7 @@ class Brain:
         self,
         identity: IdentityManager,
         knowledge: WebSearchClient | None = None,
+        skills: LocalSkills | None = None,
         max_history_messages: int = 40,
         keep_recent_messages: int = 12,
     ) -> None:
@@ -39,6 +41,7 @@ class Brain:
 
         self.identity = identity
         self.knowledge = knowledge if knowledge is not None else WebSearchClient()
+        self.skills = skills if skills is not None else LocalSkills()
 
         self._max_history_messages = max_history_messages
         self._keep_recent_messages = keep_recent_messages
@@ -106,6 +109,12 @@ class Brain:
         memories: list[str],
     ) -> str:
 
+        direct = self.skills.answer(user_message)
+
+        if direct is not None:
+            print("[Skills] Answered locally (no model call).")
+            return direct
+
         decision = self.decision.decide(
             user_message,
         )
@@ -134,6 +143,13 @@ class Brain:
         Same as ``think``, but yields the reply as incremental text
         deltas instead of waiting for the full reply.
         """
+
+        direct = self.skills.answer(user_message)
+
+        if direct is not None:
+            print("[Skills] Answered locally (no model call).")
+            yield direct
+            return
 
         decision = self.decision.decide(
             user_message,
