@@ -7,6 +7,7 @@ SQLite implementation of the MemoryStore interface.
 from __future__ import annotations
 
 import json
+import math
 import threading
 
 import sqlite3
@@ -202,6 +203,11 @@ class SQLiteMemoryStore(MemoryStore):
 
         query_embedding = self._ai.embed(query.query)
 
+        # The query vector is compared against every stored memory, so
+        # its norm is constant for the whole scan — compute it once here
+        # instead of recomputing it N times inside cosine_similarity.
+        query_norm = math.sqrt(sum(x * x for x in query_embedding))
+
         self._lock.acquire()
         try:
             cursor = self._connection.execute(
@@ -233,6 +239,7 @@ class SQLiteMemoryStore(MemoryStore):
             score = cosine_similarity(
                 query_embedding,
                 embedding,
+                norm_a=query_norm,
             )
 
             logger.debug(

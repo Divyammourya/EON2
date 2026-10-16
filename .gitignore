@@ -84,6 +84,7 @@ dist/
 docs_tree.txt
 src_tree.txt
 tests_tree.txt
+structure.txt
 
 src/docs_tree.txt
 src/src_tree.txt
