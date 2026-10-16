@@ -308,6 +308,21 @@ def register_services(
     if weather_longitude is not None:
         weather_tool_kwargs["default_longitude"] = float(weather_longitude)
 
+    if config is not None:
+        # With no place configured, the weather tool works out where it
+        # is instead — see src/modules/automation/location.py. Absent
+        # settings leave detection on, so this only ever switches it
+        # off when the user has explicitly asked for that.
+        weather_tool_kwargs["auto_detect_location"] = (
+            config.get("location_auto_detect") is not False
+        )
+        weather_tool_kwargs["location_cache_hours"] = float(
+            config.get("location_cache_hours") or 24
+        )
+        weather_tool_kwargs["location_cache_path"] = str(
+            config.get("location_cache_path") or "data/location.json"
+        )
+
     tools.register(
         WeatherTool(**weather_tool_kwargs)
     )
