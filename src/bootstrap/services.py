@@ -65,6 +65,7 @@ from src.modules.identity.manager import IdentityManager
 from src.modules.identity.personality import PERSONALITY_PRESETS
 
 from src.modules.tools.knowledge.web_search import WebSearchClient
+from src.modules.tools.media.music import MusicTool
 from src.modules.tools.registry import ToolRegistry
 from src.modules.tools.utility.lists import DEFAULT_LISTS_PATH, ListStore
 from src.modules.tools.utility.skills import LocalSkills
@@ -294,6 +295,33 @@ def register_services(
 
     tools.register(
         UIControlTool()
+    )
+
+    music_enabled = True
+    music_folders: list[str] = []
+
+    if config is not None:
+        music_setting = config.get("music_enabled")
+        if music_setting is not None:
+            music_enabled = bool(music_setting)
+
+        # An empty list is the default and means "look in ~/Music and
+        # ~/Downloads", which is where a downloaded song normally is.
+        folders_setting = config.get("music_folders")
+        if isinstance(folders_setting, list):
+            music_folders = [str(folder) for folder in folders_setting]
+
+    logger.info(
+        "Music playback is %s (looking in: %s).",
+        "enabled" if music_enabled else "disabled (set music_enabled=true in config/settings.json)",
+        ", ".join(music_folders) if music_folders else "~/Music, ~/Downloads",
+    )
+
+    tools.register(
+        MusicTool(
+            folders=music_folders,
+            enabled=music_enabled,
+        )
     )
 
     weather_location_name = config.get("weather_location_name") if config is not None else None
