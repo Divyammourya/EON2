@@ -137,6 +137,8 @@ def register_services(
 
     web_grounding_enabled = True
     web_grounding_max_results = 3
+    memory_max_messages = 40
+    memory_keep_recent = 12
 
     if config is not None:
         grounding_enabled = config.get("web_grounding_enabled")
@@ -147,11 +149,26 @@ def register_services(
         if grounding_results is not None:
             web_grounding_max_results = int(grounding_results)
 
+        max_messages = config.get("conversation_memory_max_messages")
+        if max_messages is not None:
+            memory_max_messages = int(max_messages)
+
+        keep_recent = config.get("conversation_memory_keep_recent")
+        if keep_recent is not None:
+            memory_keep_recent = int(keep_recent)
+
     logger.info(
         "Web grounding is %s.",
         "enabled (chat questions are looked up before answering)"
         if web_grounding_enabled
         else "disabled (set web_grounding_enabled=true in config/settings.json to turn it on)",
+    )
+
+    logger.info(
+        "Conversation memory keeps the last %s messages and folds older ones "
+        "into a summary past %s.",
+        memory_keep_recent,
+        memory_max_messages,
     )
 
     brain = Brain(
@@ -160,6 +177,8 @@ def register_services(
             enabled=web_grounding_enabled,
             max_results=web_grounding_max_results,
         ),
+        max_history_messages=memory_max_messages,
+        keep_recent_messages=memory_keep_recent,
     )
 
     planner = PlannerManager()

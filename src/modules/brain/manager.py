@@ -4,13 +4,21 @@ Brain Manager.
 
 from __future__ import annotations
 
+from src.core.logger import get_logger
 from src.modules.ai.manager import AIManager
 from src.modules.brain.context import ContextBuilder
 from src.modules.brain.decision import DecisionEngine
+from src.modules.conversation.compaction import (
+    build_compaction_messages,
+    needs_compaction,
+    split_for_compaction,
+)
 from src.modules.conversation.history import ConversationHistory
 
 from src.modules.identity.manager import IdentityManager
 from src.modules.tools.knowledge.web_search import WebPassage, WebSearchClient
+
+logger = get_logger("Brain")
 
 
 class Brain:
@@ -19,6 +27,8 @@ class Brain:
         self,
         identity: IdentityManager,
         knowledge: WebSearchClient | None = None,
+        max_history_messages: int = 40,
+        keep_recent_messages: int = 12,
     ) -> None:
 
         self.ai = AIManager()
@@ -29,6 +39,9 @@ class Brain:
 
         self.identity = identity
         self.knowledge = knowledge if knowledge is not None else WebSearchClient()
+
+        self._max_history_messages = max_history_messages
+        self._keep_recent_messages = keep_recent_messages
 
     def _knowledge_for(self, user_message: str) -> list[WebPassage]:
         """Looks the question up on the web, when it's the kind that needs it.
@@ -44,6 +57,48 @@ class Brain:
 
         return passages
 
+    def _compact_history(self, history: ConversationHistory) -> None:
+        """Folds the older part of a long conversation into a summary.
+
+        Runs before the prompt is built. Without this a session that
+        outgrows the context window silently loses its oldest turns and
+        EON forgets what it was doing; with it, those turns survive as a
+        few lines of notes. Never raises — a failed summary just leaves
+        the history as it is and the turn continues.
+        """
+        if not needs_compaction(
+            len(history.messages()),
+            self._max_history_messages,
+        ):
+            return
+
+        older, recent = split_for_compaction(
+            history.messages(),
+            self._keep_recent_messages,
+        )
+
+        if not older:
+            return
+
+        try:
+            summary = self.ai.chat(
+                build_compaction_messages(older, history.summary)
+            ).strip()
+        except Exception:
+            logger.exception(
+                "Failed to summarise the conversation; keeping it as is."
+            )
+            return
+
+        if not summary:
+            return
+
+        history.apply_compaction(summary, recent)
+
+        print(
+            f"[Memory] Folded {len(older)} older message(s) into the summary."
+        )
+
     def think(
         self,
         history: ConversationHistory,
@@ -58,6 +113,8 @@ class Brain:
         print(
             f"[Brain] Decision: {decision.decision.value}"
         )
+
+        self._compact_history(history)
 
         context = self.context.build(
             history=history,
@@ -85,6 +142,8 @@ class Brain:
         print(
             f"[Brain] Decision: {decision.decision.value}"
         )
+
+        self._compact_history(history)
 
         context = self.context.build(
             history=history,

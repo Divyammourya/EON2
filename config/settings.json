@@ -44,5 +44,8 @@
   "barge_in_window_seconds": 0.1,
 
   "web_grounding_enabled": true,
-  "web_grounding_max_results": 3
+  "web_grounding_max_results": 3,
+
+  "conversation_memory_max_messages": 40,
+  "conversation_memory_keep_recent": 12
 }

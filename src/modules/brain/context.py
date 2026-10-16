@@ -66,6 +66,13 @@ class ContextBuilder:
         if knowledge:
             system_prompt += format_grounding(knowledge)
 
+        if history.summary:
+            system_prompt += (
+                "\n\nEarlier in this conversation\n"
+                "-----------------------------\n"
+                f"{history.summary}\n"
+            )
+
         if memories:
 
             system_prompt += "\n\nRelevant long-term memories:\n"
