@@ -6,6 +6,8 @@ Responsible for constructing and registering application services.
 
 from __future__ import annotations
 
+from pathlib import Path
+
 from src.core.container import ServiceContainer
 from src.core.config import ConfigManager
 from src.core.logger import get_logger
@@ -64,6 +66,8 @@ from src.modules.identity.personality import PERSONALITY_PRESETS
 
 from src.modules.tools.knowledge.web_search import WebSearchClient
 from src.modules.tools.registry import ToolRegistry
+from src.modules.tools.utility.lists import DEFAULT_LISTS_PATH, ListStore
+from src.modules.tools.utility.skills import LocalSkills
 from src.modules.tools.launcher.tool import LauncherTool
 from src.modules.tools.system.vscode import VSCodeTool
 from src.modules.tools.system.browser import BrowserTool
@@ -157,6 +161,24 @@ def register_services(
         if keep_recent is not None:
             memory_keep_recent = int(keep_recent)
 
+    skills_enabled = True
+    skills_lists_path = DEFAULT_LISTS_PATH
+
+    if config is not None:
+        skills_setting = config.get("skills_enabled")
+        if skills_setting is not None:
+            skills_enabled = bool(skills_setting)
+
+        lists_setting = config.get("skills_lists_path")
+        if lists_setting:
+            skills_lists_path = Path(str(lists_setting))
+
+    logger.info(
+        "Local skills are %s (calculator, unit conversion, lists at %s).",
+        "enabled" if skills_enabled else "disabled (set skills_enabled=true in config/settings.json)",
+        skills_lists_path,
+    )
+
     logger.info(
         "Web grounding is %s.",
         "enabled (chat questions are looked up before answering)"
@@ -176,6 +198,10 @@ def register_services(
         knowledge=WebSearchClient(
             enabled=web_grounding_enabled,
             max_results=web_grounding_max_results,
+        ),
+        skills=LocalSkills(
+            store=ListStore(skills_lists_path),
+            enabled=skills_enabled,
         ),
         max_history_messages=memory_max_messages,
         keep_recent_messages=memory_keep_recent,
