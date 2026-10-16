@@ -1,0 +1,5152 @@
+[
+    {
+        "name": "7z",
+        "path": "C:\\Program Files\\7-Zip\\7z.exe",
+        "aliases": []
+    },
+    {
+        "name": "7zfm",
+        "path": "C:\\Program Files\\7-Zip\\7zFM.exe",
+        "aliases": []
+    },
+    {
+        "name": "7zg",
+        "path": "C:\\Program Files\\7-Zip\\7zG.exe",
+        "aliases": []
+    },
+    {
+        "name": "uninstall",
+        "path": "C:\\Program Files\\7-Zip\\Uninstall.exe",
+        "aliases": []
+    },
+    {
+        "name": "unins000",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\unins000.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-bash",
+        "path": "C:\\Program Files\\Git\\git-bash.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-cmd",
+        "path": "C:\\Program Files\\Git\\git-cmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "extexport",
+        "path": "C:\\Program Files\\Internet Explorer\\ExtExport.exe",
+        "aliases": []
+    },
+    {
+        "name": "iediagcmd",
+        "path": "C:\\Program Files\\Internet Explorer\\iediagcmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "ieinstal",
+        "path": "C:\\Program Files\\Internet Explorer\\ieinstal.exe",
+        "aliases": []
+    },
+    {
+        "name": "ielowutil",
+        "path": "C:\\Program Files\\Internet Explorer\\ielowutil.exe",
+        "aliases": []
+    },
+    {
+        "name": "iexplore",
+        "path": "C:\\Program Files\\Internet Explorer\\iexplore.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrive.app",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\OneDrive.App.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrive",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\OneDrive.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrivestandaloneupdater",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe",
+        "aliases": []
+    },
+    {
+        "name": "expediteupdater",
+        "path": "C:\\Program Files\\Microsoft Update Health Tools\\expediteupdater.exe",
+        "aliases": []
+    },
+    {
+        "name": "uhssvc",
+        "path": "C:\\Program Files\\Microsoft Update Health Tools\\uhssvc.exe",
+        "aliases": []
+    },
+    {
+        "name": "crashhelper",
+        "path": "C:\\Program Files\\Mozilla Firefox\\crashhelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "crashreporter",
+        "path": "C:\\Program Files\\Mozilla Firefox\\crashreporter.exe",
+        "aliases": []
+    },
+    {
+        "name": "default-browser-agent",
+        "path": "C:\\Program Files\\Mozilla Firefox\\default-browser-agent.exe",
+        "aliases": []
+    },
+    {
+        "name": "firefox",
+        "path": "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
+        "aliases": []
+    },
+    {
+        "name": "maintenanceservice",
+        "path": "C:\\Program Files\\Mozilla Firefox\\maintenanceservice.exe",
+        "aliases": []
+    },
+    {
+        "name": "maintenanceservice_installer",
+        "path": "C:\\Program Files\\Mozilla Firefox\\maintenanceservice_installer.exe",
+        "aliases": []
+    },
+    {
+        "name": "nmhproxy",
+        "path": "C:\\Program Files\\Mozilla Firefox\\nmhproxy.exe",
+        "aliases": []
+    },
+    {
+        "name": "pingsender",
+        "path": "C:\\Program Files\\Mozilla Firefox\\pingsender.exe",
+        "aliases": []
+    },
+    {
+        "name": "plugin-container",
+        "path": "C:\\Program Files\\Mozilla Firefox\\plugin-container.exe",
+        "aliases": []
+    },
+    {
+        "name": "private_browsing",
+        "path": "C:\\Program Files\\Mozilla Firefox\\private_browsing.exe",
+        "aliases": []
+    },
+    {
+        "name": "updater",
+        "path": "C:\\Program Files\\Mozilla Firefox\\updater.exe",
+        "aliases": []
+    },
+    {
+        "name": "node",
+        "path": "C:\\Program Files\\nodejs\\node.exe",
+        "aliases": []
+    },
+    {
+        "name": "configsecuritypolicy",
+        "path": "C:\\Program Files\\Windows Defender\\ConfigSecurityPolicy.exe",
+        "aliases": []
+    },
+    {
+        "name": "dlpuseragent",
+        "path": "C:\\Program Files\\Windows Defender\\DlpUserAgent.exe",
+        "aliases": []
+    },
+    {
+        "name": "mipdlp",
+        "path": "C:\\Program Files\\Windows Defender\\MipDlp.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpcmdrun",
+        "path": "C:\\Program Files\\Windows Defender\\MpCmdRun.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpcopyaccelerator",
+        "path": "C:\\Program Files\\Windows Defender\\MpCopyAccelerator.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpdefendercoreservice",
+        "path": "C:\\Program Files\\Windows Defender\\MpDefenderCoreService.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpdlpcmd",
+        "path": "C:\\Program Files\\Windows Defender\\MpDlpCmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpdlpservice",
+        "path": "C:\\Program Files\\Windows Defender\\MpDlpService.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpextms",
+        "path": "C:\\Program Files\\Windows Defender\\mpextms.exe",
+        "aliases": []
+    },
+    {
+        "name": "msmpeng",
+        "path": "C:\\Program Files\\Windows Defender\\MsMpEng.exe",
+        "aliases": []
+    },
+    {
+        "name": "nissrv",
+        "path": "C:\\Program Files\\Windows Defender\\NisSrv.exe",
+        "aliases": []
+    },
+    {
+        "name": "wab",
+        "path": "C:\\Program Files\\Windows Mail\\wab.exe",
+        "aliases": []
+    },
+    {
+        "name": "wabmig",
+        "path": "C:\\Program Files\\Windows Mail\\wabmig.exe",
+        "aliases": []
+    },
+    {
+        "name": "setup_wm",
+        "path": "C:\\Program Files\\Windows Media Player\\setup_wm.exe",
+        "aliases": []
+    },
+    {
+        "name": "wmlaunch",
+        "path": "C:\\Program Files\\Windows Media Player\\wmlaunch.exe",
+        "aliases": []
+    },
+    {
+        "name": "wmpconfig",
+        "path": "C:\\Program Files\\Windows Media Player\\wmpconfig.exe",
+        "aliases": []
+    },
+    {
+        "name": "wmplayer",
+        "path": "C:\\Program Files\\Windows Media Player\\wmplayer.exe",
+        "aliases": []
+    },
+    {
+        "name": "wmpnetwk",
+        "path": "C:\\Program Files\\Windows Media Player\\wmpnetwk.exe",
+        "aliases": []
+    },
+    {
+        "name": "wmpnscfg",
+        "path": "C:\\Program Files\\Windows Media Player\\wmpnscfg.exe",
+        "aliases": []
+    },
+    {
+        "name": "wmprph",
+        "path": "C:\\Program Files\\Windows Media Player\\wmprph.exe",
+        "aliases": []
+    },
+    {
+        "name": "wmpshare",
+        "path": "C:\\Program Files\\Windows Media Player\\wmpshare.exe",
+        "aliases": []
+    },
+    {
+        "name": "imagingdevices",
+        "path": "C:\\Program Files\\Windows Photo Viewer\\ImagingDevices.exe",
+        "aliases": []
+    },
+    {
+        "name": "acrobat",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Acrobat.exe",
+        "aliases": []
+    },
+    {
+        "name": "acrobatinfo",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AcrobatInfo.exe",
+        "aliases": []
+    },
+    {
+        "name": "acrobat_sl",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\acrobat_sl.exe",
+        "aliases": []
+    },
+    {
+        "name": "acrobroker",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AcroBroker.exe",
+        "aliases": []
+    },
+    {
+        "name": "acrotextextractor",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AcroTextExtractor.exe",
+        "aliases": []
+    },
+    {
+        "name": "adelrcp",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\ADelRCP.exe",
+        "aliases": []
+    },
+    {
+        "name": "adnotificationmanager",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\ADNotificationManager.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobe crash processor",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Adobe Crash Processor.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobecollabsync",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AdobeCollabSync.exe",
+        "aliases": []
+    },
+    {
+        "name": "cpinstcu",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\CPInstCU.exe",
+        "aliases": []
+    },
+    {
+        "name": "crlogtransport",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\CRLogTransport.exe",
+        "aliases": []
+    },
+    {
+        "name": "crwindowsclientservice",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\CRWindowsClientService.exe",
+        "aliases": []
+    },
+    {
+        "name": "eula",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Eula.exe",
+        "aliases": []
+    },
+    {
+        "name": "logtransport2",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\LogTransport2.exe",
+        "aliases": []
+    },
+    {
+        "name": "showapppickerforpdf",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\ShowAppPickerForPDF.exe",
+        "aliases": []
+    },
+    {
+        "name": "acrocef",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AcroCEF\\AcroCEF.exe",
+        "aliases": []
+    },
+    {
+        "name": "singleclientservicesupdater",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\AcroCEF\\SingleClientServicesUpdater.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobefips",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\OSSLLibs\\AdobeFips.exe",
+        "aliases": []
+    },
+    {
+        "name": "fulltrustnotifier",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\RDCNotificationClient\\FullTrustNotifier.exe",
+        "aliases": []
+    },
+    {
+        "name": "acrosharetarget",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Assets\\MenuCoreApp\\AcroShareTarget.exe",
+        "aliases": []
+    },
+    {
+        "name": "wcchromenativemessaginghost",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Browser\\WCChromeExtn\\WCChromeNativeMessagingHost.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobe_licensing_wf_acro",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\NGL\\cefWorkflow\\adobe_licensing_wf_acro.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobe_licensing_wf_helper_acro",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\NGL\\cefWorkflow\\adobe_licensing_wf_helper_acro.exe",
+        "aliases": []
+    },
+    {
+        "name": "32bitmapibroker",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\plug_ins\\pi_brokers\\32BitMAPIBroker.exe",
+        "aliases": []
+    },
+    {
+        "name": "64bitmapibroker",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\plug_ins\\pi_brokers\\64BitMAPIBroker.exe",
+        "aliases": []
+    },
+    {
+        "name": "msrmspibroker",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\plug_ins\\pi_brokers\\MSRMSPIBroker.exe",
+        "aliases": []
+    },
+    {
+        "name": "lconvert",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\lconvert.exe",
+        "aliases": []
+    },
+    {
+        "name": "linguist",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\linguist.exe",
+        "aliases": []
+    },
+    {
+        "name": "lrelease",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\lrelease.exe",
+        "aliases": []
+    },
+    {
+        "name": "lupdate",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\lupdate.exe",
+        "aliases": []
+    },
+    {
+        "name": "meta",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\meta.exe",
+        "aliases": []
+    },
+    {
+        "name": "miniunz",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\miniunz.exe",
+        "aliases": []
+    },
+    {
+        "name": "minizip",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\minizip.exe",
+        "aliases": []
+    },
+    {
+        "name": "packettracer",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\PacketTracer.exe",
+        "aliases": []
+    },
+    {
+        "name": "qtwebengineprocess",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\QtWebEngineProcess.exe",
+        "aliases": []
+    },
+    {
+        "name": "setup",
+        "path": "C:\\Program Files\\Common Files\\Adobe\\Acrobat\\Setup\\{AC76BA86-1033-1033-7760-BC15014EA700}\\setup.exe",
+        "aliases": []
+    },
+    {
+        "name": "appvcleaner",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\appvcleaner.exe",
+        "aliases": []
+    },
+    {
+        "name": "appvshnotify",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\AppVShNotify.exe",
+        "aliases": []
+    },
+    {
+        "name": "inspectorofficegadget",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\InspectorOfficeGadget.exe",
+        "aliases": []
+    },
+    {
+        "name": "integratedoffice",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\IntegratedOffice.exe",
+        "aliases": []
+    },
+    {
+        "name": "logcollector",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\logcollector.exe",
+        "aliases": []
+    },
+    {
+        "name": "mavinject32",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\MavInject32.exe",
+        "aliases": []
+    },
+    {
+        "name": "officec2rclient",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\OfficeC2RClient.exe",
+        "aliases": []
+    },
+    {
+        "name": "officeclicktorun",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\OfficeClickToRun.exe",
+        "aliases": []
+    },
+    {
+        "name": "officesvcmgr",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ClickToRun\\officesvcmgr.exe",
+        "aliases": []
+    },
+    {
+        "name": "tabtip",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\ink\\TabTip.exe",
+        "aliases": []
+    },
+    {
+        "name": "msinfo32",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\MSInfo\\msinfo32.exe",
+        "aliases": []
+    },
+    {
+        "name": "msoxmled",
+        "path": "C:\\Program Files\\Common Files\\microsoft shared\\OFFICE12\\MSOXMLED.EXE",
+        "aliases": []
+    },
+    {
+        "name": "java",
+        "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\java.exe",
+        "aliases": []
+    },
+    {
+        "name": "javac",
+        "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\javac.exe",
+        "aliases": []
+    },
+    {
+        "name": "javaw",
+        "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\javaw.exe",
+        "aliases": []
+    },
+    {
+        "name": "jshell",
+        "path": "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\jshell.exe",
+        "aliases": []
+    },
+    {
+        "name": "bash",
+        "path": "C:\\Program Files\\Git\\bin\\bash.exe",
+        "aliases": []
+    },
+    {
+        "name": "git",
+        "path": "C:\\Program Files\\Git\\bin\\git.exe",
+        "aliases": []
+    },
+    {
+        "name": "sh",
+        "path": "C:\\Program Files\\Git\\bin\\sh.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-gui",
+        "path": "C:\\Program Files\\Git\\cmd\\git-gui.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-lfs",
+        "path": "C:\\Program Files\\Git\\cmd\\git-lfs.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-receive-pack",
+        "path": "C:\\Program Files\\Git\\cmd\\git-receive-pack.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-upload-pack",
+        "path": "C:\\Program Files\\Git\\cmd\\git-upload-pack.exe",
+        "aliases": []
+    },
+    {
+        "name": "gitk",
+        "path": "C:\\Program Files\\Git\\cmd\\gitk.exe",
+        "aliases": []
+    },
+    {
+        "name": "scalar",
+        "path": "C:\\Program Files\\Git\\cmd\\scalar.exe",
+        "aliases": []
+    },
+    {
+        "name": "tig",
+        "path": "C:\\Program Files\\Git\\cmd\\tig.exe",
+        "aliases": []
+    },
+    {
+        "name": "adig",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\adig.exe",
+        "aliases": []
+    },
+    {
+        "name": "ahost",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\ahost.exe",
+        "aliases": []
+    },
+    {
+        "name": "antiword",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\antiword.exe",
+        "aliases": []
+    },
+    {
+        "name": "blocked-file-util",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\blocked-file-util.exe",
+        "aliases": []
+    },
+    {
+        "name": "brotli",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\brotli.exe",
+        "aliases": []
+    },
+    {
+        "name": "bunzip2",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\bunzip2.exe",
+        "aliases": []
+    },
+    {
+        "name": "bzcat",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\bzcat.exe",
+        "aliases": []
+    },
+    {
+        "name": "bzip2",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\bzip2.exe",
+        "aliases": []
+    },
+    {
+        "name": "bzip2recover",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\bzip2recover.exe",
+        "aliases": []
+    },
+    {
+        "name": "connect",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\connect.exe",
+        "aliases": []
+    },
+    {
+        "name": "create-shortcut",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\create-shortcut.exe",
+        "aliases": []
+    },
+    {
+        "name": "curl",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\curl.exe",
+        "aliases": []
+    },
+    {
+        "name": "edit_test",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\edit_test.exe",
+        "aliases": []
+    },
+    {
+        "name": "edit_test_dll",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\edit_test_dll.exe",
+        "aliases": []
+    },
+    {
+        "name": "envsubst",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\envsubst.exe",
+        "aliases": []
+    },
+    {
+        "name": "gettext",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\gettext.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-askpass",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\git-askpass.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-askyesno",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\git-askyesno.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-credential-helper-selector",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\git-credential-helper-selector.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-credential-manager",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\git-credential-manager.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-upload-archive",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\git-upload-archive.exe",
+        "aliases": []
+    },
+    {
+        "name": "lzmadec",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\lzmadec.exe",
+        "aliases": []
+    },
+    {
+        "name": "lzmainfo",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\lzmainfo.exe",
+        "aliases": []
+    },
+    {
+        "name": "odt2txt",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\odt2txt.exe",
+        "aliases": []
+    },
+    {
+        "name": "openssl",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\openssl.exe",
+        "aliases": []
+    },
+    {
+        "name": "p11-kit",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\p11-kit.exe",
+        "aliases": []
+    },
+    {
+        "name": "pdftotext",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\pdftotext.exe",
+        "aliases": []
+    },
+    {
+        "name": "pkcs1-conv",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\pkcs1-conv.exe",
+        "aliases": []
+    },
+    {
+        "name": "proxy-lookup",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\proxy-lookup.exe",
+        "aliases": []
+    },
+    {
+        "name": "psl",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\psl.exe",
+        "aliases": []
+    },
+    {
+        "name": "sexp-conv",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\sexp-conv.exe",
+        "aliases": []
+    },
+    {
+        "name": "tclsh",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\tclsh.exe",
+        "aliases": []
+    },
+    {
+        "name": "tclsh86",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\tclsh86.exe",
+        "aliases": []
+    },
+    {
+        "name": "trust",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\trust.exe",
+        "aliases": []
+    },
+    {
+        "name": "unxz",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\unxz.exe",
+        "aliases": []
+    },
+    {
+        "name": "whouses",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\WhoUses.exe",
+        "aliases": []
+    },
+    {
+        "name": "wintoast",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\wintoast.exe",
+        "aliases": []
+    },
+    {
+        "name": "wish",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\wish.exe",
+        "aliases": []
+    },
+    {
+        "name": "wish86",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\wish86.exe",
+        "aliases": []
+    },
+    {
+        "name": "x86_64-w64-mingw32-agrep",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\x86_64-w64-mingw32-agrep.exe",
+        "aliases": []
+    },
+    {
+        "name": "xmlwf",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\xmlwf.exe",
+        "aliases": []
+    },
+    {
+        "name": "xz",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\xz.exe",
+        "aliases": []
+    },
+    {
+        "name": "xzcat",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\xzcat.exe",
+        "aliases": []
+    },
+    {
+        "name": "xzdec",
+        "path": "C:\\Program Files\\Git\\mingw64\\bin\\xzdec.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-credential-wincred",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-credential-wincred.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-daemon",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-daemon.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-http-backend",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-http-backend.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-http-fetch",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-http-fetch.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-http-push",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-http-push.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-imap-send",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-imap-send.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-remote-ftp",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-remote-ftp.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-remote-ftps",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-remote-ftps.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-remote-http",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-remote-http.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-remote-https",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-remote-https.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-sh-i18n--envsubst",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\git-sh-i18n--envsubst.exe",
+        "aliases": []
+    },
+    {
+        "name": "headless-git",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\git-core\\headless-git.exe",
+        "aliases": []
+    },
+    {
+        "name": "p11-kit-remote",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\p11-kit\\p11-kit-remote.exe",
+        "aliases": []
+    },
+    {
+        "name": "p11-kit-server",
+        "path": "C:\\Program Files\\Git\\mingw64\\libexec\\p11-kit\\p11-kit-server.exe",
+        "aliases": []
+    },
+    {
+        "name": "compat-bash",
+        "path": "C:\\Program Files\\Git\\mingw64\\share\\git\\compat-bash.exe",
+        "aliases": []
+    },
+    {
+        "name": "edit-git-bash",
+        "path": "C:\\Program Files\\Git\\mingw64\\share\\git\\edit-git-bash.exe",
+        "aliases": []
+    },
+    {
+        "name": "git-wrapper",
+        "path": "C:\\Program Files\\Git\\mingw64\\share\\git\\git-wrapper.exe",
+        "aliases": []
+    },
+    {
+        "name": "arch",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\arch.exe",
+        "aliases": []
+    },
+    {
+        "name": "awk",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\awk.exe",
+        "aliases": []
+    },
+    {
+        "name": "b2sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\b2sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "base32",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\base32.exe",
+        "aliases": []
+    },
+    {
+        "name": "base64",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\base64.exe",
+        "aliases": []
+    },
+    {
+        "name": "basename",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\basename.exe",
+        "aliases": []
+    },
+    {
+        "name": "basenc",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\basenc.exe",
+        "aliases": []
+    },
+    {
+        "name": "captoinfo",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\captoinfo.exe",
+        "aliases": []
+    },
+    {
+        "name": "cat",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cat.exe",
+        "aliases": []
+    },
+    {
+        "name": "chattr",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\chattr.exe",
+        "aliases": []
+    },
+    {
+        "name": "chcon",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\chcon.exe",
+        "aliases": []
+    },
+    {
+        "name": "chgrp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\chgrp.exe",
+        "aliases": []
+    },
+    {
+        "name": "chmod",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\chmod.exe",
+        "aliases": []
+    },
+    {
+        "name": "chown",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\chown.exe",
+        "aliases": []
+    },
+    {
+        "name": "chroot",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\chroot.exe",
+        "aliases": []
+    },
+    {
+        "name": "cksum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cksum.exe",
+        "aliases": []
+    },
+    {
+        "name": "clear",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\clear.exe",
+        "aliases": []
+    },
+    {
+        "name": "cmp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cmp.exe",
+        "aliases": []
+    },
+    {
+        "name": "column",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\column.exe",
+        "aliases": []
+    },
+    {
+        "name": "comm",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\comm.exe",
+        "aliases": []
+    },
+    {
+        "name": "cp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cp.exe",
+        "aliases": []
+    },
+    {
+        "name": "csplit",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\csplit.exe",
+        "aliases": []
+    },
+    {
+        "name": "cut",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cut.exe",
+        "aliases": []
+    },
+    {
+        "name": "cygcheck",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cygcheck.exe",
+        "aliases": []
+    },
+    {
+        "name": "cygpath",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cygpath.exe",
+        "aliases": []
+    },
+    {
+        "name": "cygwin-console-helper",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\cygwin-console-helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "d2u",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\d2u.exe",
+        "aliases": []
+    },
+    {
+        "name": "dash",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dash.exe",
+        "aliases": []
+    },
+    {
+        "name": "date",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\date.exe",
+        "aliases": []
+    },
+    {
+        "name": "dd",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dd.exe",
+        "aliases": []
+    },
+    {
+        "name": "df",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\df.exe",
+        "aliases": []
+    },
+    {
+        "name": "diff",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\diff.exe",
+        "aliases": []
+    },
+    {
+        "name": "diff3",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\diff3.exe",
+        "aliases": []
+    },
+    {
+        "name": "dir",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dir.exe",
+        "aliases": []
+    },
+    {
+        "name": "dircolors",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dircolors.exe",
+        "aliases": []
+    },
+    {
+        "name": "dirmngr-client",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dirmngr-client.exe",
+        "aliases": []
+    },
+    {
+        "name": "dirmngr",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dirmngr.exe",
+        "aliases": []
+    },
+    {
+        "name": "dirname",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dirname.exe",
+        "aliases": []
+    },
+    {
+        "name": "dos2unix",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dos2unix.exe",
+        "aliases": []
+    },
+    {
+        "name": "du",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\du.exe",
+        "aliases": []
+    },
+    {
+        "name": "dumpsexp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\dumpsexp.exe",
+        "aliases": []
+    },
+    {
+        "name": "echo",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\echo.exe",
+        "aliases": []
+    },
+    {
+        "name": "env",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\env.exe",
+        "aliases": []
+    },
+    {
+        "name": "ex",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ex.exe",
+        "aliases": []
+    },
+    {
+        "name": "expand",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\expand.exe",
+        "aliases": []
+    },
+    {
+        "name": "expr",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\expr.exe",
+        "aliases": []
+    },
+    {
+        "name": "factor",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\factor.exe",
+        "aliases": []
+    },
+    {
+        "name": "false",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\false.exe",
+        "aliases": []
+    },
+    {
+        "name": "file",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\file.exe",
+        "aliases": []
+    },
+    {
+        "name": "find",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\find.exe",
+        "aliases": []
+    },
+    {
+        "name": "fmt",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\fmt.exe",
+        "aliases": []
+    },
+    {
+        "name": "fold",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\fold.exe",
+        "aliases": []
+    },
+    {
+        "name": "funzip",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\funzip.exe",
+        "aliases": []
+    },
+    {
+        "name": "gawk-5.0.0",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gawk-5.0.0.exe",
+        "aliases": []
+    },
+    {
+        "name": "gawk",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gawk.exe",
+        "aliases": []
+    },
+    {
+        "name": "gencat",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gencat.exe",
+        "aliases": []
+    },
+    {
+        "name": "getconf",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\getconf.exe",
+        "aliases": []
+    },
+    {
+        "name": "getfacl",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\getfacl.exe",
+        "aliases": []
+    },
+    {
+        "name": "getopt",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\getopt.exe",
+        "aliases": []
+    },
+    {
+        "name": "gkill",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gkill.exe",
+        "aliases": []
+    },
+    {
+        "name": "gmondump",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gmondump.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-agent",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpg-agent.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-card",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpg-card.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-connect-agent",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpg-connect-agent.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-error",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpg-error.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-wks-client",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpg-wks-client.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-wks-server",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpg-wks-server.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpg.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpgconf",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpgconf.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpgparsemail",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpgparsemail.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpgscm",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpgscm.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpgsm",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpgsm.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpgsplit",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpgsplit.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpgtar",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpgtar.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpgv",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gpgv.exe",
+        "aliases": []
+    },
+    {
+        "name": "grep",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\grep.exe",
+        "aliases": []
+    },
+    {
+        "name": "groups",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\groups.exe",
+        "aliases": []
+    },
+    {
+        "name": "gzip",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\gzip.exe",
+        "aliases": []
+    },
+    {
+        "name": "head",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\head.exe",
+        "aliases": []
+    },
+    {
+        "name": "hmac256",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\hmac256.exe",
+        "aliases": []
+    },
+    {
+        "name": "hostid",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\hostid.exe",
+        "aliases": []
+    },
+    {
+        "name": "hostname",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\hostname.exe",
+        "aliases": []
+    },
+    {
+        "name": "iconv",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\iconv.exe",
+        "aliases": []
+    },
+    {
+        "name": "id",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\id.exe",
+        "aliases": []
+    },
+    {
+        "name": "infocmp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\infocmp.exe",
+        "aliases": []
+    },
+    {
+        "name": "infotocap",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\infotocap.exe",
+        "aliases": []
+    },
+    {
+        "name": "install",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\install.exe",
+        "aliases": []
+    },
+    {
+        "name": "join",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\join.exe",
+        "aliases": []
+    },
+    {
+        "name": "kbxutil",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\kbxutil.exe",
+        "aliases": []
+    },
+    {
+        "name": "kill",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\kill.exe",
+        "aliases": []
+    },
+    {
+        "name": "ldd",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ldd.exe",
+        "aliases": []
+    },
+    {
+        "name": "ldh",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ldh.exe",
+        "aliases": []
+    },
+    {
+        "name": "less",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\less.exe",
+        "aliases": []
+    },
+    {
+        "name": "lessecho",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\lessecho.exe",
+        "aliases": []
+    },
+    {
+        "name": "lesskey",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\lesskey.exe",
+        "aliases": []
+    },
+    {
+        "name": "link",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\link.exe",
+        "aliases": []
+    },
+    {
+        "name": "ln",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ln.exe",
+        "aliases": []
+    },
+    {
+        "name": "locale",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\locale.exe",
+        "aliases": []
+    },
+    {
+        "name": "locate",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\locate.exe",
+        "aliases": []
+    },
+    {
+        "name": "logname",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\logname.exe",
+        "aliases": []
+    },
+    {
+        "name": "ls",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ls.exe",
+        "aliases": []
+    },
+    {
+        "name": "lsattr",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\lsattr.exe",
+        "aliases": []
+    },
+    {
+        "name": "mac2unix",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mac2unix.exe",
+        "aliases": []
+    },
+    {
+        "name": "md5sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\md5sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "minidumper",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\minidumper.exe",
+        "aliases": []
+    },
+    {
+        "name": "mintty",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mintty.exe",
+        "aliases": []
+    },
+    {
+        "name": "mkdir",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mkdir.exe",
+        "aliases": []
+    },
+    {
+        "name": "mkfifo",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mkfifo.exe",
+        "aliases": []
+    },
+    {
+        "name": "mkgroup",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mkgroup.exe",
+        "aliases": []
+    },
+    {
+        "name": "mknod",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mknod.exe",
+        "aliases": []
+    },
+    {
+        "name": "mkpasswd",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mkpasswd.exe",
+        "aliases": []
+    },
+    {
+        "name": "mktemp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mktemp.exe",
+        "aliases": []
+    },
+    {
+        "name": "mount",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mount.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpicalc",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mpicalc.exe",
+        "aliases": []
+    },
+    {
+        "name": "mv",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\mv.exe",
+        "aliases": []
+    },
+    {
+        "name": "nano",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nano.exe",
+        "aliases": []
+    },
+    {
+        "name": "nettle-hash",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nettle-hash.exe",
+        "aliases": []
+    },
+    {
+        "name": "nettle-lfib-stream",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nettle-lfib-stream.exe",
+        "aliases": []
+    },
+    {
+        "name": "nettle-pbkdf2",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nettle-pbkdf2.exe",
+        "aliases": []
+    },
+    {
+        "name": "nice",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nice.exe",
+        "aliases": []
+    },
+    {
+        "name": "nl",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nl.exe",
+        "aliases": []
+    },
+    {
+        "name": "nohup",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nohup.exe",
+        "aliases": []
+    },
+    {
+        "name": "nproc",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\nproc.exe",
+        "aliases": []
+    },
+    {
+        "name": "numfmt",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\numfmt.exe",
+        "aliases": []
+    },
+    {
+        "name": "od",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\od.exe",
+        "aliases": []
+    },
+    {
+        "name": "passwd",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\passwd.exe",
+        "aliases": []
+    },
+    {
+        "name": "paste",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\paste.exe",
+        "aliases": []
+    },
+    {
+        "name": "patch",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\patch.exe",
+        "aliases": []
+    },
+    {
+        "name": "pathchk",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pathchk.exe",
+        "aliases": []
+    },
+    {
+        "name": "perl",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\perl.exe",
+        "aliases": []
+    },
+    {
+        "name": "perl5.38.2",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\perl5.38.2.exe",
+        "aliases": []
+    },
+    {
+        "name": "pinentry-w32",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pinentry-w32.exe",
+        "aliases": []
+    },
+    {
+        "name": "pinentry",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pinentry.exe",
+        "aliases": []
+    },
+    {
+        "name": "pinky",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pinky.exe",
+        "aliases": []
+    },
+    {
+        "name": "pldd",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pldd.exe",
+        "aliases": []
+    },
+    {
+        "name": "pluginviewer",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pluginviewer.exe",
+        "aliases": []
+    },
+    {
+        "name": "pr",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pr.exe",
+        "aliases": []
+    },
+    {
+        "name": "printenv",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\printenv.exe",
+        "aliases": []
+    },
+    {
+        "name": "printf",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\printf.exe",
+        "aliases": []
+    },
+    {
+        "name": "profiler",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\profiler.exe",
+        "aliases": []
+    },
+    {
+        "name": "ps",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ps.exe",
+        "aliases": []
+    },
+    {
+        "name": "ptx",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ptx.exe",
+        "aliases": []
+    },
+    {
+        "name": "pwd",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\pwd.exe",
+        "aliases": []
+    },
+    {
+        "name": "readlink",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\readlink.exe",
+        "aliases": []
+    },
+    {
+        "name": "realpath",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\realpath.exe",
+        "aliases": []
+    },
+    {
+        "name": "rebase",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\rebase.exe",
+        "aliases": []
+    },
+    {
+        "name": "regtool",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\regtool.exe",
+        "aliases": []
+    },
+    {
+        "name": "reset",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\reset.exe",
+        "aliases": []
+    },
+    {
+        "name": "rm",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\rm.exe",
+        "aliases": []
+    },
+    {
+        "name": "rmdir",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\rmdir.exe",
+        "aliases": []
+    },
+    {
+        "name": "rnano",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\rnano.exe",
+        "aliases": []
+    },
+    {
+        "name": "runcon",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\runcon.exe",
+        "aliases": []
+    },
+    {
+        "name": "rview",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\rview.exe",
+        "aliases": []
+    },
+    {
+        "name": "rvim",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\rvim.exe",
+        "aliases": []
+    },
+    {
+        "name": "scp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\scp.exe",
+        "aliases": []
+    },
+    {
+        "name": "sdiff",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sdiff.exe",
+        "aliases": []
+    },
+    {
+        "name": "sed",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sed.exe",
+        "aliases": []
+    },
+    {
+        "name": "seq",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\seq.exe",
+        "aliases": []
+    },
+    {
+        "name": "setfacl",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\setfacl.exe",
+        "aliases": []
+    },
+    {
+        "name": "setmetamode",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\setmetamode.exe",
+        "aliases": []
+    },
+    {
+        "name": "sftp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sftp.exe",
+        "aliases": []
+    },
+    {
+        "name": "sha1sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sha1sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "sha224sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sha224sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "sha256sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sha256sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "sha384sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sha384sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "sha512sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sha512sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "shred",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\shred.exe",
+        "aliases": []
+    },
+    {
+        "name": "shuf",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\shuf.exe",
+        "aliases": []
+    },
+    {
+        "name": "sleep",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sleep.exe",
+        "aliases": []
+    },
+    {
+        "name": "sort",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sort.exe",
+        "aliases": []
+    },
+    {
+        "name": "split",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\split.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-add",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ssh-add.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-agent",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ssh-agent.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-keygen",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ssh-keygen.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-keyscan",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ssh-keyscan.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-pageant",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ssh-pageant.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ssh.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssp",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\ssp.exe",
+        "aliases": []
+    },
+    {
+        "name": "stat",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\stat.exe",
+        "aliases": []
+    },
+    {
+        "name": "stdbuf",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\stdbuf.exe",
+        "aliases": []
+    },
+    {
+        "name": "strace",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\strace.exe",
+        "aliases": []
+    },
+    {
+        "name": "stty",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\stty.exe",
+        "aliases": []
+    },
+    {
+        "name": "sum",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sum.exe",
+        "aliases": []
+    },
+    {
+        "name": "sync",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\sync.exe",
+        "aliases": []
+    },
+    {
+        "name": "tabs",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tabs.exe",
+        "aliases": []
+    },
+    {
+        "name": "tac",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tac.exe",
+        "aliases": []
+    },
+    {
+        "name": "tail",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tail.exe",
+        "aliases": []
+    },
+    {
+        "name": "tar",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tar.exe",
+        "aliases": []
+    },
+    {
+        "name": "tee",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tee.exe",
+        "aliases": []
+    },
+    {
+        "name": "test",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\test.exe",
+        "aliases": []
+    },
+    {
+        "name": "tic",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tic.exe",
+        "aliases": []
+    },
+    {
+        "name": "timeout",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\timeout.exe",
+        "aliases": []
+    },
+    {
+        "name": "toe",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\toe.exe",
+        "aliases": []
+    },
+    {
+        "name": "touch",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\touch.exe",
+        "aliases": []
+    },
+    {
+        "name": "tput",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tput.exe",
+        "aliases": []
+    },
+    {
+        "name": "tr",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tr.exe",
+        "aliases": []
+    },
+    {
+        "name": "true",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\true.exe",
+        "aliases": []
+    },
+    {
+        "name": "truncate",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\truncate.exe",
+        "aliases": []
+    },
+    {
+        "name": "tset",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tset.exe",
+        "aliases": []
+    },
+    {
+        "name": "tsort",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tsort.exe",
+        "aliases": []
+    },
+    {
+        "name": "tty",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tty.exe",
+        "aliases": []
+    },
+    {
+        "name": "tzset",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\tzset.exe",
+        "aliases": []
+    },
+    {
+        "name": "u2d",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\u2d.exe",
+        "aliases": []
+    },
+    {
+        "name": "umount",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\umount.exe",
+        "aliases": []
+    },
+    {
+        "name": "uname",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\uname.exe",
+        "aliases": []
+    },
+    {
+        "name": "unexpand",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\unexpand.exe",
+        "aliases": []
+    },
+    {
+        "name": "uniq",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\uniq.exe",
+        "aliases": []
+    },
+    {
+        "name": "unix2dos",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\unix2dos.exe",
+        "aliases": []
+    },
+    {
+        "name": "unix2mac",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\unix2mac.exe",
+        "aliases": []
+    },
+    {
+        "name": "unlink",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\unlink.exe",
+        "aliases": []
+    },
+    {
+        "name": "unzip",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\unzip.exe",
+        "aliases": []
+    },
+    {
+        "name": "unzipsfx",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\unzipsfx.exe",
+        "aliases": []
+    },
+    {
+        "name": "users",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\users.exe",
+        "aliases": []
+    },
+    {
+        "name": "vdir",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\vdir.exe",
+        "aliases": []
+    },
+    {
+        "name": "view",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\view.exe",
+        "aliases": []
+    },
+    {
+        "name": "vim",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\vim.exe",
+        "aliases": []
+    },
+    {
+        "name": "vimdiff",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\vimdiff.exe",
+        "aliases": []
+    },
+    {
+        "name": "watchgnupg",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\watchgnupg.exe",
+        "aliases": []
+    },
+    {
+        "name": "wc",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\wc.exe",
+        "aliases": []
+    },
+    {
+        "name": "which",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\which.exe",
+        "aliases": []
+    },
+    {
+        "name": "who",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\who.exe",
+        "aliases": []
+    },
+    {
+        "name": "whoami",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\whoami.exe",
+        "aliases": []
+    },
+    {
+        "name": "winpty-agent",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\winpty-agent.exe",
+        "aliases": []
+    },
+    {
+        "name": "winpty-debugserver",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\winpty-debugserver.exe",
+        "aliases": []
+    },
+    {
+        "name": "winpty",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\winpty.exe",
+        "aliases": []
+    },
+    {
+        "name": "xargs",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\xargs.exe",
+        "aliases": []
+    },
+    {
+        "name": "xxd",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\xxd.exe",
+        "aliases": []
+    },
+    {
+        "name": "yat2m",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\yat2m.exe",
+        "aliases": []
+    },
+    {
+        "name": "yes",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\yes.exe",
+        "aliases": []
+    },
+    {
+        "name": "zipinfo",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\zipinfo.exe",
+        "aliases": []
+    },
+    {
+        "name": "[",
+        "path": "C:\\Program Files\\Git\\usr\\bin\\[.exe",
+        "aliases": []
+    },
+    {
+        "name": "frcode",
+        "path": "C:\\Program Files\\Git\\usr\\libexec\\frcode.exe",
+        "aliases": []
+    },
+    {
+        "name": "getprocaddr32",
+        "path": "C:\\Program Files\\Git\\usr\\libexec\\getprocaddr32.exe",
+        "aliases": []
+    },
+    {
+        "name": "getprocaddr64",
+        "path": "C:\\Program Files\\Git\\usr\\libexec\\getprocaddr64.exe",
+        "aliases": []
+    },
+    {
+        "name": "grcat",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\awk\\grcat.exe",
+        "aliases": []
+    },
+    {
+        "name": "pwcat",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\awk\\pwcat.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-auth",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\gnupg\\gpg-auth.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-check-pattern",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\gnupg\\gpg-check-pattern.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-pair-tool",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\gnupg\\gpg-pair-tool.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-preset-passphrase",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\gnupg\\gpg-preset-passphrase.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpg-protect-tool",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\gnupg\\gpg-protect-tool.exe",
+        "aliases": []
+    },
+    {
+        "name": "keyboxd",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\gnupg\\keyboxd.exe",
+        "aliases": []
+    },
+    {
+        "name": "scdaemon",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\gnupg\\scdaemon.exe",
+        "aliases": []
+    },
+    {
+        "name": "sftp-server",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\ssh\\sftp-server.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-keysign",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\ssh\\ssh-keysign.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-pkcs11-helper",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\ssh\\ssh-pkcs11-helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssh-sk-helper",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\ssh\\ssh-sk-helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "rmt",
+        "path": "C:\\Program Files\\Git\\usr\\lib\\tar\\rmt.exe",
+        "aliases": []
+    },
+    {
+        "name": "chrome",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "aliases": []
+    },
+    {
+        "name": "chrome_proxy",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome_proxy.exe",
+        "aliases": []
+    },
+    {
+        "name": "new_chrome",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\new_chrome.exe",
+        "aliases": []
+    },
+    {
+        "name": "new_chrome_proxy",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\new_chrome_proxy.exe",
+        "aliases": []
+    },
+    {
+        "name": "chrome_pwa_launcher",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\149.0.7827.201\\chrome_pwa_launcher.exe",
+        "aliases": []
+    },
+    {
+        "name": "elevated_tracing_service",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\149.0.7827.201\\elevated_tracing_service.exe",
+        "aliases": []
+    },
+    {
+        "name": "elevation_service",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\149.0.7827.201\\elevation_service.exe",
+        "aliases": []
+    },
+    {
+        "name": "notification_helper",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\149.0.7827.201\\notification_helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "os_update_handler",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\149.0.7827.201\\os_update_handler.exe",
+        "aliases": []
+    },
+    {
+        "name": "platform_experience_helper",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\PlatformExperienceHelper\\platform_experience_helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "chrmstp",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\149.0.7827.201\\Installer\\chrmstp.exe",
+        "aliases": []
+    },
+    {
+        "name": "jabswitch",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jabswitch.exe",
+        "aliases": []
+    },
+    {
+        "name": "jaccessinspector",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jaccessinspector.exe",
+        "aliases": []
+    },
+    {
+        "name": "jaccesswalker",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jaccesswalker.exe",
+        "aliases": []
+    },
+    {
+        "name": "jar",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jar.exe",
+        "aliases": []
+    },
+    {
+        "name": "jarsigner",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jarsigner.exe",
+        "aliases": []
+    },
+    {
+        "name": "javadoc",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\javadoc.exe",
+        "aliases": []
+    },
+    {
+        "name": "javap",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\javap.exe",
+        "aliases": []
+    },
+    {
+        "name": "jcmd",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jcmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "jconsole",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jconsole.exe",
+        "aliases": []
+    },
+    {
+        "name": "jdb",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jdb.exe",
+        "aliases": []
+    },
+    {
+        "name": "jdeprscan",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jdeprscan.exe",
+        "aliases": []
+    },
+    {
+        "name": "jdeps",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jdeps.exe",
+        "aliases": []
+    },
+    {
+        "name": "jfr",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jfr.exe",
+        "aliases": []
+    },
+    {
+        "name": "jhsdb",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jhsdb.exe",
+        "aliases": []
+    },
+    {
+        "name": "jimage",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jimage.exe",
+        "aliases": []
+    },
+    {
+        "name": "jinfo",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jinfo.exe",
+        "aliases": []
+    },
+    {
+        "name": "jlink",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jlink.exe",
+        "aliases": []
+    },
+    {
+        "name": "jmap",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jmap.exe",
+        "aliases": []
+    },
+    {
+        "name": "jmod",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jmod.exe",
+        "aliases": []
+    },
+    {
+        "name": "jpackage",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jpackage.exe",
+        "aliases": []
+    },
+    {
+        "name": "jps",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jps.exe",
+        "aliases": []
+    },
+    {
+        "name": "jrunscript",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jrunscript.exe",
+        "aliases": []
+    },
+    {
+        "name": "jstack",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jstack.exe",
+        "aliases": []
+    },
+    {
+        "name": "jstat",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jstat.exe",
+        "aliases": []
+    },
+    {
+        "name": "jstatd",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jstatd.exe",
+        "aliases": []
+    },
+    {
+        "name": "jwebserver",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\jwebserver.exe",
+        "aliases": []
+    },
+    {
+        "name": "keytool",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\keytool.exe",
+        "aliases": []
+    },
+    {
+        "name": "kinit",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\kinit.exe",
+        "aliases": []
+    },
+    {
+        "name": "klist",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\klist.exe",
+        "aliases": []
+    },
+    {
+        "name": "ktab",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\ktab.exe",
+        "aliases": []
+    },
+    {
+        "name": "rmiregistry",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\rmiregistry.exe",
+        "aliases": []
+    },
+    {
+        "name": "serialver",
+        "path": "C:\\Program Files\\Java\\jdk-23\\bin\\serialver.exe",
+        "aliases": []
+    },
+    {
+        "name": "gameinputrawinputproxy",
+        "path": "C:\\Program Files\\Microsoft GameInput\\x64\\GameInputRawInputProxy.exe",
+        "aliases": []
+    },
+    {
+        "name": "gameinputredistservice",
+        "path": "C:\\Program Files\\Microsoft GameInput\\x64\\GameInputRedistService.exe",
+        "aliases": []
+    },
+    {
+        "name": "filecoauth",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\FileCoAuth.exe",
+        "aliases": []
+    },
+    {
+        "name": "filesyncconfig",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\FileSyncConfig.exe",
+        "aliases": []
+    },
+    {
+        "name": "filesynchelper",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\FileSyncHelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft.sharepoint.nativemessagingclient",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\Microsoft.SharePoint.NativeMessagingClient.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrive.sync.service",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\OneDrive.Sync.Service.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedriveactionhelper",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\OneDriveActionHelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrivefilelauncher",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\OneDriveFileLauncher.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrivelauncher",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\OneDriveLauncher.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrivepatcher",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\OneDrivePatcher.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedrivesetup",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\OneDriveSetup.exe",
+        "aliases": []
+    },
+    {
+        "name": "onedriveupdaterservice",
+        "path": "C:\\Program Files\\Microsoft OneDrive\\26.113.0614.0004\\OneDriveUpdaterService.exe",
+        "aliases": []
+    },
+    {
+        "name": "desktop-launcher",
+        "path": "C:\\Program Files\\Mozilla Firefox\\desktop-launcher\\desktop-launcher.exe",
+        "aliases": []
+    },
+    {
+        "name": "helper",
+        "path": "C:\\Program Files\\Mozilla Firefox\\uninstall\\helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "ccapiserver",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\ccapiserver.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\mysql.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqldump",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\mysqldump.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlworkbench",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\MySQLWorkbench.exe",
+        "aliases": []
+    },
+    {
+        "name": "ogr2ogr",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\ogr2ogr.exe",
+        "aliases": []
+    },
+    {
+        "name": "ogrinfo",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\ogrinfo.exe",
+        "aliases": []
+    },
+    {
+        "name": "python",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\python.exe",
+        "aliases": []
+    },
+    {
+        "name": "wbadminhelper",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\wbadminhelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "wbcopytables",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\wbcopytables.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlrouter",
+        "path": "C:\\Program Files\\MySQL\\MySQL Router 8.0\\bin\\mysqlrouter.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlrouter_keyring",
+        "path": "C:\\Program Files\\MySQL\\MySQL Router 8.0\\bin\\mysqlrouter_keyring.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlrouter_passwd",
+        "path": "C:\\Program Files\\MySQL\\MySQL Router 8.0\\bin\\mysqlrouter_passwd.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlrouter_plugin_info",
+        "path": "C:\\Program Files\\MySQL\\MySQL Router 8.0\\bin\\mysqlrouter_plugin_info.exe",
+        "aliases": []
+    },
+    {
+        "name": "ibd2sdi",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\ibd2sdi.exe",
+        "aliases": []
+    },
+    {
+        "name": "innochecksum",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\innochecksum.exe",
+        "aliases": []
+    },
+    {
+        "name": "lz4_decompress",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\lz4_decompress.exe",
+        "aliases": []
+    },
+    {
+        "name": "myisamchk",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\myisamchk.exe",
+        "aliases": []
+    },
+    {
+        "name": "myisamlog",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\myisamlog.exe",
+        "aliases": []
+    },
+    {
+        "name": "myisampack",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\myisampack.exe",
+        "aliases": []
+    },
+    {
+        "name": "myisam_ftdump",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\myisam_ftdump.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqladmin",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqladmin.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlbinlog",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqlbinlog.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlcheck",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqlcheck.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqld",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqld.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlimport",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqlimport.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlpump",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqlpump.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlshow",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqlshow.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlslap",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysqlslap.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql_config_editor",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql_config_editor.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql_migrate_keyring",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql_migrate_keyring.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql_secure_installation",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql_secure_installation.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql_ssl_rsa_setup",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql_ssl_rsa_setup.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql_tzinfo_to_sql",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql_tzinfo_to_sql.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql_upgrade",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql_upgrade.exe",
+        "aliases": []
+    },
+    {
+        "name": "my_print_defaults",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\my_print_defaults.exe",
+        "aliases": []
+    },
+    {
+        "name": "perror",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\perror.exe",
+        "aliases": []
+    },
+    {
+        "name": "zlib_decompress",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\zlib_decompress.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql-secret-store-windows-credential",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\mysql-secret-store-windows-credential.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlsh",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\mysqlsh.exe",
+        "aliases": []
+    },
+    {
+        "name": "cli-32",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\cli-32.exe",
+        "aliases": []
+    },
+    {
+        "name": "cli-64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\cli-64.exe",
+        "aliases": []
+    },
+    {
+        "name": "cli-arm64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\cli-arm64.exe",
+        "aliases": []
+    },
+    {
+        "name": "cli",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\cli.exe",
+        "aliases": []
+    },
+    {
+        "name": "gui-32",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\gui-32.exe",
+        "aliases": []
+    },
+    {
+        "name": "gui-64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\gui-64.exe",
+        "aliases": []
+    },
+    {
+        "name": "gui-arm64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\gui-arm64.exe",
+        "aliases": []
+    },
+    {
+        "name": "gui",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\gui.exe",
+        "aliases": []
+    },
+    {
+        "name": "t32",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\pip\\_vendor\\distlib\\t32.exe",
+        "aliases": []
+    },
+    {
+        "name": "t64-arm",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\pip\\_vendor\\distlib\\t64-arm.exe",
+        "aliases": []
+    },
+    {
+        "name": "t64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\pip\\_vendor\\distlib\\t64.exe",
+        "aliases": []
+    },
+    {
+        "name": "w32",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\pip\\_vendor\\distlib\\w32.exe",
+        "aliases": []
+    },
+    {
+        "name": "w64-arm",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\pip\\_vendor\\distlib\\w64-arm.exe",
+        "aliases": []
+    },
+    {
+        "name": "w64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\pip\\_vendor\\distlib\\w64.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-10.0-amd64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-10.0-amd64.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-10.0",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-10.0.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-14.0-amd64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-14.0-amd64.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-14.0",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-14.0.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-6.0",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-6.0.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-7.1",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-7.1.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-8.0",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-8.0.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-9.0-amd64",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-9.0-amd64.exe",
+        "aliases": []
+    },
+    {
+        "name": "wininst-9.0",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\site-packages\\setuptools\\_distutils\\command\\wininst-9.0.exe",
+        "aliases": []
+    },
+    {
+        "name": "py",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\venv\\scripts\\nt\\py.exe",
+        "aliases": []
+    },
+    {
+        "name": "pythonw",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\venv\\scripts\\nt\\pythonw.exe",
+        "aliases": []
+    },
+    {
+        "name": "pyw",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\venv\\scripts\\nt\\pyw.exe",
+        "aliases": []
+    },
+    {
+        "name": "venvlauncher",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\venv\\scripts\\nt\\venvlauncher.exe",
+        "aliases": []
+    },
+    {
+        "name": "venvwlauncher",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\venv\\scripts\\nt\\venvwlauncher.exe",
+        "aliases": []
+    },
+    {
+        "name": "_testembed",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\lib\\Python3.12\\Lib\\venv\\scripts\\nt\\_testembed.exe",
+        "aliases": []
+    },
+    {
+        "name": "rsvpnclientsvc",
+        "path": "C:\\Program Files\\ReasonLabs\\VPN\\rsVPNClientSvc.exe",
+        "aliases": []
+    },
+    {
+        "name": "rsvpnsvc",
+        "path": "C:\\Program Files\\ReasonLabs\\VPN\\rsVPNSvc.exe",
+        "aliases": []
+    },
+    {
+        "name": "rsappui",
+        "path": "C:\\Program Files\\ReasonLabs\\Common\\Client\\v1.6.0\\rsAppUI.exe",
+        "aliases": []
+    },
+    {
+        "name": "stub",
+        "path": "C:\\Program Files\\ReasonLabs\\Common\\Stub\\v6.3.2\\Stub.exe",
+        "aliases": []
+    },
+    {
+        "name": "openvpn",
+        "path": "C:\\Program Files\\ReasonLabs\\VPN\\OpenVPN\\openvpn.exe",
+        "aliases": []
+    },
+    {
+        "name": "vpn",
+        "path": "C:\\Program Files\\ReasonLabs\\VPN\\ui\\VPN.exe",
+        "aliases": []
+    },
+    {
+        "name": "tapinstall",
+        "path": "C:\\Program Files\\ReasonLabs\\VPN\\OpenVPN\\legacy\\amd64\\tapinstall.exe",
+        "aliases": []
+    },
+    {
+        "name": "vpnhostservice",
+        "path": "C:\\Program Files\\ReasonLabs\\VPN\\WireGuard\\amd64\\VpnHostService.exe",
+        "aliases": []
+    },
+    {
+        "name": "offlinescannershell",
+        "path": "C:\\Program Files\\Windows Defender\\Offline\\OfflineScannerShell.exe",
+        "aliases": []
+    },
+    {
+        "name": "maintenanceservice_tmp",
+        "path": "C:\\Program Files (x86)\\Mozilla Maintenance Service\\maintenanceservice_tmp.exe",
+        "aliases": []
+    },
+    {
+        "name": "imageready",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\ImageReady.exe",
+        "aliases": []
+    },
+    {
+        "name": "photoshop",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Photoshop.exe",
+        "aliases": []
+    },
+    {
+        "name": "droplet template",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Required\\Droplet Template.exe",
+        "aliases": []
+    },
+    {
+        "name": "constrain 350, make jpg 30",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Constrain 350, Make JPG 30.exe",
+        "aliases": []
+    },
+    {
+        "name": "constrain to 200x200 pixels",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Constrain to 200x200 pixels.exe",
+        "aliases": []
+    },
+    {
+        "name": "constrain to 64x64 pixels",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Constrain to 64X64 pixels.exe",
+        "aliases": []
+    },
+    {
+        "name": "make button",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Make Button.exe",
+        "aliases": []
+    },
+    {
+        "name": "make gif (128 colors)",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Make GIF (128 colors).exe",
+        "aliases": []
+    },
+    {
+        "name": "make gif (32, no dither)",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Make GIF (32, no dither).exe",
+        "aliases": []
+    },
+    {
+        "name": "make gif (64 colors)",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Make GIF (64 colors).exe",
+        "aliases": []
+    },
+    {
+        "name": "make jpeg (quality 10)",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Make JPEG (quality 10).exe",
+        "aliases": []
+    },
+    {
+        "name": "make jpeg (quality 30)",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Make JPEG (quality 30).exe",
+        "aliases": []
+    },
+    {
+        "name": "make jpeg (quality 60)",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Make JPEG (quality 60).exe",
+        "aliases": []
+    },
+    {
+        "name": "multi-size save",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Multi-Size Save.exe",
+        "aliases": []
+    },
+    {
+        "name": "unsharp mask",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\ImageReady Droplets\\Unsharp Mask.exe",
+        "aliases": []
+    },
+    {
+        "name": "aged photo",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Aged Photo.exe",
+        "aliases": []
+    },
+    {
+        "name": "conditional mode change",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Conditional Mode Change.exe",
+        "aliases": []
+    },
+    {
+        "name": "constrain to 300 pixels",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Constrain to 300 pixels.exe",
+        "aliases": []
+    },
+    {
+        "name": "constrain to 64 pixels",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Constrain to 64 pixels.exe",
+        "aliases": []
+    },
+    {
+        "name": "drop shadow frame",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Drop Shadow Frame.exe",
+        "aliases": []
+    },
+    {
+        "name": "make sepia tone",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Make Sepia Tone.exe",
+        "aliases": []
+    },
+    {
+        "name": "save as jpeg medium",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Save As JPEG Medium.exe",
+        "aliases": []
+    },
+    {
+        "name": "save as photoshop pdf",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Samples\\Droplets\\Photoshop Droplets\\Save As Photoshop PDF.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobecleanuputility",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\AdobeGCClient\\AdobeCleanUpUtility.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobegcclient",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\AdobeGCClient\\AdobeGCClient.exe",
+        "aliases": []
+    },
+    {
+        "name": "agcinvokerutility",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\AdobeGCClient\\agcinvokerutility.exe",
+        "aliases": []
+    },
+    {
+        "name": "agmservice",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\AdobeGCClient\\AGMService.exe",
+        "aliases": []
+    },
+    {
+        "name": "agsservice",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\AdobeGCClient\\AGSService.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobe gamma loader",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\Calibration\\Adobe Gamma Loader.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobeworkgrouphelper",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\Workflow\\AdobeWorkgroupHelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobearm",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\AdobeARM.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobearmhelper",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\AdobeARMHelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "armsvc",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\armsvc.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobearm_ucb",
+        "path": "C:\\Program Files (x86)\\Common Files\\Adobe\\ARM\\1.0\\UCB\\AdobeARM_UCB.exe",
+        "aliases": []
+    },
+    {
+        "name": "idriver",
+        "path": "C:\\Program Files (x86)\\Common Files\\InstallShield\\Driver\\8\\Intel 32\\IDriver.exe",
+        "aliases": []
+    },
+    {
+        "name": "idriver2",
+        "path": "C:\\Program Files (x86)\\Common Files\\InstallShield\\Driver\\8\\Intel 32\\IDriver2.exe",
+        "aliases": []
+    },
+    {
+        "name": "dw20",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\DW\\DW20.EXE",
+        "aliases": []
+    },
+    {
+        "name": "dwtrig20",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\DW\\DWTRIG20.EXE",
+        "aliases": []
+    },
+    {
+        "name": "eqnedt32",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\EQUATION\\EQNEDT32.EXE",
+        "aliases": []
+    },
+    {
+        "name": "pipanel",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\ink\\pipanel.exe",
+        "aliases": []
+    },
+    {
+        "name": "tabtip32",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\ink\\TabTip32.exe",
+        "aliases": []
+    },
+    {
+        "name": "oinfop12",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\MSInfo\\OINFOP12.EXE",
+        "aliases": []
+    },
+    {
+        "name": "acecnflt",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\OFFICE12\\ACECNFLT.EXE",
+        "aliases": []
+    },
+    {
+        "name": "mse7",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\OFFICE12\\MSE7.EXE",
+        "aliases": []
+    },
+    {
+        "name": "msoicons",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\OFFICE12\\MSOICONS.EXE",
+        "aliases": []
+    },
+    {
+        "name": "odserv",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\OFFICE12\\ODSERV.EXE",
+        "aliases": []
+    },
+    {
+        "name": "offdiag",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\OFFICE12\\OFFDIAG.EXE",
+        "aliases": []
+    },
+    {
+        "name": "smarttaginstall",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Smart Tag\\SmartTagInstall.exe",
+        "aliases": []
+    },
+    {
+        "name": "ose",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\Source Engine\\OSE.EXE",
+        "aliases": []
+    },
+    {
+        "name": "odeploy",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\OFFICE12\\Office Setup Controller\\ODEPLOY.EXE",
+        "aliases": []
+    },
+    {
+        "name": "vsta_ep32",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\VSTA\\8.0\\x86\\vsta_ep32.exe",
+        "aliases": []
+    },
+    {
+        "name": "vstoinstaller",
+        "path": "C:\\Program Files (x86)\\Common Files\\Microsoft Shared\\VSTO\\10.0\\VSTOInstaller.exe",
+        "aliases": []
+    },
+    {
+        "name": "googleupdate",
+        "path": "C:\\Program Files (x86)\\Google\\Update\\GoogleUpdate.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpc-hc64",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\MPC-HC64\\mpc-hc64.exe",
+        "aliases": []
+    },
+    {
+        "name": "codectweaktool",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\Tools\\CodecTweakTool.exe",
+        "aliases": []
+    },
+    {
+        "name": "mediainfo",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\Tools\\mediainfo.exe",
+        "aliases": []
+    },
+    {
+        "name": "setacl_x64",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\Tools\\SetACL_x64.exe",
+        "aliases": []
+    },
+    {
+        "name": "setacl_x86",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\Tools\\SetACL_x86.exe",
+        "aliases": []
+    },
+    {
+        "name": "madhcctrl",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\Filters\\madVR\\madHcCtrl.exe",
+        "aliases": []
+    },
+    {
+        "name": "mc-webview-cnt",
+        "path": "C:\\Program Files (x86)\\McAfee Security Scan\\4.2.817\\mc-webview-cnt.exe",
+        "aliases": []
+    },
+    {
+        "name": "mcchsvc",
+        "path": "C:\\Program Files (x86)\\McAfee Security Scan\\4.2.817\\McCHSvc.exe",
+        "aliases": []
+    },
+    {
+        "name": "mcuicnt",
+        "path": "C:\\Program Files (x86)\\McAfee Security Scan\\4.2.817\\McUICnt.exe",
+        "aliases": []
+    },
+    {
+        "name": "mcupdatermodule",
+        "path": "C:\\Program Files (x86)\\McAfee Security Scan\\4.2.817\\McUpdaterModule.exe",
+        "aliases": []
+    },
+    {
+        "name": "msspresextractor",
+        "path": "C:\\Program Files (x86)\\McAfee Security Scan\\4.2.817\\MSSPResExtractor.exe",
+        "aliases": []
+    },
+    {
+        "name": "ssscheduler",
+        "path": "C:\\Program Files (x86)\\McAfee Security Scan\\4.2.817\\SSScheduler.exe",
+        "aliases": []
+    },
+    {
+        "name": "copilotupdate",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\CopilotUpdate.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgeupdate",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe",
+        "aliases": []
+    },
+    {
+        "name": "mscopilot",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot.exe",
+        "aliases": []
+    },
+    {
+        "name": "mscopilot_proxy",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\mscopilot_proxy.exe",
+        "aliases": []
+    },
+    {
+        "name": "cookie_exporter",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\cookie_exporter.exe",
+        "aliases": []
+    },
+    {
+        "name": "copilotapp",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\copilotapp.exe",
+        "aliases": []
+    },
+    {
+        "name": "identity_helper",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\identity_helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "msedge",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\msedge.exe",
+        "aliases": []
+    },
+    {
+        "name": "msedgewebview2",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\msedgewebview2.exe",
+        "aliases": []
+    },
+    {
+        "name": "msedge_proxy",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\msedge_proxy.exe",
+        "aliases": []
+    },
+    {
+        "name": "msedge_pwa_launcher",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\msedge_pwa_launcher.exe",
+        "aliases": []
+    },
+    {
+        "name": "notification_click_helper",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\notification_click_helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "platform_experiences_helper",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\platform_experiences_helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "pwahelper",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\pwahelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "ie_to_edge_stub",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\BHO\\ie_to_edge_stub.exe",
+        "aliases": []
+    },
+    {
+        "name": "copilot_setup",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Application\\150.0.4078.48\\Installer\\copilot_setup.exe",
+        "aliases": []
+    },
+    {
+        "name": "old_mscopilot",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Copilot\\Temp\\24888_402191264\\old_mscopilot.exe",
+        "aliases": []
+    },
+    {
+        "name": "passkey_authenticator_plugin",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\150.0.4078.48\\passkey_authenticator_plugin.exe",
+        "aliases": []
+    },
+    {
+        "name": "old_msedge",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Temp\\10700_1227436669\\old_msedge.exe",
+        "aliases": []
+    },
+    {
+        "name": "uc_connector",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeCore\\149.0.4022.98\\uc_connector.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgecomregistershellarm64",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\1.3.241.15\\MicrosoftEdgeComRegisterShellARM64.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgeupdatebroker",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\1.3.241.15\\MicrosoftEdgeUpdateBroker.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgeupdatecomregistershell64",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\1.3.241.15\\MicrosoftEdgeUpdateComRegisterShell64.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgeupdatecore",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\1.3.241.15\\MicrosoftEdgeUpdateCore.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgeupdateondemand",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\1.3.241.15\\MicrosoftEdgeUpdateOnDemand.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgeupdatesetup",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\1.3.241.15\\MicrosoftEdgeUpdateSetup.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedge_x64_150.0.4078.48",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\Download\\{56EB18F8-B008-4CBD-B6D2-8C97FE7E9062}\\150.0.4078.48\\MicrosoftEdge_X64_150.0.4078.48.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedge_x64_150.0.4078.48_149.0.4022.94",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\Download\\{C50565E9-CCCF-44B4-BA15-5AC5C6569197}\\150.0.4078.48\\MicrosoftEdge_X64_150.0.4078.48_149.0.4022.94.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedge_x64_149.0.4022.98_149.0.4022.80",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\Download\\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}\\149.0.4022.98\\MicrosoftEdge_X64_149.0.4022.98_149.0.4022.80.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftedgeupdatesetup_x86_1.3.241.15",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\Download\\{F3C4FE00-EFD5-403B-9569-398A20F1BA4A}\\1.3.241.15\\MicrosoftEdgeUpdateSetup_X86_1.3.241.15.exe",
+        "aliases": []
+    },
+    {
+        "name": "accicons",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\ACCICONS.EXE",
+        "aliases": []
+    },
+    {
+        "name": "clview",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\CLVIEW.EXE",
+        "aliases": []
+    },
+    {
+        "name": "cnfnot32",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\CNFNOT32.EXE",
+        "aliases": []
+    },
+    {
+        "name": "drat",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\DRAT.EXE",
+        "aliases": []
+    },
+    {
+        "name": "dssm",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\DSSM.EXE",
+        "aliases": []
+    },
+    {
+        "name": "excel",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\EXCEL.EXE",
+        "aliases": []
+    },
+    {
+        "name": "excelcnv",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\excelcnv.exe",
+        "aliases": []
+    },
+    {
+        "name": "graph",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\GRAPH.EXE",
+        "aliases": []
+    },
+    {
+        "name": "groove",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\GROOVE.EXE",
+        "aliases": []
+    },
+    {
+        "name": "grooveauditservice",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\GrooveAuditService.exe",
+        "aliases": []
+    },
+    {
+        "name": "grooveclean",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\GrooveClean.exe",
+        "aliases": []
+    },
+    {
+        "name": "groovemigrator",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\GrooveMigrator.exe",
+        "aliases": []
+    },
+    {
+        "name": "groovemonitor",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\GrooveMonitor.exe",
+        "aliases": []
+    },
+    {
+        "name": "groovestdurllauncher",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\GrooveStdURLLauncher.exe",
+        "aliases": []
+    },
+    {
+        "name": "infopath",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\INFOPATH.EXE",
+        "aliases": []
+    },
+    {
+        "name": "msaccess",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\MSACCESS.EXE",
+        "aliases": []
+    },
+    {
+        "name": "msohtmed",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\MSOHTMED.EXE",
+        "aliases": []
+    },
+    {
+        "name": "mspub",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\MSPUB.EXE",
+        "aliases": []
+    },
+    {
+        "name": "msqry32",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\MSQRY32.EXE",
+        "aliases": []
+    },
+    {
+        "name": "mstordb",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\MSTORDB.EXE",
+        "aliases": []
+    },
+    {
+        "name": "mstore",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\MSTORE.EXE",
+        "aliases": []
+    },
+    {
+        "name": "ois",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\OIS.EXE",
+        "aliases": []
+    },
+    {
+        "name": "onenote",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\ONENOTE.EXE",
+        "aliases": []
+    },
+    {
+        "name": "onenotem",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\ONENOTEM.EXE",
+        "aliases": []
+    },
+    {
+        "name": "outlook",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\OUTLOOK.EXE",
+        "aliases": []
+    },
+    {
+        "name": "powerpnt",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\POWERPNT.EXE",
+        "aliases": []
+    },
+    {
+        "name": "pptview",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\PPTVIEW.EXE",
+        "aliases": []
+    },
+    {
+        "name": "regform",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\REGFORM.EXE",
+        "aliases": []
+    },
+    {
+        "name": "scanost",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\SCANOST.EXE",
+        "aliases": []
+    },
+    {
+        "name": "scanpst",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\SCANPST.EXE",
+        "aliases": []
+    },
+    {
+        "name": "selfcert",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\SELFCERT.EXE",
+        "aliases": []
+    },
+    {
+        "name": "setlang",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\SETLANG.EXE",
+        "aliases": []
+    },
+    {
+        "name": "vpreview",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\VPREVIEW.EXE",
+        "aliases": []
+    },
+    {
+        "name": "winword",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\WINWORD.EXE",
+        "aliases": []
+    },
+    {
+        "name": "wordconv",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\Wordconv.exe",
+        "aliases": []
+    },
+    {
+        "name": "onelev",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\Office12\\1033\\ONELEV.EXE",
+        "aliases": []
+    },
+    {
+        "name": "appvdllsurrogate",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Client\\AppVDllSurrogate.exe",
+        "aliases": []
+    },
+    {
+        "name": "appvdllsurrogate32",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Client\\AppVDllSurrogate32.exe",
+        "aliases": []
+    },
+    {
+        "name": "appvdllsurrogate64",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Client\\AppVDllSurrogate64.exe",
+        "aliases": []
+    },
+    {
+        "name": "appvlp",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Client\\AppVLP.exe",
+        "aliases": []
+    },
+    {
+        "name": "integrator",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Integration\\Integrator.exe",
+        "aliases": []
+    },
+    {
+        "name": "capture",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\capture.exe",
+        "aliases": []
+    },
+    {
+        "name": "misc",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\misc.exe",
+        "aliases": []
+    },
+    {
+        "name": "msoadfsb",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\msoadfsb.exe",
+        "aliases": []
+    },
+    {
+        "name": "msoasb",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\msoasb.exe",
+        "aliases": []
+    },
+    {
+        "name": "msosrec",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\MSOSREC.EXE",
+        "aliases": []
+    },
+    {
+        "name": "namecontrolserver",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\NAMECONTROLSERVER.EXE",
+        "aliases": []
+    },
+    {
+        "name": "officeappguardwin32",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\officeappguardwin32.exe",
+        "aliases": []
+    },
+    {
+        "name": "officescrbroker",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OfficeScrBroker.exe",
+        "aliases": []
+    },
+    {
+        "name": "officescrsanbroker",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OfficeScrSanBroker.exe",
+        "aliases": []
+    },
+    {
+        "name": "olcfg",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OLCFG.EXE",
+        "aliases": []
+    },
+    {
+        "name": "orgchart",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\ORGCHART.EXE",
+        "aliases": []
+    },
+    {
+        "name": "ospprearm",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OSPPREARM.EXE",
+        "aliases": []
+    },
+    {
+        "name": "pdfreflow",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\PDFREFLOW.EXE",
+        "aliases": []
+    },
+    {
+        "name": "perfboost",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\PerfBoost.exe",
+        "aliases": []
+    },
+    {
+        "name": "pptico",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\PPTICO.EXE",
+        "aliases": []
+    },
+    {
+        "name": "protocolhandler",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\protocolhandler.exe",
+        "aliases": []
+    },
+    {
+        "name": "sdxhelper",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\SDXHelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "sdxhelperbgt",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\SDXHelperBgt.exe",
+        "aliases": []
+    },
+    {
+        "name": "wordicon",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\WORDICON.EXE",
+        "aliases": []
+    },
+    {
+        "name": "xlicons",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\XLICONS.EXE",
+        "aliases": []
+    },
+    {
+        "name": "vc_redist.x64",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Integration\\Addons\\vc_redist.x64.exe",
+        "aliases": []
+    },
+    {
+        "name": "vc_redist.x86",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Integration\\Addons\\vc_redist.x86.exe",
+        "aliases": []
+    },
+    {
+        "name": "skypeserver",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\SkypeSrv\\SKYPESERVER.EXE",
+        "aliases": []
+    },
+    {
+        "name": "writingassistant",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\WritingAssistant\\WritingAssistant.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft.mashup.container.loader",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\ADDINS\\Microsoft Power Query for Excel Integrated\\bin\\Microsoft.Mashup.Container.Loader.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft.mashup.container.netfx45",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\ADDINS\\Microsoft Power Query for Excel Integrated\\bin\\Microsoft.Mashup.Container.NetFX45.exe",
+        "aliases": []
+    },
+    {
+        "name": "osppsvc",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX64\\Microsoft Shared\\OfficeSoftwareProtectionPlatform\\OSPPSVC.EXE",
+        "aliases": []
+    },
+    {
+        "name": "ai",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\AI\\ai.exe",
+        "aliases": []
+    },
+    {
+        "name": "aimgr",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\AI\\aimgr.exe",
+        "aliases": []
+    },
+    {
+        "name": "fltldr",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX86\\Microsoft Shared\\Office16\\FLTLDR.EXE",
+        "aliases": []
+    },
+    {
+        "name": "model3dtranscoderwin32",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX86\\Microsoft Shared\\Office16\\model3dtranscoderwin32.exe",
+        "aliases": []
+    },
+    {
+        "name": "olicenseheartbeat",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX86\\Microsoft Shared\\Office16\\OLicenseHeartbeat.exe",
+        "aliases": []
+    },
+    {
+        "name": "opushutil",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX86\\Microsoft Shared\\Office16\\opushutil.exe",
+        "aliases": []
+    },
+    {
+        "name": "actionsserver",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX86\\Microsoft Shared\\Office16\\ActionsServer\\ActionsServer.exe",
+        "aliases": []
+    },
+    {
+        "name": "restartagent",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesCommonX86\\Microsoft Shared\\Office16\\AI\\SDK\\RestartAgent.exe",
+        "aliases": []
+    },
+    {
+        "name": "appsharinghookcontroller64",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesX64\\Microsoft Office\\Office16\\AppSharingHookController64.exe",
+        "aliases": []
+    },
+    {
+        "name": "sqldumper",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\ProgramFilesX86\\Microsoft Analysis Services\\AS OLEDB\\140\\SQLDumper.exe",
+        "aliases": []
+    },
+    {
+        "name": "grv_icons",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\grv_icons.exe",
+        "aliases": []
+    },
+    {
+        "name": "joticon",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\joticon.exe",
+        "aliases": []
+    },
+    {
+        "name": "lyncicon",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\lyncicon.exe",
+        "aliases": []
+    },
+    {
+        "name": "osmclienticon",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\osmclienticon.exe",
+        "aliases": []
+    },
+    {
+        "name": "outicon",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\outicon.exe",
+        "aliases": []
+    },
+    {
+        "name": "pj11icon",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\pj11icon.exe",
+        "aliases": []
+    },
+    {
+        "name": "pubs",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\pubs.exe",
+        "aliases": []
+    },
+    {
+        "name": "sscicons",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\sscicons.exe",
+        "aliases": []
+    },
+    {
+        "name": "visicon",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\vfs\\Windows\\Installer\\{90160000-000F-0000-0000-0000000FF1CE}\\visicon.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlinstaller",
+        "path": "C:\\Program Files (x86)\\MySQL\\MySQL Installer for Windows\\MySQLInstaller.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlinstallerconsole",
+        "path": "C:\\Program Files (x86)\\MySQL\\MySQL Installer for Windows\\MySQLInstallerConsole.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlinstallerlauncher",
+        "path": "C:\\Program Files (x86)\\MySQL\\MySQL Installer for Windows\\MySQLInstallerLauncher.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysqlinstallerupdater",
+        "path": "C:\\Program Files (x86)\\MySQL\\MySQL Installer for Windows\\MySQLInstallerUpdater.exe",
+        "aliases": []
+    },
+    {
+        "name": "vlc-cache-gen",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc-cache-gen.exe",
+        "aliases": []
+    },
+    {
+        "name": "vlc",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe",
+        "aliases": []
+    },
+    {
+        "name": "update",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Discord\\Update.exe",
+        "aliases": []
+    },
+    {
+        "name": "crashpad_handler",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\crashpad_handler.exe",
+        "aliases": []
+    },
+    {
+        "name": "crashreport",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\crashreport.exe",
+        "aliases": []
+    },
+    {
+        "name": "emulator-check",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\emulator-check.exe",
+        "aliases": []
+    },
+    {
+        "name": "emulator",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\emulator.exe",
+        "aliases": []
+    },
+    {
+        "name": "mksdcard",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\mksdcard.exe",
+        "aliases": []
+    },
+    {
+        "name": "netsimd",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\netsimd.exe",
+        "aliases": []
+    },
+    {
+        "name": "nimble_bridge",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\nimble_bridge.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-img",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu-img.exe",
+        "aliases": []
+    },
+    {
+        "name": "qsn",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qsn.exe",
+        "aliases": []
+    },
+    {
+        "name": "adb",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\adb.exe",
+        "aliases": []
+    },
+    {
+        "name": "etc1tool",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\etc1tool.exe",
+        "aliases": []
+    },
+    {
+        "name": "fastboot",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\fastboot.exe",
+        "aliases": []
+    },
+    {
+        "name": "hprof-conv",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\hprof-conv.exe",
+        "aliases": []
+    },
+    {
+        "name": "make_f2fs",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\make_f2fs.exe",
+        "aliases": []
+    },
+    {
+        "name": "make_f2fs_casefold",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\make_f2fs_casefold.exe",
+        "aliases": []
+    },
+    {
+        "name": "mke2fs",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\mke2fs.exe",
+        "aliases": []
+    },
+    {
+        "name": "sqlite3",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\platform-tools\\sqlite3.exe",
+        "aliases": []
+    },
+    {
+        "name": "aapt",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\aapt.exe",
+        "aliases": []
+    },
+    {
+        "name": "aapt2",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\aapt2.exe",
+        "aliases": []
+    },
+    {
+        "name": "aarch64-linux-android-ld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\aarch64-linux-android-ld.exe",
+        "aliases": []
+    },
+    {
+        "name": "aidl",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\aidl.exe",
+        "aliases": []
+    },
+    {
+        "name": "arm-linux-androideabi-ld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\arm-linux-androideabi-ld.exe",
+        "aliases": []
+    },
+    {
+        "name": "bcc_compat",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\bcc_compat.exe",
+        "aliases": []
+    },
+    {
+        "name": "dexdump",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\dexdump.exe",
+        "aliases": []
+    },
+    {
+        "name": "i686-linux-android-ld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\i686-linux-android-ld.exe",
+        "aliases": []
+    },
+    {
+        "name": "lld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\lld.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-rs-cc",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\llvm-rs-cc.exe",
+        "aliases": []
+    },
+    {
+        "name": "mipsel-linux-android-ld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\mipsel-linux-android-ld.exe",
+        "aliases": []
+    },
+    {
+        "name": "split-select",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\split-select.exe",
+        "aliases": []
+    },
+    {
+        "name": "x86_64-linux-android-ld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\x86_64-linux-android-ld.exe",
+        "aliases": []
+    },
+    {
+        "name": "zipalign",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\build-tools\\36.0.0\\zipalign.exe",
+        "aliases": []
+    },
+    {
+        "name": "e2fsck",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\bin64\\e2fsck.exe",
+        "aliases": []
+    },
+    {
+        "name": "resize2fs",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\bin64\\resize2fs.exe",
+        "aliases": []
+    },
+    {
+        "name": "tune2fs",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\bin64\\tune2fs.exe",
+        "aliases": []
+    },
+    {
+        "name": "glslangvalidator",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\lib64\\vulkan\\glslangValidator.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-aarch64-headless",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-aarch64-headless.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-aarch64",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-aarch64.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-armel-headless",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-armel-headless.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-armel",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-armel.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-i386-headless",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-i386-headless.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-i386",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-i386.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-x86_64-headless",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-x86_64-headless.exe",
+        "aliases": []
+    },
+    {
+        "name": "qemu-system-x86_64",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\emulator\\qemu\\windows-x86_64\\qemu-system-x86_64.exe",
+        "aliases": []
+    },
+    {
+        "name": "make",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\prebuilt\\windows-x86_64\\bin\\make.exe",
+        "aliases": []
+    },
+    {
+        "name": "vsyasm",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\prebuilt\\windows-x86_64\\bin\\vsyasm.exe",
+        "aliases": []
+    },
+    {
+        "name": "yasm",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\prebuilt\\windows-x86_64\\bin\\yasm.exe",
+        "aliases": []
+    },
+    {
+        "name": "ytasm",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\prebuilt\\windows-x86_64\\bin\\ytasm.exe",
+        "aliases": []
+    },
+    {
+        "name": "glslc",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\glslc.exe",
+        "aliases": []
+    },
+    {
+        "name": "spirv-as",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\spirv-as.exe",
+        "aliases": []
+    },
+    {
+        "name": "spirv-cfg",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\spirv-cfg.exe",
+        "aliases": []
+    },
+    {
+        "name": "spirv-dis",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\spirv-dis.exe",
+        "aliases": []
+    },
+    {
+        "name": "spirv-link",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\spirv-link.exe",
+        "aliases": []
+    },
+    {
+        "name": "spirv-opt",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\spirv-opt.exe",
+        "aliases": []
+    },
+    {
+        "name": "spirv-reduce",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\spirv-reduce.exe",
+        "aliases": []
+    },
+    {
+        "name": "spirv-val",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\shader-tools\\windows-x86_64\\spirv-val.exe",
+        "aliases": []
+    },
+    {
+        "name": "simpleperf",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\simpleperf\\bin\\windows\\x86_64\\simpleperf.exe",
+        "aliases": []
+    },
+    {
+        "name": "clang++",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang++.exe",
+        "aliases": []
+    },
+    {
+        "name": "clang-check",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang-check.exe",
+        "aliases": []
+    },
+    {
+        "name": "clang-cl",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang-cl.exe",
+        "aliases": []
+    },
+    {
+        "name": "clang-format",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang-format.exe",
+        "aliases": []
+    },
+    {
+        "name": "clang-scan-deps",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang-scan-deps.exe",
+        "aliases": []
+    },
+    {
+        "name": "clang-tidy",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang-tidy.exe",
+        "aliases": []
+    },
+    {
+        "name": "clang",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\clang.exe",
+        "aliases": []
+    },
+    {
+        "name": "dsymutil",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\dsymutil.exe",
+        "aliases": []
+    },
+    {
+        "name": "ld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.exe",
+        "aliases": []
+    },
+    {
+        "name": "ld.lld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\ld.lld.exe",
+        "aliases": []
+    },
+    {
+        "name": "lldb-argdumper",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\lldb-argdumper.exe",
+        "aliases": []
+    },
+    {
+        "name": "lldb",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\lldb.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-addr2line",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-addr2line.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-ar",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-ar.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-as",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-as.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-cfi-verify",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-cfi-verify.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-config",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-config.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-cov",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-cov.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-cxxfilt",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-cxxfilt.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-dis",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-dis.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-dlltool",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-dlltool.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-dwarfdump",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-dwarfdump.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-dwp",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-dwp.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-ifs",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-ifs.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-lib",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-lib.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-link",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-link.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-lipo",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-lipo.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-ml",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-ml.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-modextract",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-modextract.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-nm",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-nm.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-objcopy",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objcopy.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-objdump",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-objdump.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-profdata",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-profdata.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-ranlib",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-ranlib.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-rc",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-rc.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-readelf",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-readelf.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-readobj",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-readobj.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-size",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-size.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-strings",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-strings.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-strip",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-strip.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-symbolizer",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-symbolizer.exe",
+        "aliases": []
+    },
+    {
+        "name": "llvm-windres",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\llvm-windres.exe",
+        "aliases": []
+    },
+    {
+        "name": "sancov",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\sancov.exe",
+        "aliases": []
+    },
+    {
+        "name": "sanstats",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\sanstats.exe",
+        "aliases": []
+    },
+    {
+        "name": "wasm-ld",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\bin\\wasm-ld.exe",
+        "aliases": []
+    },
+    {
+        "name": "_lldb",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Android\\Sdk\\ndk\\28.2.13676358\\toolchains\\llvm\\prebuilt\\windows-x86_64\\lib\\python3.11\\site-packages\\lldb\\_lldb.exe",
+        "aliases": []
+    },
+    {
+        "name": "yt-dlp",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Cisdem\\Cisdem Video Converter\\cache\\yt-dlp.exe",
+        "aliases": []
+    },
+    {
+        "name": "discord",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Discord\\app-1.0.9188\\Discord.exe",
+        "aliases": []
+    },
+    {
+        "name": "discordhookhelper",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Discord\\app-1.0.9245\\modules\\discord_hook-1\\discord_hook\\259f92f9d0a1cc\\DiscordHookHelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "discordhookhelper64",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Discord\\app-1.0.9245\\modules\\discord_hook-1\\discord_hook\\259f92f9d0a1cc\\DiscordHookHelper64.exe",
+        "aliases": []
+    },
+    {
+        "name": "discordsystemhelper",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Discord\\app-1.0.9245\\modules\\discord_utils-1\\discord_utils\\DiscordSystemHelper.exe",
+        "aliases": []
+    },
+    {
+        "name": "audio_effects_helper",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Discord\\app-1.0.9245\\modules\\discord_voice-1\\discord_voice\\audio_effects_helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "gpu_encoder_helper",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Discord\\app-1.0.9245\\modules\\discord_voice-1\\discord_voice\\gpu_encoder_helper.exe",
+        "aliases": []
+    },
+    {
+        "name": "squirrel",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\GitHubDesktop\\app-3.5.1\\squirrel.exe",
+        "aliases": []
+    },
+    {
+        "name": "actionsmcphost",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\ActionsMcpHost.exe",
+        "aliases": []
+    },
+    {
+        "name": "chatgpt",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\chatgpt.exe",
+        "aliases": []
+    },
+    {
+        "name": "gamebarelevatedft_alias",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\GameBarElevatedFT_Alias.exe",
+        "aliases": []
+    },
+    {
+        "name": "gethelp",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\GetHelp.exe",
+        "aliases": []
+    },
+    {
+        "name": "mediaplayer",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\MediaPlayer.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftstore",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\microsoftstore.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoftwindows.desktopstickereditorcentennial",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\MicrosoftWindows.DesktopStickerEditorCentennial.exe",
+        "aliases": []
+    },
+    {
+        "name": "ms-teams",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\ms-teams.exe",
+        "aliases": []
+    },
+    {
+        "name": "ms-teamsupdate",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\ms-teamsupdate.exe",
+        "aliases": []
+    },
+    {
+        "name": "ms-teams_ac",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\ms-teams_ac.exe",
+        "aliases": []
+    },
+    {
+        "name": "ms-teams_autostarter",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\ms-teams_autostarter.exe",
+        "aliases": []
+    },
+    {
+        "name": "mspaint",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\mspaint.exe",
+        "aliases": []
+    },
+    {
+        "name": "notepad",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\notepad.exe",
+        "aliases": []
+    },
+    {
+        "name": "olk",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\olk.exe",
+        "aliases": []
+    },
+    {
+        "name": "pbidesktopstore",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\PBIDesktopStore.exe",
+        "aliases": []
+    },
+    {
+        "name": "pbrush",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\pbrush.exe",
+        "aliases": []
+    },
+    {
+        "name": "python3",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\python3.exe",
+        "aliases": []
+    },
+    {
+        "name": "shellmcpservers.packaging",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\ShellMcpServers.Packaging.exe",
+        "aliases": []
+    },
+    {
+        "name": "snippingtool",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\SnippingTool.exe",
+        "aliases": []
+    },
+    {
+        "name": "store",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\store.exe",
+        "aliases": []
+    },
+    {
+        "name": "windowspackagemanagermcpserver",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\WindowsPackageManagerMCPServer.exe",
+        "aliases": []
+    },
+    {
+        "name": "windowspackagemanagerserver",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\WindowsPackageManagerServer.exe",
+        "aliases": []
+    },
+    {
+        "name": "winget",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\winget.exe",
+        "aliases": []
+    },
+    {
+        "name": "wt",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\wt.exe",
+        "aliases": []
+    },
+    {
+        "name": "xboxpcappadminserver",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\XboxPcAppAdminServer.exe",
+        "aliases": []
+    },
+    {
+        "name": "xboxpcappce",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Microsoft\\WindowsApps\\XboxPcAppCE.exe",
+        "aliases": []
+    },
+    {
+        "name": "codex-command-runner",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\OpenAI\\Codex\\bin\\codex-command-runner.exe",
+        "aliases": []
+    },
+    {
+        "name": "codex-windows-sandbox-setup",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\OpenAI\\Codex\\bin\\codex-windows-sandbox-setup.exe",
+        "aliases": []
+    },
+    {
+        "name": "codex",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\OpenAI\\Codex\\bin\\codex.exe",
+        "aliases": []
+    },
+    {
+        "name": "node_repl",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\OpenAI\\Codex\\bin\\node_repl.exe",
+        "aliases": []
+    },
+    {
+        "name": "rg",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\OpenAI\\Codex\\bin\\rg.exe",
+        "aliases": []
+    },
+    {
+        "name": "codex-computer-use",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\OpenAI\\Codex\\runtimes\\cua_node\\1b23c930bdf84ed6\\bin\\node_modules\\@oai\\sky\\bin\\windows\\codex-computer-use.exe",
+        "aliases": []
+    },
+    {
+        "name": "python-3.12.7-amd64",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Package Cache\\{e9b7c837-5066-4f10-851a-69179f987b18}\\python-3.12.7-amd64.exe",
+        "aliases": []
+    },
+    {
+        "name": "code",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+        "aliases": []
+    },
+    {
+        "name": "new_code",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\new_Code.exe",
+        "aliases": []
+    },
+    {
+        "name": "ollama app",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Ollama\\ollama app.exe",
+        "aliases": []
+    },
+    {
+        "name": "ollama",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Ollama\\ollama.exe",
+        "aliases": []
+    },
+    {
+        "name": "code-tunnel",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\code-tunnel.exe",
+        "aliases": []
+    },
+    {
+        "name": "new_code-tunnel",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\bin\\new_code-tunnel.exe",
+        "aliases": []
+    },
+    {
+        "name": "inno_updater",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\tools\\inno_updater.exe",
+        "aliases": []
+    },
+    {
+        "name": "tgrep",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\extensions\\copilot\\node_modules\\@github\\copilot\\sdk\\tgrep\\bin\\win32-x64\\tgrep.exe",
+        "aliases": []
+    },
+    {
+        "name": "mxc-diagnostic-console",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@microsoft\\mxc-sdk\\bin\\arm64\\mxc-diagnostic-console.exe",
+        "aliases": []
+    },
+    {
+        "name": "winhttp-proxy-shim",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@microsoft\\mxc-sdk\\bin\\arm64\\winhttp-proxy-shim.exe",
+        "aliases": []
+    },
+    {
+        "name": "wxc-exec",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@microsoft\\mxc-sdk\\bin\\arm64\\wxc-exec.exe",
+        "aliases": []
+    },
+    {
+        "name": "wxc-host-prep",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@microsoft\\mxc-sdk\\bin\\arm64\\wxc-host-prep.exe",
+        "aliases": []
+    },
+    {
+        "name": "wxc-test-proxy",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@microsoft\\mxc-sdk\\bin\\arm64\\wxc-test-proxy.exe",
+        "aliases": []
+    },
+    {
+        "name": "wxc-windows-sandbox-daemon",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@microsoft\\mxc-sdk\\bin\\arm64\\wxc-windows-sandbox-daemon.exe",
+        "aliases": []
+    },
+    {
+        "name": "wxc-windows-sandbox-guest",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@microsoft\\mxc-sdk\\bin\\arm64\\wxc-windows-sandbox-guest.exe",
+        "aliases": []
+    },
+    {
+        "name": "vsce-sign",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\@vscode\\vsce-sign\\bin\\vsce-sign.exe",
+        "aliases": []
+    },
+    {
+        "name": "openconsole",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\4fe60c8b1c\\resources\\app\\node_modules\\node-pty\\build\\Release\\conpty\\OpenConsole.exe",
+        "aliases": []
+    },
+    {
+        "name": "llama-quantize",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-quantize.exe",
+        "aliases": []
+    },
+    {
+        "name": "llama-server",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\llama-server.exe",
+        "aliases": []
+    },
+    {
+        "name": "httpx",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\httpx.exe",
+        "aliases": []
+    },
+    {
+        "name": "idna",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\idna.exe",
+        "aliases": []
+    },
+    {
+        "name": "pip",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\pip.exe",
+        "aliases": []
+    },
+    {
+        "name": "pip3.12",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\pip3.12.exe",
+        "aliases": []
+    },
+    {
+        "name": "pip3",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\Scripts\\pip3.exe",
+        "aliases": []
+    },
+    {
+        "name": "x86_64-w64-mingw32-nmakehlp",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\tcl\\nmake\\x86_64-w64-mingw32-nmakehlp.exe",
+        "aliases": []
+    },
+    {
+        "name": "ddd06",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\analyzer-10.1.0\\example\\ddd06.exe",
+        "aliases": []
+    },
+    {
+        "name": "process_runner",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Pub\\Cache\\hosted\\pub.dev\\process_runner-4.2.4\\bin\\process_runner.exe",
+        "aliases": []
+    },
+    {
+        "name": "component0",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Temp\\is-GDE6J2Z0NA.tmp\\component0.exe",
+        "aliases": []
+    },
+    {
+        "name": "codesetup-stable-fc3def6774c76082adf699d366f31a557ce5573f",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Temp\\vscode-stable-user-x64\\CodeSetup-stable-fc3def6774c76082adf699d366f31a557ce5573f.exe",
+        "aliases": []
+    },
+    {
+        "name": "printdeps",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Temp\\.net\\Updates\\n-Mp-EsnwoFC\\.playwright\\package\\bin\\PrintDeps.exe",
+        "aliases": []
+    },
+    {
+        "name": "avg_antivirus_free_setup",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Temp\\is-GDE6J2Z0NA.tmp\\component1_extract\\avg_antivirus_free_setup.exe",
+        "aliases": []
+    },
+    {
+        "name": "access",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\MSACCESS.EXE",
+        "aliases": []
+    },
+    {
+        "name": "adobe acrobat",
+        "path": "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Acrobat.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobe imageready 7.0",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\ImageReady.exe",
+        "aliases": []
+    },
+    {
+        "name": "adobe photoshop 7.0",
+        "path": "C:\\Program Files (x86)\\Adobe\\Photoshop 7.0\\Photoshop.exe",
+        "aliases": []
+    },
+    {
+        "name": "firefox private browsing",
+        "path": "C:\\Program Files\\Mozilla Firefox\\private_browsing.exe",
+        "aliases": []
+    },
+    {
+        "name": "google chrome",
+        "path": "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft edge",
+        "path": "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
+        "aliases": []
+    },
+    {
+        "name": "outlook (classic)",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\OUTLOOK.EXE",
+        "aliases": []
+    },
+    {
+        "name": "powerpoint",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\POWERPNT.EXE",
+        "aliases": []
+    },
+    {
+        "name": "publisher",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\MSPUB.EXE",
+        "aliases": []
+    },
+    {
+        "name": "sticky notes (new)",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\ONENOTE.EXE",
+        "aliases": []
+    },
+    {
+        "name": "word",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\WINWORD.EXE",
+        "aliases": []
+    },
+    {
+        "name": "7-zip file manager",
+        "path": "C:\\Program Files\\7-Zip\\7zFM.exe",
+        "aliases": []
+    },
+    {
+        "name": "7-zip help",
+        "path": "C:\\Program Files\\7-Zip\\7-zip.chm",
+        "aliases": []
+    },
+    {
+        "name": "remote desktop connection",
+        "path": "C:\\windows\\system32\\mstsc.exe",
+        "aliases": []
+    },
+    {
+        "name": "steps recorder",
+        "path": "C:\\windows\\system32\\psr.exe",
+        "aliases": []
+    },
+    {
+        "name": "windows media player legacy",
+        "path": "C:\\Program Files (x86)\\Windows Media Player\\wmplayer.exe",
+        "aliases": []
+    },
+    {
+        "name": "component services",
+        "path": "C:\\windows\\system32\\comexp.msc",
+        "aliases": []
+    },
+    {
+        "name": "computer management",
+        "path": "C:\\windows\\system32\\compmgmt.msc",
+        "aliases": []
+    },
+    {
+        "name": "dfrgui",
+        "path": "C:\\windows\\system32\\dfrgui.exe",
+        "aliases": []
+    },
+    {
+        "name": "disk cleanup",
+        "path": "C:\\windows\\system32\\cleanmgr.exe",
+        "aliases": []
+    },
+    {
+        "name": "event viewer",
+        "path": "C:\\windows\\system32\\eventvwr.msc",
+        "aliases": []
+    },
+    {
+        "name": "iscsi initiator",
+        "path": "C:\\windows\\system32\\iscsicpl.exe",
+        "aliases": []
+    },
+    {
+        "name": "memory diagnostics tool",
+        "path": "C:\\windows\\system32\\MdSched.exe",
+        "aliases": []
+    },
+    {
+        "name": "odbc data sources (32-bit)",
+        "path": "C:\\windows\\syswow64\\odbcad32.exe",
+        "aliases": []
+    },
+    {
+        "name": "odbc data sources (64-bit)",
+        "path": "C:\\windows\\system32\\odbcad32.exe",
+        "aliases": []
+    },
+    {
+        "name": "performance monitor",
+        "path": "C:\\windows\\system32\\perfmon.msc",
+        "aliases": []
+    },
+    {
+        "name": "recoverydrive",
+        "path": "C:\\windows\\system32\\RecoveryDrive.exe",
+        "aliases": []
+    },
+    {
+        "name": "registry editor",
+        "path": "C:\\windows\\regedit.exe",
+        "aliases": []
+    },
+    {
+        "name": "resource monitor",
+        "path": "C:\\windows\\system32\\perfmon.exe",
+        "aliases": []
+    },
+    {
+        "name": "services",
+        "path": "C:\\windows\\system32\\services.msc",
+        "aliases": []
+    },
+    {
+        "name": "system configuration",
+        "path": "C:\\windows\\system32\\msconfig.exe",
+        "aliases": []
+    },
+    {
+        "name": "system information",
+        "path": "C:\\windows\\system32\\msinfo32.exe",
+        "aliases": []
+    },
+    {
+        "name": "task scheduler",
+        "path": "C:\\windows\\system32\\taskschd.msc",
+        "aliases": []
+    },
+    {
+        "name": "windows defender firewall with advanced security",
+        "path": "C:\\windows\\system32\\WF.msc",
+        "aliases": []
+    },
+    {
+        "name": "cisco packet tracer help",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\help\\default\\index.htm",
+        "aliases": []
+    },
+    {
+        "name": "cisco packet tracer",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\PacketTracer.exe",
+        "aliases": []
+    },
+    {
+        "name": "qt linguist",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\bin\\linguist.exe",
+        "aliases": []
+    },
+    {
+        "name": "saves",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\saves",
+        "aliases": []
+    },
+    {
+        "name": "uninstall cisco packet tracer",
+        "path": "C:\\Program Files\\Cisco Packet Tracer 8.2.2\\unins000.exe",
+        "aliases": []
+    },
+    {
+        "name": "git bash",
+        "path": "C:\\Program Files\\Git\\git-bash.exe",
+        "aliases": []
+    },
+    {
+        "name": "git cmd",
+        "path": "C:\\Program Files\\Git\\git-cmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "git gui",
+        "path": "C:\\Program Files\\Git\\cmd\\git-gui.exe",
+        "aliases": []
+    },
+    {
+        "name": "git release notes",
+        "path": "C:\\Program Files\\Git\\ReleaseNotes.html",
+        "aliases": []
+    },
+    {
+        "name": "codec tweak tool",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\Tools\\CodecTweakTool.exe",
+        "aliases": []
+    },
+    {
+        "name": "media player classic",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\MPC-HC64\\mpc-hc64.exe",
+        "aliases": []
+    },
+    {
+        "name": "mcafee security scan plus",
+        "path": "C:\\Program Files (x86)\\McAfee Security Scan\\4.2.817\\mc-webview-cnt.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office access 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\accicons.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office excel 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\xlicons.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office groove 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\GrooveIcon.ico",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office infopath 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\inficon.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office onenote 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\joticon.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office outlook 2007",
+        "path": "C:\\WINDOWS\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\outicon.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office powerpoint 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\pptico.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office publisher 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\pubs.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office word 2007",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\wordicon.exe",
+        "aliases": []
+    },
+    {
+        "name": "office language preferences",
+        "path": "C:\\Program Files (x86)\\Microsoft Office\\root\\Office16\\SETLANG.EXE",
+        "aliases": []
+    },
+    {
+        "name": "mysql shell",
+        "path": "C:\\Program Files\\MySQL\\MySQL Shell 8.0\\bin\\mysqlsh.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql workbench 8.0 ce",
+        "path": "C:\\Program Files\\MySQL\\MySQL Workbench 8.0\\MySQLWorkbench.exe",
+        "aliases": []
+    },
+    {
+        "name": "install additional tools for node.js",
+        "path": "C:\\Windows\\System32\\cmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "node.js command prompt",
+        "path": "C:\\Windows\\System32\\cmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "node.js",
+        "path": "C:\\Program Files\\nodejs\\node.exe",
+        "aliases": []
+    },
+    {
+        "name": "uninstall node.js",
+        "path": "C:\\Windows\\SysWOW64\\msiexec.exe",
+        "aliases": []
+    },
+    {
+        "name": "task manager",
+        "path": "C:\\windows\\system32\\taskmgr.exe",
+        "aliases": []
+    },
+    {
+        "name": "documentation",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\Documentation.url",
+        "aliases": []
+    },
+    {
+        "name": "release notes",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\NEWS.txt",
+        "aliases": []
+    },
+    {
+        "name": "videolan website",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\VideoLAN Website.url",
+        "aliases": []
+    },
+    {
+        "name": "vlc media player - reset preferences and cache files",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe",
+        "aliases": []
+    },
+    {
+        "name": "vlc media player skinned",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe",
+        "aliases": []
+    },
+    {
+        "name": "vlc media player",
+        "path": "C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe",
+        "aliases": []
+    },
+    {
+        "name": "windows powershell ise 5.1 (x86)",
+        "path": "C:\\windows\\syswow64\\WindowsPowerShell\\v1.0\\PowerShell_ISE.exe",
+        "aliases": []
+    },
+    {
+        "name": "windows powershell ise 5.1",
+        "path": "C:\\windows\\system32\\WindowsPowerShell\\v1.0\\PowerShell_ISE.exe",
+        "aliases": []
+    },
+    {
+        "name": "character map",
+        "path": "C:\\windows\\system32\\charmap.exe",
+        "aliases": []
+    },
+    {
+        "name": "directvobsub",
+        "path": "C:\\Windows\\System32\\rundll32.exe",
+        "aliases": []
+    },
+    {
+        "name": "lav audio",
+        "path": "C:\\Windows\\System32\\rundll32.exe",
+        "aliases": []
+    },
+    {
+        "name": "lav splitter (mpc-hc internal)",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\MPC-HC64\\mpc-hc64.exe",
+        "aliases": []
+    },
+    {
+        "name": "lav splitter",
+        "path": "C:\\Windows\\System32\\rundll32.exe",
+        "aliases": []
+    },
+    {
+        "name": "lav video",
+        "path": "C:\\Windows\\System32\\rundll32.exe",
+        "aliases": []
+    },
+    {
+        "name": "madvr",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\Filters\\madVR\\madHcCtrl.exe",
+        "aliases": []
+    },
+    {
+        "name": "mpc video renderer",
+        "path": "C:\\Windows\\System32\\rundll32.exe",
+        "aliases": []
+    },
+    {
+        "name": "uninstall k-lite codec pack",
+        "path": "C:\\Program Files (x86)\\K-Lite Codec Pack\\unins000.exe",
+        "aliases": []
+    },
+    {
+        "name": "digital certificate for vba projects",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\misc.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft clip organizer",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\cagicon.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office 2007 language settings",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\misc.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office diagnostics",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\misc.exe",
+        "aliases": []
+    },
+    {
+        "name": "microsoft office picture manager",
+        "path": "C:\\Windows\\Installer\\{90120000-0030-0000-0000-0000000FF1CE}\\oisicon.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql installer - community",
+        "path": "C:\\Program Files (x86)\\MySQL\\MySQL Installer for Windows\\MySQLInstaller.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql 8.0 command line client - unicode",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe",
+        "aliases": []
+    },
+    {
+        "name": "mysql 8.0 command line client",
+        "path": "C:\\Program Files\\MySQL\\MySQL Server 8.0\\bin\\mysql.exe",
+        "aliases": []
+    },
+    {
+        "name": "administrative tools",
+        "path": "C:\\windows\\system32\\control.exe",
+        "aliases": []
+    },
+    {
+        "name": "file explorer",
+        "path": ".",
+        "aliases": []
+    },
+    {
+        "name": "rav vpn",
+        "path": "C:\\Program Files\\ReasonLabs\\VPN\\ui\\VPN.exe",
+        "aliases": []
+    },
+    {
+        "name": "livecaptions",
+        "path": "C:\\windows\\system32\\LiveCaptions.exe",
+        "aliases": []
+    },
+    {
+        "name": "magnify",
+        "path": "C:\\windows\\system32\\magnify.exe",
+        "aliases": []
+    },
+    {
+        "name": "narrator",
+        "path": "C:\\windows\\system32\\narrator.exe",
+        "aliases": []
+    },
+    {
+        "name": "on-screen keyboard",
+        "path": "C:\\windows\\system32\\osk.exe",
+        "aliases": []
+    },
+    {
+        "name": "voiceaccess",
+        "path": "C:\\windows\\system32\\voiceaccess.exe",
+        "aliases": []
+    },
+    {
+        "name": "idle (python 3.12 64-bit)",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\pythonw.exe",
+        "aliases": []
+    },
+    {
+        "name": "python 3.12 (64-bit)",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "aliases": []
+    },
+    {
+        "name": "python 3.12 manuals (64-bit)",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\Doc\\html\\index.html",
+        "aliases": []
+    },
+    {
+        "name": "python 3.12 module docs (64-bit)",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "aliases": []
+    },
+    {
+        "name": "command prompt",
+        "path": "C:\\windows\\system32\\cmd.exe",
+        "aliases": []
+    },
+    {
+        "name": "control panel",
+        "path": ".",
+        "aliases": []
+    },
+    {
+        "name": "run",
+        "path": ".",
+        "aliases": []
+    },
+    {
+        "name": "telegram",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Roaming\\Telegram Desktop\\Telegram.exe",
+        "aliases": []
+    },
+    {
+        "name": "uninstall telegram",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Roaming\\Telegram Desktop\\unins000.exe",
+        "aliases": []
+    },
+    {
+        "name": "visual studio code",
+        "path": "C:\\Users\\DIVYAM\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe",
+        "aliases": []
+    },
+    {
+        "name": "windows powershell (x86)",
+        "path": "C:\\Windows\\SysWOW64\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "aliases": []
+    },
+    {
+        "name": "windows powershell",
+        "path": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+        "aliases": []
+    }
+]

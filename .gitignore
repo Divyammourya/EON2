@@ -1,0 +1,120 @@
+# ==========================================
+# Python
+# ==========================================
+
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*$py.class
+
+# ==========================================
+# Virtual Environments
+# ==========================================
+
+.venv/
+venv/
+env/
+
+# ==========================================
+# Environment Variables
+# ==========================================
+
+.env
+.env.*
+
+# ==========================================
+# IDEs
+# ==========================================
+
+.vscode/
+.idea/
+
+# ==========================================
+# Operating System
+# ==========================================
+
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# Logs
+# ==========================================
+
+logs/
+*.log
+
+# ==========================================
+# Testing
+# ==========================================
+
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# ==========================================
+# Type Checkers / Linters
+# ==========================================
+
+.mypy_cache/
+.ruff_cache/
+.pyre/
+
+# ==========================================
+# Build
+# ==========================================
+
+build/
+dist/
+*.egg-info/
+
+# ==========================================
+# Temporary Files
+# ==========================================
+
+*.tmp
+*.temp
+
+# ==========================================
+# Generated Tree Files
+# ==========================================
+
+docs_tree.txt
+src_tree.txt
+tests_tree.txt
+
+src/docs_tree.txt
+src/src_tree.txt
+src/tests_tree.txt
+
+# ==========================================
+# Runtime Data
+# ==========================================
+
+data/
+# Local configuration backups
+config/settings.json.bak
+config/settings.json.before-rohan.bak
+
+# Downloaded AI model weights
+models/**/*.onnx
+models/**/*.onnx.json
+
+# Local environment files
+.env
+.env.*
+!.env.example
+!.env.template
+
+# Private Google OAuth credentials
+config/google_credentials.json
+config/Google Calendar API.json
+
+# Local secrets and environments
+local-secrets-backup/
+.env
+.env.*
+!.env.example
+!.env.template
