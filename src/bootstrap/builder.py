@@ -13,7 +13,41 @@ from src.bootstrap.services import register_services
 from src.core.container import ServiceContainer
 from src.core.engine import Engine
 
+from src.modules.automation.weather import WeatherTool
+from src.modules.briefing.morning import MorningBriefing
 from src.modules.conversation.manager import ConversationManager
+
+from typing import Any
+
+
+def _build_weather_tool(config) -> WeatherTool:
+    """Builds a weather tool from the configured location.
+
+    ``register_services`` builds its own copy to hand to the tool
+    registry, where the model can call it by name. This one is for the
+    morning briefing, which needs the structured readings rather than a
+    tool the model invokes.
+
+    Args:
+        config: The loaded configuration.
+
+    Returns:
+        A weather tool pointed at the user's location.
+    """
+    kwargs: dict[str, Any] = {}
+
+    location_name = config.get("weather_location_name")
+    latitude = config.get("weather_latitude")
+    longitude = config.get("weather_longitude")
+
+    if location_name:
+        kwargs["default_location_name"] = str(location_name)
+    if latitude is not None:
+        kwargs["default_latitude"] = float(latitude)
+    if longitude is not None:
+        kwargs["default_longitude"] = float(longitude)
+
+    return WeatherTool(**kwargs)
 
 
 class ApplicationBuilder:
@@ -50,6 +84,17 @@ class ApplicationBuilder:
             memory=container.get("memory"),
         )
 
+        briefing = MorningBriefing(
+            readings_provider=_build_weather_tool(config).current_readings,
+            state_path=str(
+                config.get("morning_briefing_state_path")
+                or "data/morning_briefing.json"
+            ),
+            start_hour=int(config.get("morning_briefing_start_hour") or 6),
+            end_hour=int(config.get("morning_briefing_end_hour") or 10),
+            enabled=config.get("morning_briefing_enabled") is not False,
+        )
+
         engine.start()
 
         return Application(
@@ -58,4 +103,5 @@ class ApplicationBuilder:
             voice=container.get("voice"),
             proactive=container.get("proactive"),
             hologram=container.get("hologram"),
+            briefing=briefing,
         )

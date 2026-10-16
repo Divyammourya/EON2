@@ -1,4 +1,5 @@
 {
+  "version": "1.0",
   "wake_word": "EON",
   "voice_enabled": false,
   "piper_hi_model_path": "C:\\Users\\divya\\Desktop\\EONdemo10\\models\\piper\\hi_IN-rohan-medium\\hi_IN-rohan-medium.onnx",
@@ -17,6 +18,11 @@
   "weather_location_name": "New Delhi",
   "weather_latitude": 28.6139,
   "weather_longitude": 77.209,
+
+  "morning_briefing_enabled": true,
+  "morning_briefing_start_hour": 6,
+  "morning_briefing_end_hour": 10,
+  "morning_briefing_state_path": "data/morning_briefing.json",
   "ambient_awareness_enabled": true,
   "ambient_check_interval_seconds": 30,
   "ambient_downloads_enabled": true,

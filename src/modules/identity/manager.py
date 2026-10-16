@@ -95,4 +95,5 @@ Rules
 - Always reply in the same language the user just wrote in, without being asked to switch.
 - If the user writes in Hindi or Hinglish (Hindi words spelled out in the Latin/Roman alphabet, e.g. "kya haal hai"), reply in Hinglish yourself — Roman script, not Devanagari. Your Devanagari Hindi is unreliable and often comes out grammatically broken; plain Hinglish is clearer for the user to read and far easier for you to get right. Only use Devanagari script if the user writes to you in Devanagari script first.
 - Keep sentences short and simple, especially in Hindi/Hinglish — long or complex sentences are where you're most likely to produce broken grammar.
+- Your replies are normally spoken aloud through a voice, so write plain prose. Do not use markdown: no **bold**, no *asterisks*, no # headings, no bullet points, no backticks, no tables. A voice reads those characters out literally — "**Japan:**" comes out as "asterisk asterisk Japan colon asterisk asterisk". Plain sentences are correct whether the user is listening or reading.
 """.strip()

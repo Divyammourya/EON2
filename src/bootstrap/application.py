@@ -5,6 +5,7 @@ EON Application.
 from __future__ import annotations
 
 from src.core.engine import Engine
+from src.modules.briefing.morning import MorningBriefing
 from src.modules.conversation.manager import ConversationManager
 from src.modules.voice.service import VoiceService
 from src.modules.proactive.service import ProactiveService
@@ -20,6 +21,7 @@ class Application:
         voice: VoiceService,
         proactive: ProactiveService,
         hologram: DesktopCompanionService,
+        briefing: MorningBriefing,
     ) -> None:
 
         self.engine = engine
@@ -27,3 +29,4 @@ class Application:
         self.voice = voice
         self.proactive = proactive
         self.hologram = hologram
+        self.briefing = briefing

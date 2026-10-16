@@ -14,6 +14,7 @@ package is needed for this tool.
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from datetime import datetime
 
 import httpx
@@ -23,7 +24,13 @@ from src.modules.tools.models import ToolResult
 
 _GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 _FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
+_AIR_QUALITY_URL = "https://air-quality-api.open-meteo.com/v1/air-quality"
 _REQUEST_TIMEOUT_SECONDS = 6.0
+
+# Weather codes that mean something is falling out of the sky.
+_WET_WEATHER_CODES = frozenset(
+    {51, 53, 55, 61, 63, 65, 71, 73, 75, 80, 81, 82, 95, 96, 99}
+)
 
 # Fallback location used when the user doesn't name a city and no
 # default has been configured (see VoiceServiceConfig-adjacent
@@ -63,6 +70,81 @@ _WEATHER_CODE_DESCRIPTIONS = {
 }
 
 
+def describe_air_quality(index: float) -> str:
+    """Turns an air quality index into a plain-language band.
+
+    Uses the US EPA bands, which run 0-500 and are close enough to the
+    CPCB scale used in India to be recognisable. Deliberately vague
+    about the number itself: "unhealthy" tells the user what to do with
+    their morning, "187" mostly doesn't.
+
+    Args:
+        index: The air quality index.
+
+    Returns:
+        A short description of the band the index falls in.
+    """
+    if index <= 50:
+        return "good"
+    if index <= 100:
+        return "moderate"
+    if index <= 150:
+        return "unhealthy for sensitive groups"
+    if index <= 200:
+        return "unhealthy"
+    if index <= 300:
+        return "very unhealthy"
+    return "hazardous"
+
+
+@dataclass(slots=True)
+class WeatherReadings:
+    """One set of current conditions for one place.
+
+    Structured rather than pre-formatted, so the weather tool's own
+    answer and the morning briefing can phrase the same numbers
+    differently without either re-fetching them.
+
+    Attributes:
+        location_name: Human-readable name of the place.
+        temperature_c: Air temperature, in degrees Celsius.
+        feels_like_c: Apparent temperature, in degrees Celsius.
+        humidity_percent: Relative humidity, if the API returned it.
+        wind_kph: Wind speed in km/h, if the API returned it.
+        weather_code: WMO weather code describing the conditions.
+        air_quality_index: Air quality index, if it could be fetched.
+        pm2_5: Fine particulate concentration, if available.
+    """
+
+    location_name: str
+    temperature_c: float
+    feels_like_c: float
+    humidity_percent: float | None
+    wind_kph: float | None
+    weather_code: int
+    air_quality_index: float | None = None
+    pm2_5: float | None = None
+
+    @property
+    def description(self) -> str:
+        """Plain-language description of the current conditions."""
+        return _WEATHER_CODE_DESCRIPTIONS.get(
+            self.weather_code, "changing conditions"
+        )
+
+    @property
+    def is_wet(self) -> bool:
+        """Whether the conditions involve precipitation."""
+        return self.weather_code in _WET_WEATHER_CODES
+
+    @property
+    def air_quality_description(self) -> str | None:
+        """Plain-language band for the air quality, or ``None``."""
+        if self.air_quality_index is None:
+            return None
+        return describe_air_quality(self.air_quality_index)
+
+
 class WeatherTool(Tool):
     """Tool for real-time weather/temperature and local date/time."""
 
@@ -92,8 +174,7 @@ class WeatherTool(Tool):
             return ToolResult(success=True, message=self._describe_date_time())
 
         try:
-            latitude, longitude, location_name = self._resolve_location(text)
-            weather = self._fetch_current_weather(latitude, longitude)
+            readings = self.current_readings(text)
         except Exception as error:
             return ToolResult(
                 success=False,
@@ -103,14 +184,17 @@ class WeatherTool(Tool):
                 ),
             )
 
-        description = _WEATHER_CODE_DESCRIPTIONS.get(
-            weather["weather_code"], "changing conditions"
+        message = (
+            f"It's currently {readings.temperature_c:.0f}°C and "
+            f"{readings.description} in {readings.location_name}. "
+            f"Feels like {readings.feels_like_c:.0f}°C."
         )
 
-        message = (
-            f"It's currently {weather['temperature_c']:.0f}°C and {description} "
-            f"in {location_name}. Feels like {weather['feels_like_c']:.0f}°C."
-        )
+        if readings.humidity_percent is not None:
+            message += f" Humidity is {readings.humidity_percent:.0f}%."
+
+        if readings.air_quality_description is not None:
+            message += f" Air quality is {readings.air_quality_description}."
 
         return ToolResult(success=True, message=message)
 
@@ -171,13 +255,78 @@ class WeatherTool(Tool):
                 return text.split(marker, 1)[-1].strip(" ?.!")
         return ""
 
+    def current_readings(self, location_text: str = "") -> WeatherReadings:
+        """Fetches the current conditions for a location.
+
+        This is the structured entry point — used by ``execute`` and by
+        the morning briefing alike. Air quality comes from a separate
+        Open-Meteo endpoint and is treated as a bonus: if it fails, the
+        temperature and conditions are still returned rather than the
+        whole reading being lost.
+
+        Args:
+            location_text: Text that may name a city, or "" for the
+                configured default location.
+
+        Returns:
+            The current conditions.
+
+        Raises:
+            Exception: If the location cannot be resolved or the weather
+                service cannot be reached. Callers surface this to the
+                user, since it usually means the network is down.
+        """
+        latitude, longitude, location_name = self._resolve_location(location_text)
+        weather = self._fetch_current_weather(latitude, longitude)
+        air_quality_index, pm2_5 = self._fetch_air_quality(latitude, longitude)
+
+        return WeatherReadings(
+            location_name=location_name,
+            temperature_c=weather["temperature_c"],
+            feels_like_c=weather["feels_like_c"],
+            humidity_percent=weather["humidity_percent"],
+            wind_kph=weather["wind_kph"],
+            weather_code=weather["weather_code"],
+            air_quality_index=air_quality_index,
+            pm2_5=pm2_5,
+        )
+
+    def _fetch_air_quality(
+        self, latitude: float, longitude: float
+    ) -> tuple[float | None, float | None]:
+        """Fetches the air quality index and PM2.5, or (None, None).
+
+        Best-effort on purpose: air quality is a second network call to
+        a second host, and a useful answer about the weather should not
+        be lost because the air quality service is having a bad day.
+        """
+        try:
+            response = httpx.get(
+                _AIR_QUALITY_URL,
+                params={
+                    "latitude": latitude,
+                    "longitude": longitude,
+                    "current": "us_aqi,pm2_5",
+                    "timezone": "auto",
+                },
+                timeout=_REQUEST_TIMEOUT_SECONDS,
+            )
+            response.raise_for_status()
+            current = response.json()["current"]
+            return current.get("us_aqi"), current.get("pm2_5")
+        except Exception:
+            return None, None
+
     def _fetch_current_weather(self, latitude: float, longitude: float) -> dict:
         response = httpx.get(
             _FORECAST_URL,
             params={
                 "latitude": latitude,
                 "longitude": longitude,
-                "current": "temperature_2m,apparent_temperature,weather_code",
+                "current": (
+                    "temperature_2m,apparent_temperature,"
+                    "relative_humidity_2m,wind_speed_10m,weather_code"
+                ),
                 "timezone": "auto",
             },
             timeout=_REQUEST_TIMEOUT_SECONDS,
@@ -188,5 +337,7 @@ class WeatherTool(Tool):
         return {
             "temperature_c": current["temperature_2m"],
             "feels_like_c": current["apparent_temperature"],
+            "humidity_percent": current.get("relative_humidity_2m"),
+            "wind_kph": current.get("wind_speed_10m"),
             "weather_code": current["weather_code"],
         }
