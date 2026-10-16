@@ -40,6 +40,7 @@ _AUTOMATED_ACTION_TYPES = {
     ActionType.EMAIL_READ,
     ActionType.EMAIL_SEND,
     ActionType.MESSAGE_SEND,
+    ActionType.MUSIC,
 }
 
 _SEARCH_URL_TEMPLATE = "https://www.google.com/search?q={query}"
@@ -307,6 +308,11 @@ class ActionExecutor:
             # access, which do carry a real privacy angle.
             return self._run_tool(
                 "weather", action.target, "Weather tool is not available."
+            )
+
+        if action.type == ActionType.MUSIC:
+            return self._run_tool(
+                "music", action.target, "Music tool is not available."
             )
 
         return None

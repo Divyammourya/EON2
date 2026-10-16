@@ -62,6 +62,9 @@
   "skills_enabled": true,
   "skills_lists_path": "data/lists.json",
 
+  "music_enabled": true,
+  "music_folders": [],
+
   "voice_input_device": null,
   "voice_output_device": null
 }

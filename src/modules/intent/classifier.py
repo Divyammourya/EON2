@@ -95,6 +95,47 @@ class IntentClassifier:
         "kitne baj rahe hai",
     )
 
+    # Music playback (tools/media/). Checked before the app keywords
+    # below, because "start music" would otherwise be read as "launch
+    # an application called music", and before TYPE_TEXT, because
+    # "play" is not a typing verb.
+    MUSIC_TRIGGERS = (
+        "play music",
+        "play some music",
+        "play a song",
+        "play songs",
+        "play a track",
+        "start music",
+        "start the music",
+        "start a song",
+        "music bajao",
+        "music chalao",
+        "music play karo",
+        "gaana bajao",
+        "gaana chalao",
+        "gana bajao",
+        "gana chalao",
+        "song bajao",
+        "song chalao",
+        "song play karo",
+    )
+
+    # "play <song>". The verb has to sit near the start: "play
+    # despacito" and "can you play despacito" are requests, whereas
+    # "how do i play this file" is a question *about* playing
+    # something rather than a request to play it.
+    _PLAY_PATTERN = re.compile(r"(?:^|\s)play\b", re.IGNORECASE)
+
+    _MUSIC_VERB_MAX_WORDS_BEFORE = 2
+
+    # A request names a song; a question *about* playing something does
+    # not. "how do i play this file" is the case that makes this
+    # necessary — the verb is only three words in, so position alone
+    # doesn't rule it out.
+    _MUSIC_QUESTION_WORDS = frozenset(
+        {"how", "what", "why", "when", "where", "which"}
+    )
+
     TERMINAL_TRIGGERS = (
         "run command",
         "execute command",
@@ -363,6 +404,35 @@ class IntentClassifier:
         r"send (?:a )?(?:message|text)\b", re.IGNORECASE
     )
 
+    def _music_target(self, message: str) -> str | None:
+        """Whether this is a music request, and what to pass along.
+
+        Returns the message for the music tool to parse the song title
+        out of, or ``None`` when this isn't a music request at all.
+
+        ``None`` matters as much as a match here: "play" is an ordinary
+        English word, and treating every sentence containing it as a
+        music request would swallow phrasing like "how do i play this
+        file".
+        """
+        if any(trigger in message for trigger in self.MUSIC_TRIGGERS):
+            return message
+
+        words = message.split()
+
+        if words and words[0] in self._MUSIC_QUESTION_WORDS:
+            return None
+
+        match = self._PLAY_PATTERN.search(message)
+
+        if match is None:
+            return None
+
+        if len(message[: match.start()].split()) > self._MUSIC_VERB_MAX_WORDS_BEFORE:
+            return None
+
+        return message
+
     def classify(self, text: str) -> Intent:
 
         message = text.lower().strip()
@@ -383,6 +453,14 @@ class IntentClassifier:
         # narrow, unambiguous signal with no overlap risk.
         if any(trigger in message for trigger in self.WEATHER_TRIGGERS):
             return Intent(IntentType.WEATHER, target=message)
+
+        # Music playback — also narrow and unambiguous, and it has to
+        # come before the app keywords so "start music" doesn't become
+        # "launch an app".
+        music_target = self._music_target(message)
+
+        if music_target is not None:
+            return Intent(IntentType.MUSIC, target=music_target)
 
         # Terminal / shell command.
         terminal_trigger = next(

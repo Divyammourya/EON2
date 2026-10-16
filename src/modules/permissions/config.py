@@ -37,6 +37,12 @@ DEFAULT_AUTO_ACTION_TYPES: frozenset[ActionType] = frozenset(
         ActionType.TAKE_SCREENSHOT,
         ActionType.CALENDAR_READ,
         ActionType.EMAIL_READ,
+        # Playing a song is the same kind of act as VOLUME_CONTROL or
+        # OPEN_URL, both already here: it makes a noise and possibly
+        # opens a browser tab, and there's nothing to leak or destroy.
+        # Leaving it out would mean a yes/no prompt before every
+        # "play music", which is friction for no safety gain.
+        ActionType.MUSIC,
     }
 )
 
