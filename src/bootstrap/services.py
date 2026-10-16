@@ -468,25 +468,22 @@ def register_services(
     # Log what the machine actually has, so a device can be picked from
     # here rather than guessed at. Purely diagnostic: a failure to
     # enumerate must not stop EON starting.
-    try:
-        for device in SoundDeviceMicrophone.enumerate_devices():
-            logger.info(
-                "Audio in  [%s] %s (%s Hz)%s",
-                device.device_id,
-                device.name,
-                device.sample_rate_hz,
-                "  <- system default" if device.is_default else "",
-            )
-        for device in SoundDeviceSpeaker.enumerate_devices():
-            logger.info(
-                "Audio out [%s] %s (%s Hz)%s",
-                device.device_id,
-                device.name,
-                device.sample_rate_hz,
-                "  <- system default" if device.is_default else "",
-            )
-    except Exception:
-        logger.warning("Could not list the available audio devices.")
+    for direction, lister in (
+        ("in", SoundDeviceMicrophone),
+        ("out", SoundDeviceSpeaker),
+    ):
+        try:
+            for device in lister.enumerate_devices():
+                logger.info(
+                    "Audio %s [%s] %s (%s Hz)%s",
+                    direction,
+                    device.device_id,
+                    device.name,
+                    device.sample_rate_hz,
+                    "  <- default" if device.is_default else "",
+                )
+        except Exception:
+            logger.warning("Could not list the %s audio devices.", direction)
 
     microphone = SoundDeviceMicrophone(
         device_id=voice_input_device,
@@ -520,7 +517,7 @@ def register_services(
 
         idle_checkin_minutes = config.get("idle_checkin_minutes")
         if idle_checkin_minutes is not None:
-            proactive_config.idle_checkin_minutes = float(idle_checking_minutes)
+            proactive_config.idle_checkin_minutes = float(idle_checkin_minutes)
 
     logger.info(
         "Proactive speech is %s.",
