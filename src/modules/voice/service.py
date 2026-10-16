@@ -31,8 +31,11 @@ from src.modules.voice.speaker_id import SpeakerIdentifier
 
 import threading
 from collections.abc import Callable
-...
+
+from src.modules.voice.conversation import is_exit_phrase
+from src.modules.voice.endpointing import EndpointDecision, UtteranceEndpoint
 from src.modules.voice.wakeword import WakeWordListener
+from src.utils.audio import pcm_frame_seconds, rms_pcm
 
 logger = get_logger("VoiceService")
 
@@ -178,6 +181,206 @@ class VoiceService:
         session.metadata["audio_bytes"] = audio_bytes
 
         return self._manager.transcribe(session_id)
+
+    def listen_until_silence(
+        self,
+        session_id: UUID,
+        *,
+        wait_for_speech_seconds: float | None = None,
+        silence_end_seconds: float | None = None,
+        max_seconds: float | None = None,
+        min_speech_seconds: float | None = None,
+    ) -> SpeechRecognitionResult | None:
+        """Records until the speaker stops talking, then transcribes it.
+
+        Unlike ``listen_once`` (a fixed-duration recording), this stops
+        as soon as the speaker has been quiet for ``silence_end_seconds``
+        — so a short answer returns quickly and a long question isn't
+        cut off mid-sentence.
+
+        Args:
+            session_id: The active session to transcribe audio for.
+            wait_for_speech_seconds: How long to wait for speech to
+                begin. Defaults to ``listen_start_timeout_seconds``.
+            silence_end_seconds: Silence that ends the utterance.
+                Defaults to ``silence_end_seconds`` on the config.
+            max_seconds: Hard recording cap. Defaults to
+                ``listen_max_seconds``.
+            min_speech_seconds: Least speech needed to count. Defaults
+                to ``listen_min_speech_seconds``.
+
+        Returns:
+            The recognition result, or ``None`` if no usable speech was
+            captured.
+        """
+        pcm_bytes = self._record_utterance(
+            wait_for_speech_seconds=(
+                wait_for_speech_seconds
+                if wait_for_speech_seconds is not None
+                else self._config.listen_start_timeout_seconds
+            ),
+            silence_end_seconds=(
+                silence_end_seconds
+                if silence_end_seconds is not None
+                else self._config.silence_end_seconds
+            ),
+            max_seconds=(
+                max_seconds
+                if max_seconds is not None
+                else self._config.listen_max_seconds
+            ),
+            min_speech_seconds=(
+                min_speech_seconds
+                if min_speech_seconds is not None
+                else self._config.listen_min_speech_seconds
+            ),
+        )
+
+        if pcm_bytes is None:
+            return None
+
+        session = self._manager.get_session(session_id)
+        session.metadata["audio_bytes"] = self._wrap_pcm_as_wav(pcm_bytes)
+
+        return self._manager.transcribe(session_id)
+
+    def _record_utterance(
+        self,
+        *,
+        wait_for_speech_seconds: float,
+        silence_end_seconds: float,
+        max_seconds: float,
+        min_speech_seconds: float,
+    ) -> bytes | None:
+        """Records one endpointed utterance of raw PCM, or ``None``.
+
+        Drives ``UtteranceEndpoint`` from per-frame energy and stops as
+        soon as it says to — the speaker went quiet, the hard cap was
+        reached, or nothing was ever said.
+        """
+        endpoint = UtteranceEndpoint(
+            silence_end_seconds=silence_end_seconds,
+            max_seconds=max_seconds,
+            min_speech_seconds=min_speech_seconds,
+            start_timeout_seconds=wait_for_speech_seconds,
+        )
+
+        sample_rate_hz = self._config.sample_rate_hz
+        energy_threshold = self._config.wake_word_energy_threshold
+        frames: list[bytes] = []
+        decision = EndpointDecision.CONTINUE
+
+        with self._mic_lock:
+            self._microphone.start_recording()
+            try:
+                while decision is EndpointDecision.CONTINUE:
+                    try:
+                        frame = self._microphone.read_frame()
+                    except VoiceError:
+                        break
+
+                    frames.append(frame)
+                    decision = endpoint.update(
+                        pcm_frame_seconds(len(frame), sample_rate_hz),
+                        rms_pcm(frame) >= energy_threshold,
+                    )
+            finally:
+                self._microphone.stop_recording()
+
+        if decision is EndpointDecision.STOP_NO_SPEECH or not frames:
+            return None
+
+        return b"".join(frames)
+
+    def run_conversation(
+        self,
+        session_id: UUID,
+        on_utterance: Callable[[str, str | None], None],
+        *,
+        idle_timeout_seconds: float | None = None,
+    ) -> int:
+        """Holds a hands-free conversation until the user stops talking.
+
+        After the wake word, this keeps listening for follow-up turns
+        and calls ``on_utterance(text, language_code)`` for each, so the
+        user does not have to say the wake word again between turns. The
+        conversation ends when the user is silent for
+        ``idle_timeout_seconds`` (default
+        ``conversation_idle_timeout_seconds``), says an exit phrase, or
+        nothing was heard at all.
+
+        The wake-word listener is paused for the duration, so EON never
+        transcribes its own replies or the follow-up turns through the
+        wake-word path; it is resumed when the conversation ends.
+
+        Args:
+            session_id: The active session to listen/transcribe on.
+            on_utterance: Called with ``(transcript, language_code)``
+                for each accepted turn. It is expected to produce EON's
+                reply (typically by speaking it) before returning.
+            idle_timeout_seconds: Overrides the configured idle timeout.
+
+        Returns:
+            How many turns were handled.
+        """
+        idle_timeout = (
+            idle_timeout_seconds
+            if idle_timeout_seconds is not None
+            else self._config.conversation_idle_timeout_seconds
+        )
+        single_turn = not self._config.conversation_mode_enabled
+        wait_for_speech = (
+            self._config.listen_start_timeout_seconds if single_turn else idle_timeout
+        )
+
+        self._pause_wake_word_listening()
+        turns = 0
+
+        try:
+            while True:
+                result = self.listen_until_silence(
+                    session_id,
+                    wait_for_speech_seconds=wait_for_speech,
+                )
+
+                if result is None:
+                    logger.info(
+                        "Conversation ended: no speech within %.1fs.",
+                        wait_for_speech,
+                    )
+                    break
+
+                text = (result.transcript or "").strip()
+                if not text:
+                    logger.info("Conversation ended: empty transcript.")
+                    break
+
+                if is_exit_phrase(text, self._config.conversation_exit_phrases):
+                    logger.info("Conversation ended: exit phrase %r.", text)
+                    break
+
+                turns += 1
+                on_utterance(text, result.language_code)
+
+                if single_turn:
+                    break
+        finally:
+            self._resume_wake_word_listening()
+
+        return turns
+
+    def _pause_wake_word_listening(self) -> None:
+        """Suspends the wake-word listener, if one exists."""
+        if self._wake_word_listener is not None:
+            self._wake_word_listener.pause()
+
+    def _resume_wake_word_listening(self) -> None:
+        """Resumes the wake-word listener if it is still running."""
+        if (
+            self._wake_word_listener is not None
+            and self._wake_word_listener.is_running
+        ):
+            self._wake_word_listener.resume()
 
     @property
     def is_speaking(self) -> bool:
@@ -442,5 +645,5 @@ class VoiceService:
         """
         buffer = io.BytesIO(wav_bytes)
 
-        with wave.open(buffer, "rb") as wav_file:
+        with wave.open(buffer, "rb") as wave_file:
             return wav_file.readframes(wav_file.getnframes())
