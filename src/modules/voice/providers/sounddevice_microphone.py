@@ -30,12 +30,34 @@ from typing import Any
 
 import sounddevice as sd
 
+from src.core.logger import get_logger
 from src.modules.voice.exceptions import MicrophoneError
 from src.modules.voice.microphone import Microphone, MicrophoneDeviceInfo
+from src.modules.voice.stream_settings import (
+    choose_stream_settings,
+    resample_pcm16,
+    resolve_device_index,
+)
+
+logger = get_logger("Microphone")
 
 _DEFAULT_READ_TIMEOUT_SECONDS = 5.0
 _DEFAULT_DTYPE = "int16"
 _DEFAULT_AUDIO_QUEUE_SIZE = 50
+
+
+def _probe_input(device: int, rate: int, channels: int) -> bool:
+    """Whether PortAudio will accept this input configuration."""
+    try:
+        sd.check_input_settings(
+            device=device,
+            samplerate=rate,
+            channels=channels,
+            dtype=_DEFAULT_DTYPE,
+        )
+        return True
+    except Exception:
+        return False
 
 
 class SoundDeviceMicrophone(Microphone):
@@ -98,29 +120,61 @@ class SoundDeviceMicrophone(Microphone):
 
 
         try:
-            resolved_id = device_id if device_id is not None else sd.default.device[0]
-            device_query: dict[str, Any] = sd.query_devices(resolved_id, "input")
             default_input_id = sd.default.device[0]
+            resolved_id = resolve_device_index(
+                device_id,
+                sd.query_devices(),
+                "input",
+            )
+            if resolved_id is None:
+                resolved_id = default_input_id
+            device_query: dict[str, Any] = sd.query_devices(resolved_id, "input")
         except Exception as exc:
             raise MicrophoneError(
                 "Failed to resolve or query the requested input device.",
-                details={"device_id": device_id},
+                details={"device_id": device_id, "reason": str(exc)},
             ) from exc
 
-        actual_sample_rate = int(device_query["default_samplerate"])
+        device_default_rate = int(device_query["default_samplerate"])
 
         self._device_info = MicrophoneDeviceInfo(
             device_id=str(resolved_id),
             name=str(device_query["name"]),
-            sample_rate_hz=actual_sample_rate,
+            sample_rate_hz=device_default_rate,
             channels=int(device_query["max_input_channels"]),
             is_default=(resolved_id == default_input_id),
         )
 
-
         self._sample_rate_hz = sample_rate_hz
         self._channels = channels
         self._blocksize = blocksize
+
+        # The device may not accept the 16 kHz EON works in — plenty of
+        # Windows devices run at 44.1 or 48 kHz only, and PortAudio
+        # refuses a rate the hardware cannot do. Pick settings it will
+        # accept, then convert captured audio back to ``sample_rate_hz``
+        # in _convert_block so nothing downstream has to change.
+        self._stream_rate_hz, self._stream_channels = choose_stream_settings(
+            wanted_rate=sample_rate_hz,
+            wanted_channels=channels,
+            device_default_rate=device_default_rate,
+            supports=lambda rate, count: _probe_input(
+                resolved_id,
+                rate,
+                count,
+            ),
+        )
+
+        if self._stream_rate_hz != sample_rate_hz:
+            logger.info(
+                "Microphone '%s' does not support %s Hz; capturing at "
+                "%s Hz and resampling to %s Hz.",
+                self._device_info.name,
+                sample_rate_hz,
+                self._stream_rate_hz,
+                sample_rate_hz,
+            )
+
         self._stream: sd.InputStream | None = None
         self._is_open = False
         self._is_recording = False
@@ -184,8 +238,8 @@ class SoundDeviceMicrophone(Microphone):
         try:
             self._stream = sd.InputStream(
                 device=int(self._device_info.device_id),
-                samplerate=self._sample_rate_hz,
-                channels=self._channels,
+                samplerate=self._stream_rate_hz,
+                channels=self._stream_channels,
                 blocksize=self._blocksize,
                 dtype=_DEFAULT_DTYPE,
                 callback=self._on_audio_block,
@@ -196,7 +250,13 @@ class SoundDeviceMicrophone(Microphone):
             self._stream = None
             raise MicrophoneError(
                 "Failed to create the input stream for the microphone device.",
-                details={"device_id": self._device_info.device_id},
+                details={
+                    "device_id": self._device_info.device_id,
+                    "device_name": self._device_info.name,
+                    "samplerate": self._stream_rate_hz,
+                    "channels": self._stream_channels,
+                    "reason": str(exc),
+                },
             ) from exc
         self._is_open = True
 
@@ -368,8 +428,11 @@ class SoundDeviceMicrophone(Microphone):
         """
         if status:
             return
+
+        block = self._convert_block(indata)
+
         try:
-            self._audio_queue.put_nowait(indata.tobytes())
+            self._audio_queue.put_nowait(block)
 
         except queue.Full:
             try:
@@ -378,9 +441,34 @@ class SoundDeviceMicrophone(Microphone):
                 pass
 
             try:
-                self._audio_queue.put_nowait(indata.tobytes())
+                self._audio_queue.put_nowait(block)
             except queue.Full:
                 pass
+
+    def _convert_block(self, indata: Any) -> bytes:
+        """Converts a captured block into the format EON works in.
+
+        The stream may have been opened at a different rate or channel
+        count than EON asked for (see ``choose_stream_settings``), so
+        captured audio is brought back to the configured rate and
+        channel count here. Endpointing, the wake word and Whisper
+        therefore all still see 16 kHz mono and need no changes.
+        """
+        block = indata
+
+        if self._stream_channels != self._channels:
+            block = block[:, : self._channels]
+
+        raw = block.tobytes()
+
+        if self._stream_rate_hz != self._sample_rate_hz:
+            raw = resample_pcm16(
+                raw,
+                self._stream_rate_hz,
+                self._sample_rate_hz,
+            )
+
+        return raw
 
     def _drain_queue(self) -> None:
         """Discards any audio blocks buffered from a previous recording."""
