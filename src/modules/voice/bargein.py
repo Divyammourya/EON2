@@ -33,19 +33,33 @@ from src.utils.audio import BYTES_PER_SAMPLE, rms_pcm
 
 logger = get_logger("BargeIn")
 
+# How long to wait before retrying after a transient microphone failure.
+_RETRY_INTERVAL_SECONDS = 0.05
+
 
 class BargeInDetector:
     """Pure decision logic: has the user spoken long enough to interrupt?
 
     Feed it one observation per captured frame; it returns ``True`` the
-    first time the required amount of *continuous* speech has been seen,
-    and ``False`` on every other call. A gap of silence resets the run,
-    so a single transient noise spike cannot trigger an interruption.
+    first time enough speech has been seen, and ``False`` on every other
+    call.
+
+    Short dips do *not* reset the run, because real speech has gaps
+    between words — requiring strictly unbroken energy above the threshold
+    made interruption far harder to trigger than it should be. A pause
+    longer than ``silence_grace_seconds`` does reset it, so a single
+    transient noise spike still cannot fire on its own.
     """
 
-    def __init__(self, min_speech_seconds: float) -> None:
+    def __init__(
+        self,
+        min_speech_seconds: float,
+        silence_grace_seconds: float = 0.3,
+    ) -> None:
         self._min_speech_seconds = min_speech_seconds
+        self._silence_grace_seconds = silence_grace_seconds
         self._speech_run_seconds = 0.0
+        self._silence_run_seconds = 0.0
         self._fired = False
 
     @property
@@ -68,11 +82,16 @@ class BargeInDetector:
             return False
 
         if is_speech:
+            self._silence_run_seconds = 0.0
             self._speech_run_seconds += frame_seconds
             if self._speech_run_seconds >= self._min_speech_seconds:
                 self._fired = True
                 return True
-        else:
+            return False
+
+        # Silence: tolerate a short dip, give up on a real pause.
+        self._silence_run_seconds += frame_seconds
+        if self._silence_run_seconds > self._silence_grace_seconds:
             self._speech_run_seconds = 0.0
 
         return False
@@ -105,6 +124,7 @@ class BargeInListener:
         energy_threshold: float,
         min_speech_seconds: float,
         on_barge_in: Callable[[], object],
+        silence_grace_seconds: float = 0.3,
     ) -> None:
         self._microphone = microphone
         self._mic_lock = mic_lock
@@ -112,6 +132,7 @@ class BargeInListener:
         self._window_seconds = window_seconds
         self._energy_threshold = energy_threshold
         self._min_speech_seconds = min_speech_seconds
+        self._silence_grace_seconds = silence_grace_seconds
         self._on_barge_in = on_barge_in
         self._thread: threading.Thread | None = None
         self._stop_event = threading.Event()
@@ -132,6 +153,11 @@ class BargeInListener:
             daemon=True,
         )
         self._thread.start()
+        logger.info(
+            "Barge-in armed for this reply (needs %.1fs of speech above %.0f RMS).",
+            self._min_speech_seconds,
+            self._energy_threshold,
+        )
 
     def stop(self) -> None:
         """Stops the background thread, blocking briefly for it to exit."""
@@ -142,25 +168,51 @@ class BargeInListener:
 
     def _run(self) -> None:
         """Main loop for the background listening thread."""
-        detector = BargeInDetector(self._min_speech_seconds)
+        detector = BargeInDetector(
+            self._min_speech_seconds,
+            silence_grace_seconds=self._silence_grace_seconds,
+        )
+        peak_energy = 0.0
 
         while not self._stop_event.is_set():
             audio = self._capture_window()
+
             if audio is None:
-                # Microphone unavailable (not open, or a read failed).
-                # Nothing useful this listener can do; stop quietly.
-                return
+                # A transient failure — most often the microphone
+                # refusing to start because another reader had just
+                # released it. Giving up here (as this used to) meant a
+                # single hiccup silently disabled interruption for the
+                # whole reply, which is indistinguishable from the user
+                # simply never speaking.
+                if self._stop_event.wait(_RETRY_INTERVAL_SECONDS):
+                    break
+                continue
 
             frame_seconds = len(audio) / (BYTES_PER_SAMPLE * self._sample_rate_hz)
-            is_speech = rms_pcm(audio) >= self._energy_threshold
+            energy = rms_pcm(audio)
+            peak_energy = max(peak_energy, energy)
 
-            if detector.update(frame_seconds, is_speech):
-                logger.info("Barge-in: user started speaking; interrupting EON.")
+            if detector.update(frame_seconds, energy >= self._energy_threshold):
+                logger.info(
+                    "Barge-in: user started speaking (%.0f RMS); interrupting EON.",
+                    energy,
+                )
                 try:
                     self._on_barge_in()
                 except Exception:
                     logger.exception("Barge-in callback raised an exception.")
                 return
+
+        if peak_energy and not detector.fired:
+            # One line per playback, so the threshold can be set from
+            # evidence instead of guesswork: if the peak here is below
+            # barge_in_energy_threshold, that is why nothing interrupted.
+            logger.info(
+                "Barge-in: no interruption; loudest window was %.0f RMS "
+                "(threshold is %.0f).",
+                peak_energy,
+                self._energy_threshold,
+            )
 
     def _capture_window(self) -> bytes | None:
         """Records one short window of audio from the microphone.
