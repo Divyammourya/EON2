@@ -35,6 +35,7 @@ from src.modules.voice.exceptions import MicrophoneError
 from src.modules.voice.microphone import Microphone, MicrophoneDeviceInfo
 from src.modules.voice.stream_settings import (
     choose_stream_settings,
+    ensure_stream_started,
     resample_pcm16,
     resolve_device_index,
 )
@@ -308,13 +309,36 @@ class SoundDeviceMicrophone(Microphone):
                 details={"device_id": self._device_info.device_id},
             )
         self._drain_queue()
-        try:
-            self._stream.start()
-        except Exception as exc:
+
+        # The stream may already be running because a listener was stopped
+        # mid-window and never got to stop it. Adopt that state rather than
+        # failing, and recover from a start() that a stale stop() blocked.
+        was_already_active = bool(self._stream.active)
+
+        failure = ensure_stream_started(
+            is_active=lambda: bool(self._stream.active),
+            start=self._stream.start,
+            stop=self._stream.stop,
+        )
+
+        if failure is not None:
             raise MicrophoneError(
                 "Failed to start the microphone input stream.",
-                details={"device_id": self._device_info.device_id},
-            ) from exc
+                details={
+                    "device_id": self._device_info.device_id,
+                    "device_name": self._device_info.name,
+                    "samplerate": self._stream_rate_hz,
+                    "reason": failure,
+                },
+            )
+
+        if was_already_active:
+            logger.warning(
+                "Microphone stream for '%s' was already running; adopting "
+                "it as recording.",
+                self._device_info.name,
+            )
+
         self._is_recording = True
 
     def stop_recording(self) -> None:
@@ -328,17 +352,31 @@ class SoundDeviceMicrophone(Microphone):
             MicrophoneError: If the device is not currently recording,
                 or the input stream fails to stop.
         """
-        if not self._is_recording or self._stream is None:
+        if self._stream is None:
+            raise MicrophoneError(
+                "Cannot stop recording on a microphone device that is not open.",
+                details={"device_id": self._device_info.device_id},
+            )
+
+        # Tolerate a stream that is running without the bookkeeping to
+        # match: that is exactly the stale state that breaks the next
+        # start(), so stopping it here is the repair, not a mistake.
+        if not self._is_recording and not self._stream.active:
             raise MicrophoneError(
                 "Cannot stop recording on a microphone device that is not recording.",
                 details={"device_id": self._device_info.device_id},
             )
+
         try:
-            self._stream.stop()
+            if self._stream.active:
+                self._stream.stop()
         except Exception as exc:
             raise MicrophoneError(
                 "Failed to stop the microphone input stream.",
-                details={"device_id": self._device_info.device_id},
+                details={
+                    "device_id": self._device_info.device_id,
+                    "reason": str(exc),
+                },
             ) from exc
         finally:
             self._is_recording = False

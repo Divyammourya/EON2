@@ -12,6 +12,7 @@ import pytest
 
 from src.modules.voice.stream_settings import (
     choose_stream_settings,
+    ensure_stream_started,
     resample_pcm16,
     resolve_device_index,
 )
@@ -182,3 +183,87 @@ def test_resampling_preserves_a_tone():
     dominant = frequencies[int(np.argmax(spectrum))]
 
     assert dominant == pytest.approx(440, abs=10)
+
+
+# --- starting a stream that may already be running ---------------------
+
+
+class _Stream:
+    """A minimal stand-in for a sounddevice stream."""
+
+    def __init__(self, *, active: bool = False, fail_start: int = 0) -> None:
+        self.active = active
+        self._fail_start = fail_start
+        self.starts = 0
+        self.stops = 0
+
+    def start(self) -> None:
+        self.starts += 1
+        if self.starts <= self._fail_start:
+            raise RuntimeError(f"start refused (#{self.starts})")
+        self.active = True
+
+    def stop(self) -> None:
+        self.stops += 1
+        self.active = False
+
+
+def _start(stream: _Stream) -> str | None:
+    return ensure_stream_started(
+        is_active=lambda: stream.active,
+        start=stream.start,
+        stop=stream.stop,
+    )
+
+
+def test_starting_an_idle_stream_succeeds():
+    stream = _Stream()
+
+    assert _start(stream) is None
+    assert stream.active is True
+    assert stream.starts == 1
+
+
+def test_an_already_running_stream_is_adopted():
+    # The stale state left behind by a listener stopped mid-window: the
+    # stream is running, so that is the state we wanted all along, and
+    # calling start() on it would have raised.
+    stream = _Stream(active=True)
+
+    assert _start(stream) is None
+    assert stream.starts == 0
+
+
+def test_a_refused_start_is_retried():
+    stream = _Stream(fail_start=1)
+
+    assert _start(stream) is None
+    assert stream.active is True
+    assert stream.starts == 2
+
+
+def test_a_half_started_stream_is_forced_back_into_a_known_state():
+    class HalfStarted(_Stream):
+        def start(self) -> None:
+            self.starts += 1
+            if self.starts == 1:
+                # Left running despite reporting an error.
+                self.active = True
+                raise RuntimeError("start refused")
+            self.active = True
+
+    stream = HalfStarted()
+
+    assert _start(stream) is None
+    assert stream.active is True
+    assert stream.stops == 1
+
+
+def test_a_stream_that_will_not_start_reports_why():
+    stream = _Stream(fail_start=99)
+
+    failure = _start(stream)
+
+    assert failure is not None
+    assert "start refused" in failure
+    assert stream.active is False

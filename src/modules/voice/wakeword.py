@@ -290,7 +290,16 @@ class WakeWordListener:
                 return None
             try:
                 self._microphone.start_recording()
-            except VoiceError:
+            except VoiceError as exc:
+                # Logged rather than swallowed silently. A microphone that
+                # intermittently refuses to start looks perfectly healthy
+                # from here — the next cycle usually succeeds — while
+                # breaking one-off recordings elsewhere, which is a
+                # confusing way to spend an afternoon.
+                logger.warning(
+                    "Could not start recording for a wake word window: %s",
+                    exc,
+                )
                 return None
             try:
                 while collected < target_bytes and not self._stop_event.is_set():

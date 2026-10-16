@@ -180,7 +180,23 @@ class VoiceService:
         duration = seconds if seconds is not None else self._config.listen_seconds
 
         session = self._manager.get_session(session_id)
-        audio_bytes = self._record_wav(duration)
+
+        # The microphone is single-reader and the wake-word listener cycles
+        # it every couple of seconds, so pause it for the duration — the
+        # same thing ``listen_until_silence`` already does. In conversation
+        # mode it is already paused, so leave it alone and don't un-pause it
+        # when we finish.
+        paused_here = False
+        if not self._in_conversation:
+            self._pause_wake_word_listening()
+            paused_here = True
+
+        try:
+            audio_bytes = self._record_wav(duration)
+        finally:
+            if paused_here:
+                self._resume_wake_word_listening()
+
         session.metadata["audio_bytes"] = audio_bytes
 
         return self._manager.transcribe(session_id)
