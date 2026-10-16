@@ -47,6 +47,16 @@ def _build_weather_tool(config) -> WeatherTool:
     if longitude is not None:
         kwargs["default_longitude"] = float(longitude)
 
+    # With no place configured, the tool works out where it is. These
+    # settings control that; they are passed here as well as in
+    # register_services so both weather tools behave identically.
+    if config.get("location_auto_detect") is False:
+        kwargs["auto_detect_location"] = False
+    if config.get("location_cache_hours"):
+        kwargs["location_cache_hours"] = float(config.get("location_cache_hours"))
+    if config.get("location_cache_path"):
+        kwargs["location_cache_path"] = str(config.get("location_cache_path"))
+
     return WeatherTool(**kwargs)
 
 

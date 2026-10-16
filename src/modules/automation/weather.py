@@ -16,11 +16,18 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
+
+import re
 
 import httpx
 
+from src.core.logger import get_logger
+from src.modules.automation.location import Location, LocationResolver
 from src.modules.tools.base import Tool
 from src.modules.tools.models import ToolResult
+
+logger = get_logger("Weather")
 
 _GEOCODING_URL = "https://geocoding-api.open-meteo.com/v1/search"
 _FORECAST_URL = "https://api.open-meteo.com/v1/forecast"
@@ -31,6 +38,14 @@ _REQUEST_TIMEOUT_SECONDS = 6.0
 _WET_WEATHER_CODES = frozenset(
     {51, 53, 55, 61, 63, 65, 71, 73, 75, 80, 81, 82, 95, 96, 99}
 )
+
+# English puts the place after the preposition ("in Mumbai"); Hindi and
+# Hinglish put it before the postposition ("Jaipur mein"). Word
+# boundaries rather than padded spaces, so a place at the end of the
+# sentence still matches — "jaipur mein" is how the question actually
+# ends, and requiring a trailing space meant it never did.
+_CITY_AFTER_PREPOSITION = re.compile(r"\bin\s+(\S.*)$")
+_CITY_BEFORE_POSTPOSITION = re.compile(r"(\S+)\s+(?:mein|ke\s+liye)\b")
 
 # Fallback location used when the user doesn't name a city and no
 # default has been configured (see VoiceServiceConfig-adjacent
@@ -150,13 +165,40 @@ class WeatherTool(Tool):
 
     def __init__(
         self,
-        default_location_name: str = _DEFAULT_LOCATION_NAME,
-        default_latitude: float = _DEFAULT_LATITUDE,
-        default_longitude: float = _DEFAULT_LONGITUDE,
+        default_location_name: str | None = None,
+        default_latitude: float | None = None,
+        default_longitude: float | None = None,
+        *,
+        auto_detect_location: bool = True,
+        location_cache_path: str | Path = "data/location.json",
+        location_cache_hours: float = 24.0,
+        location_resolver: LocationResolver | None = None,
     ) -> None:
+        """Builds the tool.
+
+        Args:
+            default_location_name: A place the user configured. When
+                omitted, EON works out where it is instead — see
+                ``auto_detect_location``.
+            default_latitude: Latitude of the configured place.
+            default_longitude: Longitude of the configured place.
+            auto_detect_location: Whether to ask a geolocation service
+                where this machine is when no place is configured.
+                Setting a ``default_location_name`` overrides this
+                entirely, which is how a user opts out of detection.
+            location_cache_path: Where a detected location is remembered
+                between runs.
+            location_cache_hours: How long a detection stays fresh.
+            location_resolver: An injected resolver, used by tests.
+        """
         self._default_location_name = default_location_name
         self._default_latitude = default_latitude
         self._default_longitude = default_longitude
+        self._auto_detect_location = auto_detect_location
+        self._location_cache_path = Path(location_cache_path)
+        self._location_cache_hours = location_cache_hours
+        self._location_resolver = location_resolver
+        self._resolved_default: Location | None = None
 
     @property
     def name(self) -> str:
@@ -216,15 +258,16 @@ class WeatherTool(Tool):
     def _resolve_location(self, text: str) -> tuple[float, float, str]:
         """Resolves a location name mentioned in ``text`` to coordinates.
 
-        Falls back to the configured default location if no place
-        name can be extracted or geocoding fails, rather than erroring
-        out entirely — most requests ("what's the weather?") don't
-        name a city at all and mean "here".
+        Falls back to "here" when no place name can be extracted or
+        geocoding fails, rather than erroring out entirely — most
+        requests ("what's the weather?") don't name a city at all and
+        mean wherever the user is. See :meth:`_default_location` for
+        how "here" is decided.
         """
         city = self._extract_city(text)
 
         if not city:
-            return self._default_latitude, self._default_longitude, self._default_location_name
+            return self._here()
 
         try:
             response = httpx.get(
@@ -238,21 +281,102 @@ class WeatherTool(Tool):
             results = []
 
         if not results:
-            return self._default_latitude, self._default_longitude, self._default_location_name
+            return self._here()
 
         match = results[0]
         return match["latitude"], match["longitude"], match.get("name", city)
 
+    def _here(self) -> tuple[float, float, str]:
+        """Where "here" is, in the shape ``_resolve_location`` returns."""
+        location = self._default_location()
+        return location.latitude, location.longitude, location.name
+
+    def _default_location(self) -> Location:
+        """Where "here" is, for a question that names no place.
+
+        A location the user configured always wins — which is also how
+        they opt out of detection. Otherwise EON asks where the machine
+        is, cached for a day, so moving to a new city moves the weather
+        with it instead of needing an edit to a config file. The
+        built-in default is the last resort, used only when neither of
+        those is available.
+        """
+        if self._default_location_name or (
+            self._default_latitude is not None
+            and self._default_longitude is not None
+        ):
+            return Location(
+                name=self._default_location_name or _DEFAULT_LOCATION_NAME,
+                latitude=(
+                    self._default_latitude
+                    if self._default_latitude is not None
+                    else _DEFAULT_LATITUDE
+                ),
+                longitude=(
+                    self._default_longitude
+                    if self._default_longitude is not None
+                    else _DEFAULT_LONGITUDE
+                ),
+                source="configured",
+            )
+
+        if not self._auto_detect_location:
+            return self._fallback_location()
+
+        if self._resolved_default is None:
+            self._resolved_default = self._resolver().resolve()
+            logger.info(
+                "EON is in %s (%s).",
+                self._resolved_default.name,
+                self._resolved_default.source,
+            )
+
+        return self._resolved_default
+
+    def _resolver(self) -> LocationResolver:
+        """The location resolver, built on first use."""
+        if self._location_resolver is None:
+            self._location_resolver = LocationResolver(
+                cache_path=self._location_cache_path,
+                cache_hours=self._location_cache_hours,
+                fallback=self._fallback_location(),
+            )
+        return self._location_resolver
+
+    @staticmethod
+    def _fallback_location() -> Location:
+        """The built-in default, used when nothing better is available."""
+        return Location(
+            name=_DEFAULT_LOCATION_NAME,
+            latitude=_DEFAULT_LATITUDE,
+            longitude=_DEFAULT_LONGITUDE,
+            source="fallback",
+        )
+
     @staticmethod
     def _extract_city(text: str) -> str:
-        """Pulls a trailing city name out of phrasing like "weather in
-        Mumbai" / "mausam kaisa hai Jaipur mein". Best-effort only —
-        returns an empty string if nothing recognizable is found,
-        which is the common case and just means "use my default
-        location"."""
-        for marker in (" in ", " mein ", " ke liye "):
-            if marker in text:
-                return text.split(marker, 1)[-1].strip(" ?.!")
+        """Pulls a city name out of phrasing like "weather in Mumbai" or
+        "mausam kaisa hai Jaipur mein".
+
+        English puts the place *after* the preposition ("in Mumbai");
+        Hindi and Hinglish put it *before* the postposition ("Jaipur
+        mein"). Both orders are handled — taking whatever followed the
+        marker meant the Hinglish form, which this is meant to support,
+        always came back empty.
+
+        Best-effort only: returns an empty string when nothing
+        recognizable is found, which is the common case and just means
+        "use my default location".
+        """
+        after = _CITY_AFTER_PREPOSITION.search(text)
+        if after is not None:
+            return after.group(1).strip(" ?.!")
+
+        before = _CITY_BEFORE_POSTPOSITION.findall(text)
+        if before:
+            # The last one, in case of "Jaipur mein ya Delhi mein".
+            return before[-1].strip(" ?.!")
+
         return ""
 
     def current_readings(self, location_text: str = "") -> WeatherReadings:
