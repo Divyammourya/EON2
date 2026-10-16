@@ -24,13 +24,16 @@ Design notes:
       ``VoiceManager.transcribe``) rather than creating a second,
       parallel session, so it shares the same STT provider session
       state as normal listening.
+    - ``pause``/``resume`` let the owner temporarily suspend detection
+      without tearing down the thread — used while EON is holding a
+      voice conversation, so the listener doesn't transcribe EON's own
+      speech or the user's follow-up turns through the wake-word path.
 
 Requires: Python 3.12+
 """
 
 from __future__ import annotations
 
-import array
 import io
 import re
 import threading
@@ -42,10 +45,9 @@ from src.modules.voice.exceptions import VoiceError
 from src.modules.voice.manager import VoiceManager
 from src.modules.voice.microphone import Microphone
 from src.modules.voice.speaker_id import SpeakerIdentifier
+from src.utils.audio import BYTES_PER_SAMPLE, rms_pcm
 
 logger = get_logger("WakeWord")
-
-_BYTES_PER_SAMPLE = 2  # 16-bit mono PCM
 
 
 def _levenshtein(a: str, b: str) -> int:
@@ -138,6 +140,7 @@ class WakeWordListener:
         self._session_id_provider: Callable[[], object] | None = None
         self._thread: threading.Thread | None = None
         self._stop_event = threading.Event()
+        self._paused = threading.Event()
 
     @property
     def is_running(self) -> bool:
@@ -160,6 +163,7 @@ class WakeWordListener:
 
         self._session_id_provider = session_id_provider
         self._stop_event.clear()
+        self._paused.clear()
         self._thread = threading.Thread(
             target=self._run,
             name="EON-WakeWord",
@@ -178,14 +182,37 @@ class WakeWordListener:
         if self._thread is not None:
             self._thread.join(timeout=2.0)
         self._thread = None
+        self._paused.clear()
         logger.info("Wake word listener stopped.")
+
+    def pause(self) -> None:
+        """Temporarily suspends detection without stopping the thread.
+
+        While paused the listener captures no audio at all, so it can't
+        hear (and act on) EON's own speech or the user's follow-up
+        turns. Safe to call when already paused.
+        """
+        self._paused.set()
+
+    def resume(self) -> None:
+        """Resumes detection after :meth:`pause`.
+
+        Safe to call when not paused.
+        """
+        self._paused.clear()
 
     def _run(self) -> None:
         """Main loop for the background listening thread."""
         while not self._stop_event.is_set():
+            if self._paused.is_set():
+                # Suspended (e.g. EON is holding a conversation or
+                # speaking). Idle cheaply instead of capturing audio.
+                self._stop_event.wait(0.1)
+                continue
+
             try:
                 audio = self._capture_window()
-                if audio is not None and self._rms(audio) >= self._energy_threshold:
+                if audio is not None and rms_pcm(audio) >= self._energy_threshold:
                     if self._heard_wake_word(audio):
                         is_owner = self._verify_owner(audio)
                         logger.info(
@@ -253,7 +280,7 @@ class WakeWordListener:
             isn't open or capture was interrupted by a stop request.
         """
         target_bytes = int(
-            self._sample_rate_hz * _BYTES_PER_SAMPLE * self._window_seconds
+            self._sample_rate_hz * BYTES_PER_SAMPLE * self._window_seconds
         )
         frames: list[bytes] = []
         collected = 0
@@ -332,6 +359,15 @@ class WakeWordListener:
         max_distance = 1 if len(self._wake_word) <= 4 else 2
 
         for token in re.findall(r"[a-z']+", transcript):
+            # Ignore very short tokens: a 3-letter wake word like "eon"
+            # is within edit distance 1 of common words such as "on"
+            # and "an", which used to trigger on ordinary speech ("turn
+            # on the lights"). Requiring at least three characters kills
+            # that class of false positive without losing realistic
+            # mishearings ("leon", "ian" is a stretch, but "eon" itself
+            # is three characters, so nothing genuinely close is lost).
+            if len(token) < 3:
+                continue
             if abs(len(token) - len(self._wake_word)) > max_distance:
                 continue
             if _levenshtein(token, self._wake_word) <= max_distance:
@@ -344,22 +380,7 @@ class WakeWordListener:
         buffer = io.BytesIO()
         with wave.open(buffer, "wb") as wav_file:
             wav_file.setnchannels(1)
-            wav_file.setsampwidth(_BYTES_PER_SAMPLE)
+            wav_file.setsampwidth(BYTES_PER_SAMPLE)
             wav_file.setframerate(self._sample_rate_hz)
             wav_file.writeframes(pcm_bytes)
         return buffer.getvalue()
-
-    @staticmethod
-    def _rms(pcm_bytes: bytes) -> float:
-        """Computes the root-mean-square energy of 16-bit mono PCM audio."""
-        usable_length = len(pcm_bytes) - (len(pcm_bytes) % _BYTES_PER_SAMPLE)
-        if usable_length <= 0:
-            return 0.0
-
-        samples = array.array("h")
-        samples.frombytes(pcm_bytes[:usable_length])
-        if not samples:
-            return 0.0
-
-        sum_squares = sum(sample * sample for sample in samples)
-        return (sum_squares / len(samples)) ** 0.5
