@@ -64,6 +64,38 @@ def speak_interruptibly(voice: VoiceService, session_id: UUID, text: str) -> Non
         stop_event.set()
 
 
+def _speak_morning_briefing(app, voice_session_id: UUID | None) -> None:
+    """Speaks the first-of-the-day weather briefing, if one is due.
+
+    Does nothing outside the configured morning window, on a second
+    launch the same day, or when the weather service can't be reached —
+    ``MorningBriefing.greeting`` decides all of that and returns
+    ``None`` when there is nothing to say.
+
+    Args:
+        app: The running application.
+        voice_session_id: The open voice session to speak through.
+    """
+    try:
+        briefing = app.briefing.greeting()
+    except Exception as exc:
+        # A briefing is a nicety. It must never be what stops EON
+        # starting up.
+        print(f"[briefing skipped: {exc}]")
+        return
+
+    if not briefing:
+        return
+
+    print()
+    print(f"EON: {briefing}")
+
+    try:
+        speak_interruptibly(app.voice, voice_session_id, briefing)
+    except VoiceError as exc:
+        print(f"[briefing failed: {exc}]")
+
+
 def stream_conversation_reply(
     app,
     voice_session_id: UUID | None,
@@ -277,6 +309,9 @@ def _run_console(app) -> None:
         print("The hologram overlay is active in the corner of your screen.")
 
     print("===================================")
+
+    if voice_available:
+        _speak_morning_briefing(app, voice_session_id)
 
     try:
         while True:

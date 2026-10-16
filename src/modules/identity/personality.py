@@ -63,6 +63,23 @@ class PersonalityProfile:
             else ""
         )
 
+        # Spelled out per level rather than left as a bare adjective:
+        # "Wit: light" reads as a label to a model, not an instruction,
+        # and a small model will happly ignore a label.
+        wit_line = {
+            "none": "- Keep the delivery plain. Do not make jokes.",
+            "light": (
+                "- A dry remark now and then is welcome, but the answer comes "
+                "first. One line, not a routine."
+            ),
+            "frequent": (
+                "- Be genuinely funny, not merely polite: a quick dry "
+                "observation, a wry aside, or an unexpected comparison, "
+                "roughly once per reply. One good line beats three mediocre "
+                "ones, and never at the expense of the answer or of the user."
+            ),
+        }.get(self.wit_level, "")
+
         lines = [
             f"Personality: {self.style_name}",
             "-" * (13 + len(self.style_name)),
@@ -79,10 +96,13 @@ class PersonalityProfile:
             "first, add personality second.",
         ]
 
+        if wit_line:
+            lines.append(wit_line)
+
         if phrases_line:
             lines.append(phrases_line)
 
-        return "\n".join(line for line in lines if line is not None)
+        return "\n".join(line for line in lines if line)
 
 
 # A few JARVIS/FRIDAY/EDITH-inspired presets. These are starting
@@ -92,7 +112,7 @@ PERSONALITY_PRESETS: dict[str, PersonalityProfile] = {
         style_name="JARVIS",
         address_term="sir",
         tone_descriptors=["calm", "dry-witted", "unflappable", "precise"],
-        wit_level="light",
+        wit_level="frequent",
         formality="formal",
         proactivity="high",
         verbosity="concise",
