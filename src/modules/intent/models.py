@@ -29,6 +29,7 @@ class IntentType(str, Enum):
     EMAIL_SEND = "email_send"
     MESSAGE_SEND = "message_send"
     WEATHER = "weather"
+    MUSIC = "music"
     UNKNOWN = "unknown"
 
 

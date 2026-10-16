@@ -37,6 +37,7 @@ class ActionRouter:
             IntentType.EMAIL_SEND: ActionType.EMAIL_SEND,
             IntentType.MESSAGE_SEND: ActionType.MESSAGE_SEND,
             IntentType.WEATHER: ActionType.WEATHER,
+            IntentType.MUSIC: ActionType.MUSIC,
         }
 
         action_type = mapping.get(intent.type, ActionType.UNKNOWN)
