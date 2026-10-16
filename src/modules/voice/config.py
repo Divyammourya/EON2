@@ -89,6 +89,49 @@ class VoiceServiceConfig:
     wake_word_check_interval_seconds: float = 0.5
     wake_word_energy_threshold: float = 300.0
 
+    # Per-utterance listening (endpointing). Instead of recording for a
+    # fixed number of seconds, EON records until the speaker has been
+    # silent for ``silence_end_seconds`` — so a one-word answer returns
+    # immediately and a long question isn't cut off — with a hard cap of
+    # ``listen_max_seconds`` so constant background noise can't record
+    # forever. ``listen_min_speech_seconds`` is the least amount of
+    # actual speech a recording must contain to count as an utterance.
+    silence_end_seconds: float = 0.8
+    listen_max_seconds: float = 15.0
+    listen_min_speech_seconds: float = 0.3
+    # How long to wait for speech to *begin* on a one-off listen before
+    # deciding the user said nothing.
+    listen_start_timeout_seconds: float = 5.0
+
+    # Continuous conversation mode. After the wake word, EON keeps
+    # listening for follow-up turns without the user having to say the
+    # wake word again, until they go quiet for
+    # ``conversation_idle_timeout_seconds`` or say an exit phrase (see
+    # ``conversation_exit_phrases``). Set ``conversation_mode_enabled``
+    # to False to restore the old one-shot behaviour (wake word needed
+    # for every turn).
+    conversation_mode_enabled: bool = True
+    conversation_idle_timeout_seconds: float = 12.0
+    conversation_exit_phrases: tuple[str, ...] = (
+        "goodbye",
+        "good bye",
+        "bye",
+        "bye bye",
+        "exit",
+        "quit",
+        "stop listening",
+        "go to sleep",
+        "that's all",
+        "that is all",
+        "thats all",
+        "never mind",
+        "nevermind",
+        "we're done",
+        "we are done",
+        "i'm done",
+        "im done",
+    )
+
     # Owner voice recognition. A lightweight spectral + pitch
     # "voiceprint" (see SpeakerIdentifier) computed from the same audio
     # window used for wake-word detection — not a deep-learned speaker
