@@ -10,6 +10,7 @@ from datetime import datetime
 from src.modules.conversation.history import ConversationHistory
 
 from src.modules.identity.manager import IdentityManager
+from src.modules.tools.knowledge.web_search import WebPassage, format_grounding
 
 
 def current_datetime_note(now: datetime) -> str:
@@ -56,10 +57,14 @@ class ContextBuilder:
         self,
         history: ConversationHistory,
         memories: list[str],
+        knowledge: list[WebPassage] | None = None,
     ) -> list[dict]:
 
         system_prompt = self.identity.system_prompt()
         system_prompt += current_datetime_note(datetime.now())
+
+        if knowledge:
+            system_prompt += format_grounding(knowledge)
 
         if memories:
 
