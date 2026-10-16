@@ -212,7 +212,7 @@ class VoiceService:
     ) -> SpeechRecognitionResult | None:
         """Records until the speaker stops talking, then transcribes it.
 
-        Unlike ``listen_oncefà (a fixed-duration recording), this stops
+        Unlike ``listen_once`` (a fixed-duration recording), this stops
         as soon as the speaker has been quiet for ``silence_end_seconds``
         â€” so a short answer returns quickly and a long question isn't
         cut off mid-sentence.
@@ -416,9 +416,9 @@ class VoiceService:
             microphone=self._microphone,
             mic_lock=self._mic_lock,
             sample_rate_hz=self._config.sample_rate_hz,
-            window_seconds=self._config.bargein_window_seconds,
-            energy_threshold=self._config.bargein_energy_threshold,
-            min_speech_seconds=self._config.bargein_min_speech_seconds,
+            window_seconds=self._config.barge_in_window_seconds,
+            energy_threshold=self._config.barge_in_energy_threshold,
+            min_speech_seconds=self._config.barge_in_min_speech_seconds,
             on_barge_in=self.interrupt_speaking,
         )
 
