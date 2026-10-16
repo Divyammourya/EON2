@@ -15,9 +15,13 @@
   "email_enabled": true,
   "messaging_enabled": true,
   "messaging_provider": "telegram",
-  "weather_location_name": "New Delhi",
-  "weather_latitude": 28.6139,
-  "weather_longitude": 77.209,
+  "weather_location_name": null,
+  "weather_latitude": null,
+  "weather_longitude": null,
+
+  "location_auto_detect": true,
+  "location_cache_hours": 24,
+  "location_cache_path": "data/location.json",
 
   "morning_briefing_enabled": true,
   "morning_briefing_start_hour": 6,
