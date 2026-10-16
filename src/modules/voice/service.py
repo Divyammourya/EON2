@@ -32,6 +32,7 @@ from src.modules.voice.speaker_id import SpeakerIdentifier
 import threading
 from collections.abc import Callable
 
+from src.modules.voice.bargein import BargeInListener
 from src.modules.voice.conversation import is_exit_phrase
 from src.modules.voice.endpointing import EndpointDecision, UtteranceEndpoint
 from src.modules.voice.wakeword import WakeWordListener
@@ -76,6 +77,8 @@ class VoiceService:
         # to drive the same physical microphone at the same time.
         self._mic_lock = threading.Lock()
         self._wake_word_listener: WakeWordListener | None = None
+        self._barge_in_listener: BargeInListener | None = None
+        self._in_conversation = False
 
         self._speaker_identifier = SpeakerIdentifier(
             profile_path=config.speaker_profile_path,
@@ -334,6 +337,7 @@ class VoiceService:
         )
 
         self._pause_wake_word_listening()
+        self._in_conversation = True
         turns = 0
 
         try:
@@ -365,6 +369,7 @@ class VoiceService:
                 if single_turn:
                     break
         finally:
+            self._in_conversation = False
             self._resume_wake_word_listening()
 
         return turns
@@ -381,6 +386,47 @@ class VoiceService:
             and self._wake_word_listener.is_running
         ):
             self._wake_word_listener.resume()
+
+    def _begin_barge_in(self) -> BargeInListener | None:
+        """Starts listening for a spoken interruption during playback.
+
+        Returns the listener so the caller can stop it afterwards, or
+        ``None`` when barge-in is disabled or one is already running.
+        """
+        if not self._config.barge_in_enabled or self._barge_in_listener is not None:
+            return None
+
+        listener = BargeInListener(
+            microphone=self._microphone,
+            mic_lock=self._mic_lock,
+            sample_rate_hz=self._config.sample_rate_hz,
+            window_seconds=self._config.barge_in_window_seconds,
+            energy_threshold=self._config.barge_in_energy_threshold,
+            min_speech_seconds=self._config.barge_in_min_speech_seconds,
+            on_barge_in=self.interrupt_speaking,
+        )
+
+        # The microphone is single-reader: pause the wake-word listener
+        # for the duration so only the barge-in listener is capturing.
+        # In conversation mode it is already paused, so leave it alone
+        # and don't un-pause it when we finish.
+        if not self._in_conversation:
+            self._pause_wake_word_listening()
+
+        listener.start()
+        self._barge_in_listener = listener
+        return listener
+
+    def _end_barge_in(self, listener: BargeInListener | None) -> None:
+        """Stops the barge-in listener started by :meth:`_begin_barge_in`."""
+        if listener is None:
+            return
+
+        listener.stop()
+        self._barge_in_listener = None
+
+        if not self._in_conversation:
+            self._resume_wake_word_listening()
 
     @property
     def is_speaking(self) -> bool:
@@ -484,6 +530,7 @@ class VoiceService:
 
         self._interrupted.clear()
 
+        barge_in = self._begin_barge_in()
         try:
             self._speaker.play(self._decode_wav_to_pcm(audio_bytes))
         except VoiceError:
@@ -492,6 +539,8 @@ class VoiceService:
                 # the stream on purpose; this is not an error.
                 return
             raise
+        finally:
+            self._end_barge_in(barge_in)
 
     # def _record_wav(self, seconds: float) -> bytes:
     #     """

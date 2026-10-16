@@ -132,6 +132,19 @@ class VoiceServiceConfig:
         "im done",
     )
 
+    # Voice barge-in: let the user interrupt EON just by talking while
+    # it is speaking, instead of pressing a key or repeating the wake
+    # word. EON stops its reply and starts listening again.
+    #
+    # Detection is energy-based and NOT echo-cancelled, so EON's own
+    # voice can leak into the microphone and make it interrupt itself.
+    # Raise ``barge_in_energy_threshold`` until that stops, or set
+    # ``barge_in_enabled`` to False. See voice/bargein.py.
+    barge_in_enabled: bool = True
+    barge_in_energy_threshold: float = 1000.0
+    barge_in_min_speech_seconds: float = 0.4
+    barge_in_window_seconds: float = 0.1
+
     # Owner voice recognition. A lightweight spectral + pitch
     # "voiceprint" (see SpeakerIdentifier) computed from the same audio
     # window used for wake-word detection — not a deep-learned speaker
