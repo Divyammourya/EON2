@@ -65,7 +65,7 @@ class PersonalityProfile:
 
         # Spelled out per level rather than left as a bare adjective:
         # "Wit: light" reads as a label to a model, not an instruction,
-        # and a small model will happly ignore a label.
+        # and a small model will happily ignore a label.
         wit_line = {
             "none": "- Keep the delivery plain. Do not make jokes.",
             "light": (
