@@ -35,6 +35,7 @@ Requires: Python 3.12+
 from __future__ import annotations
 
 from collections.abc import Callable
+from dataclasses import replace
 from uuid import UUID
 
 from src.modules.voice.events import (
@@ -57,6 +58,7 @@ from src.modules.voice.models import (
 from src.modules.voice.providers.stt import SpeechToTextProvider
 from src.modules.voice.providers.tts import TextToSpeechProvider
 from src.modules.voice.session import VoiceSessionManager
+from src.utils.text import to_speech_text
 
 
 class VoiceManager:
@@ -329,6 +331,12 @@ class VoiceManager:
         """
         session = self._session_manager.get_session(session_id)
         self._session_manager.update_session_state(session_id, VoiceState.SPEAKING)
+
+        # Strip markdown before the text reaches a voice. Every TTS path
+        # goes through here, and a synthesiser reads "**Japan:**" out
+        # loud as "asterisk asterisk Japan colon asterisk asterisk".
+        request = replace(request, text=to_speech_text(request.text))
+
         self._publish(
             SpeechSynthesisStarted(
                 session_id=session_id,

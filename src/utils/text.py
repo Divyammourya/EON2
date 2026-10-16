@@ -4,9 +4,66 @@ Text utilities.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Iterable, Iterator
 
 _SENTENCE_ENDERS = (".", "!", "?", "\n")
+
+_MD_CODE_FENCE = re.compile(r"```.*?```", re.DOTALL)
+_MD_LINK = re.compile(r"\[([^\]]+)\]\([^)]*\)")
+_MD_INLINE_CODE = re.compile(r"`([^`]*)`")
+_MD_BOLD = re.compile(
+    r"(?<![A-Za-z0-9*_])(\*\*|__)(?=\S)(.+?)(?<=\S)\1(?![A-Za-z0-9*_])",
+    re.DOTALL,
+)
+_MD_ITALIC = re.compile(
+    r"(?<![A-Za-z0-9*_])[*_](?=\S)(.+?)(?<=\S)[*_](?![A-Za-z0-9*_])",
+    re.DOTALL,
+)
+_MD_LINE_LEAD = re.compile(
+    r"^[ \t]*(?:#{1,6}[ \t]*|[-*+][ \t]+|\d+[.)][ \t]+|>[ \t]*)",
+    re.MULTILINE,
+)
+_ANY_ASTERISK = re.compile(r"\*+")
+_SPOKEN_COLON = re.compile(r"(?<!\d):(?!\d)")
+_WHITESPACE = re.compile(r"\s+")
+
+
+def to_speech_text(text: str) -> str:
+    """Strips markup that a speech synthesiser would read out loud.
+
+    Language models answer in markdown whether or not anyone asked, so
+    replies arrive containing ``**bold**``, bullet markers, backticks and
+    headings. Printing those to a console is fine — the reader's eye
+    skips them — but a TTS voice dutifully pronounces the punctuation,
+    and EON ends up saying "asterisk asterisk Japan colon asterisk
+    asterisk" out loud.
+
+    This reduces the text to something that sounds right when read
+    aloud, leaving the words themselves untouched.
+
+    Args:
+        text: The raw reply text.
+
+    Returns:
+        The same text with markdown markers removed, list and heading
+        prefixes dropped, and a colon that is not part of a time turned
+        into a comma — so it reads as a pause instead of being
+        verbalised. Runs of whitespace are collapsed.
+    """
+    cleaned = _MD_CODE_FENCE.sub(" ", text)
+    cleaned = _MD_LINK.sub(r"\1", cleaned)
+    cleaned = _MD_INLINE_CODE.sub(r"\1", cleaned)
+    cleaned = _MD_BOLD.sub(r"\2", cleaned)
+    cleaned = _MD_ITALIC.sub(r"\1", cleaned)
+    cleaned = _MD_LINE_LEAD.sub("", cleaned)
+    # A bare asterisk has no spoken meaning, and multiplication is
+    # answered locally by the calculator skill rather than spoken, so
+    # drop any the paired patterns above did not consume.
+    cleaned = _ANY_ASTERISK.sub(" ", cleaned)
+    # Times keep their colon: "12:30" must not become "12,30".
+    cleaned = _SPOKEN_COLON.sub(",", cleaned)
+    return _WHITESPACE.sub(" ", cleaned).strip()
 
 
 def iter_sentences(chunks: Iterable[str]) -> Iterator[str]:
