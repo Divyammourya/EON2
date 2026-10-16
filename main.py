@@ -180,7 +180,12 @@ def _run_console(app) -> None:
     wake_word_available = False
 
     def on_wake_word(is_owner: bool) -> None:
-        """Runs a full listen -> think -> speak cycle after the wake word.
+        """Runs a hands-free conversation after the wake word.
+
+        Enters conversation mode: EON listens, replies, and keeps
+        listening for follow-up turns without the wake word again,
+        until the user goes quiet for the configured idle timeout or
+        says an exit phrase (see ``VoiceService.run_conversation``).
 
         Called on the wake-word listener's background thread, so this
         may print output that interleaves with the console prompt if
@@ -212,26 +217,24 @@ def _run_console(app) -> None:
 
         print("[wake word] Listening...")
 
+        def on_utterance(text: str, language_code: str | None) -> None:
+            print(f"You said: {text}")
+
+            stream_conversation_reply(
+                app, voice_session_id, voice_available, text,
+                reply_language_code=language_code,
+            )
+
+            app.proactive.notify_interaction()
+
         try:
-            result = app.voice.listen_once(voice_session_id)
+            turns = app.voice.run_conversation(voice_session_id, on_utterance)
         except VoiceError as exc:
             print(f"[listen failed: {exc}]")
             return
 
-        user_message = result.transcript
-
-        if not user_message:
+        if turns == 0:
             print("[wake word] Didn't catch anything, going back to sleep.")
-            return
-
-        print(f"You said: {user_message}")
-
-        stream_conversation_reply(
-            app, voice_session_id, voice_available, user_message,
-            reply_language_code=result.language_code,
-        )
-
-        app.proactive.notify_interaction()
 
     try:
         session = app.voice.start_session()

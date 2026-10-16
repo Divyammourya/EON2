@@ -330,6 +330,27 @@ def register_services(
                 "config_path": piper_hi_config_path,
             }
 
+        # Listening / conversation tuning. Every key is optional: the
+        # defaults in VoiceServiceConfig apply when one is absent.
+        for key, attr, caster in (
+            ("voice_silence_end_seconds", "silence_end_seconds", float),
+            ("voice_listen_max_seconds", "listen_max_seconds", float),
+            (
+                "voice_listen_start_timeout_seconds",
+                "listen_start_timeout_seconds",
+                float,
+            ),
+            ("conversation_mode_enabled", "conversation_mode_enabled", bool),
+            (
+                "conversation_idle_timeout_seconds",
+                "conversation_idle_timeout_seconds",
+                float,
+            ),
+        ):
+            value = config.get(key)
+            if value is not None:
+                setattr(voice_config, attr, caster(value))
+
     logger.info(
         "Hindi TTS voice is %s.",
         "configured" if voice_config.piper_hi else
