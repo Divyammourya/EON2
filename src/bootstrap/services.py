@@ -455,14 +455,56 @@ def register_services(
         tts_provider=voice_tts_provider,
     )
 
+    # Optional audio device overrides. ``null`` (the default) means use
+    # whatever the OS reports as the default; otherwise an index or a
+    # case-insensitive part of the device name, e.g. "Realtek".
+    voice_input_device = (
+        config.get("voice_input_device") if config is not None else None
+    )
+    voice_output_device = (
+        config.get("voice_output_device") if config is not None else None
+    )
+
+    # Log what the machine actually has, so a device can be picked from
+    # here rather than guessed at. Purely diagnostic: a failure to
+    # enumerate must not stop EON starting.
+    for direction, lister in (
+        ("in", SoundDeviceMicrophone),
+        ("out", SoundDeviceSpeaker),
+    ):
+        try:
+            for device in lister.enumerate_devices():
+                logger.info(
+                    "Audio %s [%s] %s (%s Hz)%s",
+                    direction,
+                    device.device_id,
+                    device.name,
+                    device.sample_rate_hz,
+                    "  <- default" if device.is_default else "",
+                )
+        except Exception:
+            logger.warning("Could not list the %s audio devices.", direction)
+
+    microphone = SoundDeviceMicrophone(
+        device_id=voice_input_device,
+        sample_rate_hz=voice_config.sample_rate_hz,
+    )
+
+    speaker = SoundDeviceSpeaker(
+        device_id=voice_output_device,
+        sample_rate_hz=voice_config.sample_rate_hz,
+    )
+
+    logger.info(
+        "Voice uses microphone '%s' and speaker '%s'.",
+        microphone.device_info.name,
+        speaker.device_info.name,
+    )
+
     voice_service = VoiceService(
         manager=voice_manager,
-        microphone=SoundDeviceMicrophone(
-            sample_rate_hz=voice_config.sample_rate_hz,
-        ),
-        speaker=SoundDeviceSpeaker(
-            sample_rate_hz=voice_config.sample_rate_hz,
-        ),
+        microphone=microphone,
+        speaker=speaker,
         config=voice_config,
     )
 

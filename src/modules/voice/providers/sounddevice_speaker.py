@@ -34,10 +34,32 @@ from typing import Any
 import numpy as np
 import sounddevice as sd
 
+from src.core.logger import get_logger
 from src.modules.voice.exceptions import SpeakerError
 from src.modules.voice.speaker import Speaker, SpeakerDeviceInfo
+from src.modules.voice.stream_settings import (
+    choose_stream_settings,
+    resample_pcm16,
+    resolve_device_index,
+)
+
+logger = get_logger("Speaker")
 
 _DEFAULT_DTYPE = "int16"
+
+
+def _probe_output(device: int, rate: int, channels: int) -> bool:
+    """Whether PortAudio will accept this output configuration."""
+    try:
+        sd.check_output_settings(
+            device=device,
+            samplerate=rate,
+            channels=channels,
+            dtype=_DEFAULT_DTYPE,
+        )
+        return True
+    except Exception:
+        return False
 
 
 class SoundDeviceSpeaker(Speaker):
@@ -90,25 +112,57 @@ class SoundDeviceSpeaker(Speaker):
             raise ValueError("channels must be greater than zero.")
 
         try:
-            resolved_id = device_id if device_id is not None else sd.default.device[1]
-            device_query: dict[str, Any] = sd.query_devices(resolved_id, "output")
             default_output_id = sd.default.device[1]
+            resolved_id = resolve_device_index(
+                device_id,
+                sd.query_devices(),
+                "output",
+            )
+            if resolved_id is None:
+                resolved_id = default_output_id
+            device_query: dict[str, Any] = sd.query_devices(resolved_id, "output")
         except Exception as exc:
             raise SpeakerError(
                 "Failed to resolve or query the requested output device.",
-                details={"device_id": device_id},
+                details={"device_id": device_id, "reason": str(exc)},
             ) from exc
+
+        device_default_rate = int(device_query["default_samplerate"])
 
         self._device_info = SpeakerDeviceInfo(
             device_id=str(resolved_id),
             name=str(device_query["name"]),
-            sample_rate_hz=sample_rate_hz,
+            sample_rate_hz=device_default_rate,
             channels=int(device_query["max_output_channels"]),
             is_default=(resolved_id == default_output_id),
         )
 
         self._sample_rate_hz = sample_rate_hz
         self._channels = channels
+
+        # The device may not accept the 16 kHz EON works in. Pick
+        # settings it will accept, then resample in play() so callers
+        # can keep handing us 16 kHz mono.
+        self._stream_rate_hz, self._stream_channels = choose_stream_settings(
+            wanted_rate=sample_rate_hz,
+            wanted_channels=channels,
+            device_default_rate=device_default_rate,
+            supports=lambda rate, count: _probe_output(
+                resolved_id,
+                rate,
+                count,
+            ),
+        )
+
+        if self._stream_rate_hz != sample_rate_hz:
+            logger.info(
+                "Speaker '%s' does not support %s Hz; playing at %s Hz "
+                "and resampling.",
+                self._device_info.name,
+                sample_rate_hz,
+                self._stream_rate_hz,
+            )
+
         self._stream: sd.OutputStream | None = None
         self._is_open = False
         self._is_playing = False
@@ -126,7 +180,7 @@ class SoundDeviceSpeaker(Speaker):
 
         # Small enough that a stop request is noticed almost
         # instantly, large enough to keep per-chunk overhead low.
-        self._chunk_frames = max(1, int(sample_rate_hz * 0.05))  # ~50ms
+        self._chunk_frames = max(1, int(self._stream_rate_hz * 0.05))  # ~50ms
 
     @property
     def device_info(self) -> SpeakerDeviceInfo:
@@ -158,8 +212,8 @@ class SoundDeviceSpeaker(Speaker):
         try:
             self._stream = sd.OutputStream(
                 device=int(self._device_info.device_id),
-                samplerate=self._sample_rate_hz,
-                channels=self._channels,
+                samplerate=self._stream_rate_hz,
+                channels=self._stream_channels,
                 dtype=_DEFAULT_DTYPE,
             )
             self._stream.start()
@@ -167,7 +221,13 @@ class SoundDeviceSpeaker(Speaker):
             self._stream = None
             raise SpeakerError(
                 "Failed to create the output stream for the speaker device.",
-                details={"device_id": self._device_info.device_id},
+                details={
+                    "device_id": self._device_info.device_id,
+                    "device_name": self._device_info.name,
+                    "samplerate": self._stream_rate_hz,
+                    "channels": self._stream_channels,
+                    "reason": str(exc),
+                },
             ) from exc
         self._is_open = True
 
@@ -222,7 +282,7 @@ class SoundDeviceSpeaker(Speaker):
             self._is_playing = True
             self._stop_requested.clear()
             try:
-                samples = np.frombuffer(audio, dtype=np.int16).reshape(-1, self._channels)
+                samples = self._prepare_for_stream(audio)
                 total_frames = samples.shape[0]
                 offset = 0
                 while offset < total_frames:
@@ -239,6 +299,36 @@ class SoundDeviceSpeaker(Speaker):
             finally:
                 self._is_playing = False
                 self._stop_requested.clear()
+
+    def _prepare_for_stream(self, audio: bytes) -> np.ndarray:
+        """Converts caller audio into the stream's format.
+
+        Callers hand us mono PCM at ``self._sample_rate_hz``. The stream
+        may have been opened at a different rate or channel count
+        because the device refused what EON asked for, so the audio is
+        resampled and channel-mapped to match before it is written.
+        """
+        if self._stream_rate_hz != self._sample_rate_hz:
+            audio = resample_pcm16(
+                audio,
+                self._sample_rate_hz,
+                self._stream_rate_hz,
+            )
+
+        samples = np.frombuffer(audio, dtype=np.int16).reshape(-1, self._channels)
+
+        if self._stream_channels == self._channels:
+            return samples
+
+        if self._channels == 1:
+            return np.repeat(samples, self._stream_channels, axis=1)
+
+        if self._channels > self._stream_channels:
+            return samples[:, : self._stream_channels]
+
+        # Fewer source channels than the device wants: repeat to fill.
+        repeats = -(-self._stream_channels // self._channels)
+        return np.tile(samples, (1, repeats))[:, : self._stream_channels]
 
     def stop(self) -> None:
         """Stops any audio currently being played through the device.
