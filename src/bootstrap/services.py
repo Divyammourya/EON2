@@ -346,6 +346,10 @@ def register_services(
                 "conversation_idle_timeout_seconds",
                 float,
             ),
+            ("barge_in_enabled", "barge_in_enabled", bool),
+            ("barge_in_energy_threshold", "barge_in_energy_threshold", float),
+            ("barge_in_min_speech_seconds", "barge_in_min_speech_seconds", float),
+            ("barge_in_window_seconds", "barge_in_window_seconds", float),
         ):
             value = config.get(key)
             if value is not None:
