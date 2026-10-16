@@ -180,7 +180,23 @@ class VoiceService:
         duration = seconds if seconds is not None else self._config.listen_seconds
 
         session = self._manager.get_session(session_id)
-        audio_bytes = self._record_wav(duration)
+
+        # The microphone is single-reader and the wake-word listener cycles
+        # it every couple of seconds, so pause it for the duration — the
+        # same thing ``listen_until_silence`` already does. In conversation
+        # mode it is already paused, so leave it alone and don't un-pause it
+        # when we finish.
+        paused_here = False
+        if not self._in_conversation:
+            self._pause_wake_word_listening()
+            paused_here = True
+
+        try:
+            audio_bytes = self._record_wav(duration)
+        finally:
+            if paused_here:
+                self._resume_wake_word_listening()
+
         session.metadata["audio_bytes"] = audio_bytes
 
         return self._manager.transcribe(session_id)
@@ -196,7 +212,7 @@ class VoiceService:
     ) -> SpeechRecognitionResult | None:
         """Records until the speaker stops talking, then transcribes it.
 
-        Unlike ``listen_once`` (a fixed-duration recording), this stops
+        Unlike ``listen_oncef� (a fixed-duration recording), this stops
         as soon as the speaker has been quiet for ``silence_end_seconds``
         — so a short answer returns quickly and a long question isn't
         cut off mid-sentence.
@@ -400,9 +416,9 @@ class VoiceService:
             microphone=self._microphone,
             mic_lock=self._mic_lock,
             sample_rate_hz=self._config.sample_rate_hz,
-            window_seconds=self._config.barge_in_window_seconds,
-            energy_threshold=self._config.barge_in_energy_threshold,
-            min_speech_seconds=self._config.barge_in_min_speech_seconds,
+            window_seconds=self._config.bargein_window_seconds,
+            energy_threshold=self._config.bargein_energy_threshold,
+            min_speech_seconds=self._config.bargein_min_speech_seconds,
             on_barge_in=self.interrupt_speaking,
         )
 
