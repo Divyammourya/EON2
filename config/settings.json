@@ -50,5 +50,8 @@
   "conversation_memory_keep_recent": 12,
 
   "skills_enabled": true,
-  "skills_lists_path": "data/lists.json"
+  "skills_lists_path": "data/lists.json",
+
+  "voice_input_device": null,
+  "voice_output_device": null
 }
