@@ -30,5 +30,11 @@
   "hologram_glow_intensity": 0.8,
   "hologram_animation_speed": 1.0,
   "hologram_transparency": 0.85,
-  "hologram_fps": 30
+  "hologram_fps": 30,
+
+  "voice_silence_end_seconds": 0.8,
+  "voice_listen_max_seconds": 15.0,
+  "voice_listen_start_timeout_seconds": 5.0,
+  "conversation_mode_enabled": true,
+  "conversation_idle_timeout_seconds": 12.0
 }
