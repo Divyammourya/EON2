@@ -53,10 +53,8 @@ class ServiceContainer:
 
         return self._services[name]
 
-    # def exists(self, name: str) -> bool:
-    #     """Check whether a service exists."""
     def __contains__(self, name: str) -> bool:
-        return name in self._services
+        """Check whether a service is registered."""
 
         return name in self._services
 

@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eon"
+version = "0.1.0"
+description = "EON — a modular, local-first personal AI assistant for the desktop."
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+
+# Kept in sync with requirements.txt. Windows-only packages (pywin32,
+# comtypes, pycaw, PySide6) are required for desktop control, voice, and
+# the hologram overlay — the pure-Python modules import and run without them.
+dependencies = [
+    "ollama==0.6.2",
+    "pydantic==2.13.4",
+    "python-dotenv==1.2.2",
+    "httpx==0.28.1",
+    "Pillow==11.3.0",
+    "google-api-python-client==2.184.0",
+    "google-auth-httplib2==0.2.0",
+    "google-auth-oauthlib==1.2.2",
+    "comtypes==1.4.16",
+    "pywin32==311",
+    "pywinauto==0.6.9",
+    "pycaw==20251023",
+    "PySide6==6.8.1",
+    "screen-brightness-control==0.27.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest==9.1.1",
+    "black==26.5.1",
+    "isort==8.0.1",
+]
+
+# ---------------------------------------------------------------------------
+# Tooling configuration
+# ---------------------------------------------------------------------------
+
+[tool.black]
+line-length = 88
+target-version = ["py312"]
+
+[tool.isort]
+profile = "black"
+known_first_party = ["src"]
+line_length = 88
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+addopts = "-q"
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+exclude = ["^tests/"]
