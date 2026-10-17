@@ -180,15 +180,25 @@ class ConversationManager:
             return None
 
         # NOT_A_RESPONSE: something's still pending, but this message
-        # doesn't read as a yes/no. Re-prompt instead of guessing —
-        # silently dropping the pending action (or silently running
-        # it) would defeat the point of asking in the first place.
-        reminder = self.permissions.describe_pending()
+        # doesn't read as a yes/no — so the user has moved on to
+        # something else. Drop the pending action and answer what they
+        # actually asked.
+        #
+        # This used to re-prompt instead, reasoning that silently
+        # dropping the action would defeat the point of asking. That
+        # was wrong in practice, and the logs showed why: dropping is
+        # the *safe* direction (the action doesn't run), while
+        # re-prompting meant one unanswered question blocked every
+        # later request. The user could not ask for the weather, or
+        # for music, or for anything at all, until they worked out
+        # that they had to say "no" to a question they had already
+        # stopped caring about.
+        #
+        # So: a pending confirmation outranks a *yes or no*. It does
+        # not outrank a new request.
+        self.permissions.discard()
 
-        self.history.add(Message(role="user", content=user_message))
-        self.history.add(Message(role="assistant", content=reminder))
-
-        return reminder
+        return None
 
     def _run_pipeline(self, user_message: str):
         """

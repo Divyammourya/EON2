@@ -241,6 +241,28 @@ class PermissionManager:
 
         return ConfirmationOutcome.NOT_A_RESPONSE, pending
 
+    def discard(self) -> PendingConfirmation | None:
+        """Drops the pending confirmation, if there is one.
+
+        Distinct from resolving it with "no": nothing was declined
+        here, the user simply moved on to something else. Kept
+        separate so the log says what actually happened.
+
+        Returns:
+            The confirmation that was dropped, or ``None`` if there
+            was nothing pending.
+        """
+        dropped = self._pending
+        self._pending = None
+
+        if dropped is not None:
+            logger.info(
+                "Pending confirmation %s dropped (the user moved on).",
+                dropped.id,
+            )
+
+        return dropped
+
     def describe_pending(self) -> str | None:
         """A reminder message for when a reply didn't look like a
         valid response, so the user knows what EON is still waiting
