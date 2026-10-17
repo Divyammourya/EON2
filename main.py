@@ -233,9 +233,234 @@ def _run_console(app) -> None:
 
         Called on the wake-word listener's background thread, so this
         may print output that interleaves with the console prompt if
-        it fires while the user is mid-typing at the ``input()`` prompt.
+        it fires while the user is mid-type at the ``input()`` prompt.
 
         Args:
             is_owner: Whether the audio that triggered the wake word
                 also matched the enrolled owner's voiceprint (see
-                ``VoiceService.enroll_speaker``)¤=8ÍÑ¥±°…¹ÍÝ•ÉÌ(€€€€€€€€€€€€€€€•¥Ñ¡•ÈÝ…äƒŠPÑ¡¥Ì½¹±ä…Ñ•ÌÑ¡”Á•ÉÍ½¹…±¥é•(€€€€€€€€€€€€€€€€‰]•±½µ”‰…¬ˆÉ••Ñ¥¹œ°¹½ÐÝ¡•Ñ¡•È¥ÐÉ•ÍÁ½¹‘Ì¸(€€€€€€€€ˆˆˆ(€€€€€€€¥˜…ÁÀ¹Ù½¥”¹¥Í}ÍÁ•…­¥¹œè(€€€€€€€€€€€€Œ	…É”µ¥¸èÑ¡”ÕÍ•ÈÍ…¥€‰=8ˆ……¥¸Ý¡¥±”„ÁÉ•Ù¥½ÕÌ(€€€€€€€€€€€€ŒÉ•ÍÁ½¹Í”Ý…ÌÍÑ¥±°Á±…å¥¹œ¸ÕÐ¥Ð½™˜¥µµ•‘¥…Ñ•±ä(€€€€€€€€€€€€Œ¥¹ÍÑ•…½˜±•ÑÑ¥¹œ¥Ð™¥¹¥Í ½ÈÑ…±­¥¹œ½Ù•È¥Ð¸(€€€€€€€€€€€ÁÉ¥¹Ð ¤(€€€€€€€€€€€ÁÉ¥¹Ð ‰mÝ…­”Ý½É‘t%¹Ñ•ÉÉÕÁÑ¥¹œ¸¸¸ˆ¤(€€€€€€€€€€€…ÁÀ¹Ù½¥”¹¥¹Ñ•ÉÉÕÁÑ}ÍÁ•…­¥¹œ ¤((€€€€€€€ÁÉ¥¹Ð ¤((€€€€€€€¥˜¥Í}½Ý¹•Èè(€€€€€€€€€€€ÁÉ¥¹Ð ‰mÝ…­”Ý½É‘t=Ý¹•ÈÌÙ½¥”É•½¹¥é•¸ˆ¤(€€€€€€€€€€€ÑÉäè(€€€€€€€€€€€€€€€…ÁÀ¹Ù½¥”¹Í…ä¡Ù½¥•}Í•ÍÍ¥½¹}¥°€‰]•±½µ”‰…¬°Í¥È¸ˆ¤(€€€€€€€€€€€•á•ÁÐY½¥•ÉÉ½È…Ì•áŒè(€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰mÉ••Ñ¥¹œ™…¥±•èí•áõtˆ¤((€€€€€€€ÁÉ¥¹Ð ‰mÝ…­”Ý½É‘t1¥ÍÑ•¹¥¹œ¸¸¸ˆ¤((€€€€€€€‘•˜½¹}ÕÑÑ•É…¹”¡Ñ•áÐèÍÑÈ°±…¹Õ…•}½‘”èÍÑÈð9½¹”¤€´ø9½¹”è(€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰e½ÔÍ…¥èíÑ•áÑôˆ¤((€€€€€€€€€€€ÍÑÉ•…µ}½¹Ù•ÉÍ…Ñ¥½¹}É•Á±ä (€€€€€€€€€€€€€€€…ÁÀ°Ù½¥•}Í•ÍÍ¥½¹}¥°Ù½¥•}…Ù…¥±…‰±”°Ñ•áÐ°(€€€€€€€€€€€€€€€É•Á±å}±…¹Õ…•}½‘”õ±…¹Õ…•}½‘”°(€€€€€€€€€€€€¤((€€€€€€€€€€€…ÁÀ¹ÁÉ½…Ñ¥Ù”¹¹½Ñ¥™å}¥¹Ñ•É…Ñ¥½¸ ¤((€€€€€€€ÑÉäè(€€€€€€€€€€€ÑÕÉ¹Ì€ô…ÁÀ¹Ù½¥”¹ÉÕ¹}½¹Ù•ÉÍ…Ñ¥½¸¡Ù½¥•}Í•ÍÍ¥½¹}¥°½¹}ÕÑÑ•É…¹”¤(€€€€€€€•á•ÁÐY½¥•ÉÉ½È…Ì•áŒè(€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰m±¥ÍÑ•¸™…¥±•èí•áõtˆ¤(€€€€€€€€€€€É•ÑÕÉ¸((€€€€€€€¥˜ÑÕÉ¹Ì€ôô€Àè(€€€€€€€€€€€ÁÉ¥¹Ð ‰mÝ…­”Ý½É‘t¥‘¸Ð…Ñ …¹åÑ¡¥¹œ°½¥¹œ‰…¬Ñ¼Í±••À¸ˆ¤((€€€ÑÉäè(€€€€€€€Í•ÍÍ¥½¸€ô…ÁÀ¹Ù½¥”¹ÍÑ…ÉÑ}Í•ÍÍ¥½¸ ¤(€€€€€€€Ù½¥•}Í•ÍÍ¥½¹}¥€ôÍ•ÍÍ¥½¸¹Í•ÍÍ¥½¹}¥(€€€€€€€Ù½¥•}…Ù…¥±…‰±”€ôQÉÕ”(€€€•á•ÁÐá•ÁÑ¥½¸…Ì•áŒè(€€€€€€€ÁÉ¥¹Ð¡˜‰mÙ½¥”Õ¹…Ù…¥±…‰±”°½¹Ñ¥¹Õ¥¹œ¥¸Ñ•áÐµ½¹±äµ½‘”èí•áõtˆ¤((€€€¥˜Ù½¥•}…Ù…¥±…‰±”è(€€€€€€€ÑÉäè(€€€€€€€€€€€…ÁÀ¹Ù½¥”¹ÍÑ…ÉÑ}Ý…­•}Ý½É‘}±¥ÍÑ•¹¥¹œ¡½¹}‘•Ñ•Ñ•õ½¹}Ý…­•}Ý½É¤(€€€€€€€€€€€Ý…­•}Ý½É‘}…Ù…¥±…‰±”€ôQÉÕ”(€€€€€€€•á•ÁÐá•ÁÑ¥½¸…Ì•áŒè(€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰mÝ…­”Ý½É±¥ÍÑ•¹¥¹œÕ¹…Ù…¥±…‰±”èí•áõtˆ¤((€€€ÁÉ¥¹Ð ¤(€€€ÁÉ¥¹Ð ˆôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôˆ¤(€€€ÁÉ¥¹Ð ˆ€€€€€=8%¹Ñ•É…Ñ¥Ù”½¹Í½±”ˆ¤(€€€ÁÉ¥¹Ð ‰QåÁ”€•á¥ÐœÑ¼ÅÕ¥Ð¸ˆ¤((€€€¥˜Ù½¥•}…Ù…¥±…‰±”è(€€€€€€€ÁÉ¥¹Ð ‰QåÁ”€±¥ÍÑ•¸œÑ¼ÍÁ•…¬å½ÕÈµ•ÍÍ…”Ù¥„µ¥É½Á¡½¹”¥¹ÍÑ•…½˜ÑåÁ¥¹œ¸ˆ¤((€€€¥˜Ý…­•}Ý½É‘}…Ù…¥±…‰±”è(€€€€€€€ÁÉ¥¹Ð ‰M…ä€=8œ…Ð…¹äÑ¥µ”Ñ¼…Ñ¥Ù…Ñ”¡…¹‘Ìµ™É•”±¥ÍÑ•¹¥¹œ¸ˆ¤(€€€€€€€ÁÉ¥¹Ð ‰M…ä€=8œ……¥¸Ý¡¥±”=8¥ÌÍÁ•…­¥¹œÑ¼¥¹Ñ•ÉÉÕÁÐ¥Ð¸ˆ¤((€€€¥˜Ù½¥•}…Ù…¥±…‰±”è(€€€€€€€ÁÉ¥¹Ð ‰QåÁ”€•¹É½±°Ù½¥”œÑ¼Ñ•… =8Ñ¼É•½¹¥é”å½ÕÈÙ½¥”¸ˆ¤((€€€¥˜Ù½¥•}…Ù…¥±…‰±”…¹µÍÙÉÐ¥Ì¹½Ð9½¹”è(€€€€€€€ÁÉ¥¹Ð ‰AÉ•ÍÌ¹Ñ•ÈÝ¡¥±”=8¥ÌÍÁ•…­¥¹œÑ¼¥¹Ñ•ÉÉÕÁÐ¥Ð¸ˆ¤((€€€ÁÉ¥¹Ð ‰QåÁ”€É•µ¥¹€ñµ¥¹ÕÑ•Ìø€ñµ•ÍÍ…”øœÑ¼Í¡•‘Õ±”„ÍÁ½­•¸É•µ¥¹‘•È¸ˆ¤((€€€¥˜…ÁÀ¹ÁÉ½…Ñ¥Ù”¹¡•…±Ñ¡}¡•¬ ¤è(€€€€€€€ÁÉ¥¹Ð ‰=8µ…ä…±Í¼ÍÁ•…¬ÕÀ½¸¥ÑÌ½Ý¸…™Ñ•È„ÅÕ¥•ÐÍÑÉ•Ñ ¸ˆ¤((€€€¥˜…ÁÀ¹¡½±½É…´¹¥Í}ÉÕ¹¹¥¹œè(€€€€€€€ÁÉ¥¹Ð ‰Q¡”¡½±½É…´½Ù•É±…ä¥Ì…Ñ¥Ù”¥¸Ñ¡”½É¹•È½˜å½ÕÈÍÉ••¸¸ˆ¤((€€€ÁÉ¥¹Ð ˆôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôôˆ¤((€€€¥˜Ù½¥•}…Ù…¥±…‰±”è(€€€€€€€}ÍÁ•…­}µ½É¹¥¹}‰É¥•™¥¹œ¡…ÁÀ°Ù½¥•}Í•ÍÍ¥½¹}¥¤((€€€ÑÉäè(€€€€€€€Ý¡¥±”QÉÕ”è((€€€€€€€€€€€ÁÉ¥¹Ð ¤((€€€€€€€€€€€¥˜…ÁÀ¹½‘¥¹œ¹…Ñ¥Ù”è(€€€€€€€€€€€€€€€Í•ÍÍ¥½¸€ô…ÁÀ¹½‘¥¹œ¹Í•ÍÍ¥½¸(€€€€€€€€€€€€€€€¹…µ”€ôÍ•ÍÍ¥½¸¹¹…µ”¥˜Í•ÍÍ¥½¸¥Ì¹½Ð9½¹”•±Í”€ˆüˆ(€€€€€€€€€€€€€€€ÁÉ½µÁÐ€ô˜‰½‘¥¹mí¹…µ•õtø€ˆ(€€€€€€€€€€€•±Í”è(€€€€€€€€€€€€€€€ÁÉ½µÁÐ€ô€‰e½Ô€¡½È€±¥ÍÑ•¸œ¤è€ˆ¥˜Ù½¥•}…Ù…¥±…‰±”•±Í”€‰e½Ôè€ˆ((€€€€€€€€€€€É…Ü€ô¥¹ÁÕÐ¡ÁÉ½µÁÐ¤¹ÍÑÉ¥À ¤((€€€€€€€€€€€¥˜¹½ÐÉ…Üè(€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€€Œ€•á¥Ðœ¼ÅÕ¥Ðœµ•…¸ÅÕ¥Ð=8¥¸•¥Ñ¡•Èµ½‘”ƒŠP±•…Ù¥¹œ(€€€€€€€€€€€€Œ½‘¥¹œµ½‘”¥Ì€‘½¹”œ¸(€€€€€€€€€€€¥˜É…Ü¹±½Ý•È ¤¥¸€ ‰•á¥Ðˆ°€‰ÅÕ¥Ðˆ¤è(€€€€€€€€€€€€€€€ÁÉ¥¹Ð ‰=8è½½‘‰å”„ˆ¤(€€€€€€€€€€€€€€€‰É•…¬((€€€€€€€€€€€¥˜…ÁÀ¹½‘¥¹œ¹…Ñ¥Ù”è(€€€€€€€€€€€€€€€€ŒÙ•ÉåÑ¡¥¹œÑåÁ•¥¸½‘¥¹œµ½‘”½•ÌÑ¼Ñ¡”½‘¥¹œ(€€€€€€€€€€€€€€€€ŒÝ½É­ÍÁ…”°¹½ÐÑ¼Ñ¡”¡…Ð‰É…¥¸¸M•”½‘¥¹5½‘”™½È(€€€€€€€€€€€€€€€€ŒÝ¡ä½µµ…¹‘Ì…É”…Ñ•…¹™¥±”ÝÉ¥Ñ•Ì…É”¹½Ð¸(€€€€€€€€€€€€€€€É•Á±ä€ô…ÁÀ¹½‘¥¹œ¹¡…¹‘±”¡É…Ü¤((€€€€€€€€€€€€€€€¥˜É•Á±äè(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð ¤(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰=8èíÉ•Á±åôˆ¤((€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€½‘¥¹}É•ÅÕ•ÍÐ€ôÁ…ÉÍ•}½‘¥¹}É•ÅÕ•ÍÐ¡É…Ü¤((€€€€€€€€€€€¥˜½‘¥¹}É•ÅÕ•ÍÐ¥Ì¹½Ð9½¹”è(€€€€€€€€€€€€€€€É•Á±ä€ô…ÁÀ¹½‘¥¹œ¹•¹Ñ•È¡½‘¥¹}É•ÅÕ•ÍÐ¹ÁÉ½©•Ð¤((€€€€€€€€€€€€€€€ÁÉ¥¹Ð ¤(€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰=8èíÉ•Á±åôˆ¤((€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€¥˜É…Ü¹±½Ý•È ¤¹ÍÑ…ÉÑÍÝ¥Ñ  ‰É•µ¥¹€ˆ¤è(€€€€€€€€€€€€€€€€Œ•µ¼¡½½¬™½ÈAÉ½…Ñ¥Ù”MÁ•• è€‰É•µ¥¹€À¸ÔÍÑÉ•Ñ å½ÕÈ±•Ìˆ(€€€€€€€€€€€€€€€|°|°É•ÍÐ€ôÉ…Ü¹Á…ÉÑ¥Ñ¥½¸ ˆ€ˆ¤(€€€€€€€€€€€€€€€µ¥¹ÕÑ•Í}ÍÑÈ°|°µ•ÍÍ…”€ôÉ•ÍÐ¹Á…ÉÑ¥Ñ¥½¸ ˆ€ˆ¤((€€€€€€€€€€€€€€€ÑÉäè(€€€€€€€€€€€€€€€€€€€µ¥¹ÕÑ•Ì€ô™±½…Ð¡µ¥¹ÕÑ•Í}ÍÑÈ¤(€€€€€€€€€€€€€€€•á•ÁÐY…±Õ•ÉÉ½Èè(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð ‰mÕÍ…”èÉ•µ¥¹€ñµ¥¹ÕÑ•Ìø€ñµ•ÍÍ…”ùtˆ¤(€€€€€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€€€€€¥˜¹½Ðµ•ÍÍ…”è(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð ‰mÕÍ…”èÉ•µ¥¹€ñµ¥¹ÕÑ•Ìø€ñµ•ÍÍ…”ùtˆ¤(€€€€€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€€€€€…ÁÀ¹ÁÉ½…Ñ¥Ù”¹É•µ¥¹‘}¥¸¡µ•ÍÍ…”°µ¥¹ÕÑ•Ì¤(€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰mÉ•µ¥¹‘•ÈÍ•Ð™½Èíµ¥¹ÕÑ•Íôµ¥¹ÕÑ”¡Ì¤™É½´¹½Ýtˆ¤(€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€¥˜Ù½¥•}…Ù…¥±…‰±”…¹É…Ü¹±½Ý•È ¤¥¸€ ‰•¹É½±°Ù½¥”ˆ°€‰•¹É½±°ˆ¤è(€€€€€€€€€€€€€€€ÁÉ¥¹Ð (€€€€€€€€€€€€€€€€€€€˜‰M…ä„Í•¹Ñ•¹”½ÈÑÝ¼½ÕÐ±½ÕƒŠPÉ•½É‘¥¹œ™½È€ˆ(€€€€€€€€€€€€€€€€€€€˜‰í…ÁÀ¹Ù½¥”¹ÍÁ•…­•É}•¹É½±±}Í•½¹‘Ìè¸Á™ôÍ•½¹‘Ì¸¸¸ˆ(€€€€€€€€€€€€€€€€¤(€€€€€€€€€€€€€€€ÑÉäè(€€€€€€€€€€€€€€€€€€€…ÁÀ¹Ù½¥”¹•¹É½±±}ÍÁ•…­•È ¤(€€€€€€€€€€€€€€€•á•ÁÐY½¥•ÉÉ½È…Ì•áŒè(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰m•¹É½±±µ•¹Ð™…¥±•èí•áõtˆ¤(€€€€€€€€€€€€€€€•á•ÁÐY…±Õ•ÉÉ½È…Ì•áŒè(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰m•¹É½±±µ•¹Ð™…¥±•èí•áõtQÉä……¥¸Ý¥Ñ ±•…É•ÈÍÁ•• ¸ˆ¤(€€€€€€€€€€€€€€€•±Í”è(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð ‰mÙ½¥”•¹É½±±•ƒŠPÍ…ä€=8œ…¹$±°É•½¹¥é”å½Ô¹•áÐÑ¥µ•tˆ¤(€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€ÍÁ½­•¹}±…¹Õ…•}½‘”€ô9½¹”((€€€€€€€€€€€¥˜Ù½¥•}…Ù…¥±…‰±”…¹É…Ü¹±½Ý•È ¤€ôô€‰±¥ÍÑ•¸ˆè(€€€€€€€€€€€€€€€ÁÉ¥¹Ð ‰1¥ÍÑ•¹¥¹œ¸¸¸ˆ¤((€€€€€€€€€€€€€€€ÑÉäè(€€€€€€€€€€€€€€€€€€€É•ÍÕ±Ð€ô…ÁÀ¹Ù½¥”¹±¥ÍÑ•¹}½¹”¡Ù½¥•}Í•ÍÍ¥½¹}¥¤(€€€€€€€€€€€€€€€€€€€ÕÍ•É}µ•ÍÍ…”€ôÉ•ÍÕ±Ð¹ÑÉ…¹ÍÉ¥ÁÐ(€€€€€€€€€€€€€€€€€€€ÍÁ½­•¹}±…¹Õ…•}½‘”€ôÉ•ÍÕ±Ð¹±…¹Õ…•}½‘”(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰e½ÔÍ…¥èíÕÍ•É}µ•ÍÍ…•ôˆ¤(€€€€€€€€€€€€€€€•á•ÁÐY½¥•ÉÉ½È…Ì•áŒè(€€€€€€€€€€€€€€€€€€€ÁÉ¥¹Ð¡˜‰m±¥ÍÑ•¸™…¥±•èí•áõtˆ¤(€€€€€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€•±Í”è(€€€€€€€€€€€€€€€ÕÍ•É}µ•ÍÍ…”€ôÉ…Ü((€€€€€€€€€€€¥˜¹½ÐÕÍ•É}µ•ÍÍ…”è(€€€€€€€€€€€€€€€½¹Ñ¥¹Õ”((€€€€€€€€€€€ÍÑÉ•…µ}½¹Ù•ÉÍ…Ñ¥½¹}É•Á±ä (€€€€€€€€€€€€€€€…ÁÀ°Ù½¥•}Í•ÍÍ¥½¹}¥°Ù½¥•}…Ù…¥±…‰±”°ÕÍ•É}µ•ÍÍ…”°(€€€€€€€€€€€€€€€É•Á±å}±…¹Õ…•}½‘”õÍÁ½­•¹}±…¹Õ…•}½‘”°(€€€€€€€€€€€€¤((€€€€€€€€€€€…ÁÀ¹ÁÉ½…Ñ¥Ù”¹¹½Ñ¥™å}¥¹Ñ•É…Ñ¥½¸ ¤((€€€™¥¹…±±äè(€€€€€€€¥˜Ý…­•}Ý½É‘}…Ù…¥±…‰±”è(€€€€€€€€€€€ÑÉäè(€€€€€€€€€€€€€€€…ÁÀ¹Ù½¥”¹ÍÑ½Á}Ý…­•}Ý½É‘}±¥ÍÑ•¹¥¹œ ¤(€€€€€€€€€€€•á•ÁÐá•ÁÑ¥½¸è(€€€€€€€€€€€€€€€Á…ÍÌ((€€€€€€€¥˜Ù½¥•}…Ù…¥±…‰±”…¹Ù½¥•}Í•ÍÍ¥½¹}¥¥Ì¹½Ð9½¹”è(€€€€€€€€€€€ÑÉäè(€€€€€€€€€€€€€€€…ÁÀ¹Ù½¥”¹ÍÑ½Á}Í•ÍÍ¥½¸¡Ù½¥•}Í•ÍÍ¥½¹}¥¤(€€€€€€€€€€€•á•ÁÐá•ÁÑ¥½¸è(€€€€€€€€€€€€€€€Á…ÍÌ((€€€€€€€€Œ=É‘•Èµ…ÑÑ•ÉÌ¡•É”°…¹¥Ð¥ÌÝ¡…Ðµ…‘”•á¥Ñ€¡…¹œ‰•™½É”¸(€€€€€€€€Œ(€€€€€€€€ŒQ¡”½¹Í½±”¥Ì¹½ÐÑ¡”Ñ¡É•…Ñ¡…Ð½Ý¹ÌEÐ°Í¼•Ù•Éä½¹”½˜(€€€€€€€€ŒÑ¡•Í”¡…ÌÑ¼¼Ñ¡É½Õ Ñ¡”Ý¥¹‘½ÜÌÍ¥¹…°‰É¥‘”É…Ñ¡•È(€€€€€€€€ŒÑ¡…¸Ñ½Õ¡¥¹œ„Ý¥‘•Ð½ÈÑ¡”•Ù•¹Ð±½½À‘¥É•Ñ±ä¸¹EÐ¡…Ì(€€€€€€€€ŒÑ¼‰”ÅÕ¥Ð€©±…ÍÐ¨èÍ¡ÕÑÑ¥¹œÑ¡”•¹¥¹”‘½Ý¸¥¹±Õ‘•ÌÑ¡”(€€€€€€€€Œ¡½±½É…´½Ù•É±…ä°Ý¡½Í”½Ý¸Ñ•…É‘½Ý¸ÍÑ¥±°¹••‘Ì„±¥Ù”•Ù•¹Ð(€€€€€€€€Œ±½½ÀÑ¼‰”‘•±¥Ù•É•Ñ¡É½Õ ¸EÕ¥ÑÑ¥¹œ™¥ÉÍÐ±•™ÐÑ¡…ÐÝ½É¬(€€€€€€€€ŒÅÕ•Õ•Ý¥Ñ ¹½Ñ¡¥¹œ±•™ÐÑ¼ÉÕ¸¥Ð¸(€€€€€€€…ÁÀ¹½‘¥¹}Ý¥¹‘½Ü¹±½Í•}Ý¥¹‘½Ü ¤((€€€€€€€…ÁÀ¹•¹¥¹”¹Í¡ÕÑ‘½Ý¸ ¤((€€€€€€€€ŒEÕ¥ÑÌEÐ°Í¼Ñ¡”•Ù•¹Ð±½½À…‰½Ù”É•ÑÕÉ¹Ì¸!…Éµ±•ÍÌÝ¡•¸Ñ¡”(€€€€€€€€Œ½Ù•É±…ä¡…Ì…±É•…‘äÅÕ¥Ð¥Ð¸(€€€€€€€…ÁÀ¹½‘¥¹}Ý¥¹‘½Ü¹ÍÑ½À ¤(()¥˜}}¹…µ•}|€ôô€‰}}µ…¥¹}|ˆè(€€€µ…¥¸ ¤(
+                ``VoiceService.enroll_speaker``). EON still answers
+                either way â€” this only gates the personalized
+                "Welcome back" greeting, not whether it responds.
+        """
+        if app.voice.is_speaking:
+            # Barge-in: the user said "EON" again while a previous
+            # response was still playing. Cut it off immediately
+            # instead of letting it finish or talking over it.
+            print()
+            print("[wake word] Interrupting...")
+            app.voice.interrupt_speaking()
+
+        print()
+
+        if is_owner:
+            print("[wake word] Owner's voice recognized.")
+            try:
+                app.voice.say(voice_session_id, "Welcome back, sir.")
+            except VoiceError as exc:
+                print(f"[greeting failed: {exc}]")
+
+        print("[wake word] Listening...")
+
+        def on_utterance(text: str, language_code: str | None) -> None:
+            print(f"You said: {text}")
+
+            stream_conversation_reply(
+                app, voice_session_id, voice_available, text,
+                reply_language_code=language_code,
+            )
+
+            app.proactive.notify_interaction()
+
+        try:
+            turns = app.voice.run_conversation(voice_session_id, on_utterance)
+        except VoiceError as exc:
+            print(f"[listen failed: {exc}]")
+            return
+
+        if turns == 0:
+            print("[wake word] Didn't catch anything, going back to sleep.")
+
+    try:
+        session = app.voice.start_session()
+        voice_session_id = session.session_id
+        voice_available = True
+    except Exception as exc:
+        print(f"[voice unavailable, continuing in text-only mode: {exc}]")
+
+    if voice_available:
+        try:
+            app.voice.start_wake_word_listening(on_detected=on_wake_word)
+            wake_word_available = True
+        except Exception as exc:
+            print(f"[wake word listening unavailable: {exc}]")
+
+    print()
+    print("===================================")
+    print("      EON Interactive Console")
+    print("Type 'exit' to quit.")
+
+    if voice_available:
+        print("Type 'listen' to speak your message via microphone instead of typing.")
+
+    if wake_word_available:
+        print("Say 'EON' at any time to activate hands-free listening.")
+        print("Say 'EON' again while EON is speaking to interrupt it.")
+
+    if voice_available:
+        print("Type 'enroll voice' to teach EON to recognize your voice.")
+
+    if voice_available and msvcrt is not None:
+        print("Press Enter while EON is speaking to interrupt it.")
+
+    print("Type 'remind <minutes> <message>' to schedule a spoken reminder.")
+
+    if app.proactive.health_check():
+        print("EON may also speak up on its own after a quiet stretch.")
+
+    if app.hologram.is_running:
+        print("The hologram overlay is active in the corner of your screen.")
+
+    print("===================================")
+
+    if voice_available:
+        _speak_morning_briefing(app, voice_session_id)
+
+    try:
+        while True:
+
+            print()
+
+            if app.coding.active:
+                session = app.coding.session
+                name = session.name if session is not None else "?"
+                prompt = f"coding[{name}]> "
+            else:
+                prompt = "You (or 'listen'): " if voice_available else "You: "
+
+            raw = input(prompt).strip()
+
+            if not raw:
+                continue
+
+            # 'exit'/'quit' mean quit EON in either mode â€” leaving
+            # coding mode is 'done'.
+            if raw.lower() in ("exit", "quit"):
+                print("EON: Goodbye!")
+                break
+
+            if app.coding.active:
+                # Everything typed in coding mode goes to the coding
+                # workspace, not to the chat brain. See CodingMode for
+                # why commands are gated and file writes are not.
+                reply = app.coding.handle(raw)
+
+                if reply:
+                    print()
+                    print(f"EON: {reply}")
+
+                continue
+
+            coding_request = parse_coding_request(raw)
+
+            if coding_request is not None:
+                reply = app.coding.enter(coding_request.project)
+
+                print()
+                print(f"EON: {reply}")
+
+                continue
+
+            if raw.lower().startswith("remind "):
+                # Demo hook for Proactive Speech: "remind 0.5 stretch your legs"
+                _, _, rest = raw.partition(" ")
+                minutes_str, _, message = rest.partition(" ")
+
+                try:
+                    minutes = float(minutes_str)
+                except ValueError:
+                    print("[usage: remind <minutes> <message>]")
+                    continue
+
+                if not message:
+                    print("[usage: remind <minutes> <message>]")
+                    continue
+
+                app.proactive.remind_in(message, minutes)
+                print(f"[reminder set for {minutes} minute(s) from now]")
+                continue
+
+            if voice_available and raw.lower() in ("enroll voice", "enroll"):
+                print(
+                    f"Say a sentence or two out loud â€” recording for "
+                    f"{app.voice.speaker_enroll_seconds:.0f} seconds..."
+                )
+                try:
+                    app.voice.enroll_speaker()
+                except VoiceError as exc:
+                    print(f"[enrollment failed: {exc}]")
+                except ValueError as exc:
+                    print(f"[enrollment failed: {exc}] Try again with clearer speech.")
+                else:
+                    print("[voice enrolled â€” say 'EON' and I'll recognize you next time]")
+                continue
+
+            spoken_language_code = None
+
+            if voice_available and raw.lower() == "listen":
+                print("Listening...")
+
+                try:
+                    result = app.voice.listen_once(voice_session_id)
+                    user_message = result.transcript
+                    spoken_language_code = result.language_code
+                    print(f"You said: {user_message}")
+                except VoiceError as exc:
+                    print(f"[listen failed: {exc}]")
+                    continue
+
+            else:
+                user_message = raw
+
+            if not user_message:
+                continue
+
+            stream_conversation_reply(
+                app, voice_session_id, voice_available, user_message,
+                reply_language_code=spoken_language_code,
+            )
+
+            app.proactive.notify_interaction()
+
+    finally:
+        if wake_word_available:
+            try:
+                app.voice.stop_wake_word_listening()
+            except Exception:
+                pass
+
+        if voice_available and voice_session_id is not None:
+            try:
+                app.voice.stop_session(voice_session_id)
+            except Exception:
+                pass
+
+        # Order matters here, and it is what made ``exit`` hang before.
+        #
+        # The console is not the thread that owns Qt, so every one of
+        # these has to go through the window's signal bridge rather
+        # than touching a widget or the event loop directly. And Qt has
+        # to be quit *last*: shutting the engine down includes the
+        # hologram overlay, whose own teardown still needs a live event
+        # loop to be delivered through. Quitting first left that work
+        # queued with nothing left to run it.
+        app.coding_window.close_window()
+
+        app.engine.shutdown()
+
+        # Quits Qt, so the event loop above returns. Harmless when the
+        # overlay has already quit it.
+        app.coding_window.stop()
+
+
+if __name__ == "__main__":
+    main()
