@@ -4,6 +4,8 @@ Ollama Provider for EON.
 
 from __future__ import annotations
 
+import threading
+
 from ollama import Client
 
 from src.core.logger import get_logger
@@ -121,3 +123,37 @@ class OllamaProvider:
         )
 
         return response["embeddings"][0]
+
+
+# The provider every AIManager shares unless one is passed in explicitly.
+_default_provider: "OllamaProvider | None" = None
+_default_provider_lock = threading.Lock()
+
+
+def get_default_provider() -> OllamaProvider:
+    """The shared provider, created once on first use.
+
+    Ollama serves a single copy of the model, and an ``OllamaProvider``
+    is only an HTTP client plus two model names — so a provider *per
+    caller* buys nothing. It re-reads the same configuration and opens
+    another connection to the same server. EON builds several (the
+    brain, the memory store, embeddings, the vision analyser), which
+    showed up as a run of identical "Ollama Provider initialized"
+    lines on every launch.
+
+    Sharing is safe because the provider holds no conversation state:
+    every call passes its own messages.
+
+    Returns:
+        The process-wide provider.
+    """
+    global _default_provider
+
+    if _default_provider is None:
+        with _default_provider_lock:
+            # Re-check inside the lock: two threads can both get past
+            # the check above before either takes the lock.
+            if _default_provider is None:
+                _default_provider = OllamaProvider()
+
+    return _default_provider
