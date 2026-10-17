@@ -155,7 +155,7 @@ class VoiceServiceConfig:
     # interrupts itself when it is speaking loudly.
     barge_in_energy_threshold: float = 250.0
     barge_in_min_speech_seconds: float = 0.4
-    bargein_window_seconds: float = 0.1
+    barge_in_window_seconds: float = 0.1
 
     # Owner voice recognition. A lightweight spectral + pitch
     # "voiceprint" (see SpeakerIdentifier) computed from the same audio
@@ -188,4 +188,13 @@ class VoiceServiceConfig:
     )
 
     # Optional second Piper voice used for Hindi-dominant replies. Left
-    # unset (``None`h) by default: no Hindi voice model ships with EON,(€€€€ŒÑ¡”ÕÍ•È¡…ÌÑ¼™•Ñ ½¹”€¡Í•”Ñ¡”Á¥Á•É}¡¥€‘½ÍÑÉ¥¹œ•¹ÑÉä(€€€€Œ…‰½Ù”¤¸á…µÁ±”½¹”‘½İ¹±½…‘•è(€€€€Œ€€Á¥Á•É}¡¤€ôì(€€€€Œ€€€€€€€‰µ½‘•±}Á…Ñ ˆè€‰‘…Ñ„½Ù½¥”½Á¥Á•È½Ù½¥•}¡¤¹½¹¹àˆ°(€€€€Œ€€€€€€€‰½¹™¥}Á…Ñ ˆè€‰‘…Ñ„½Ù½¥”½Á¥Á•È½Ù½¥•}¡¤¹½¹¹à¹©Í½¸ˆ°(€€€€Œ€€ô(€€€Á¥Á•É}¡¤è‘¥ÑmÍÑÈ°¹åtğ9½¹”€ô9½¹”((€€€½Á•¹…¤è‘¥ÑmÍÑÈ°¹åt€ô™¥•±¡‘•™…Õ±Ñ}™…Ñ½Éäõ‘¥Ğ¤(
+    # unset (``None``) by default: no Hindi voice model ships with EON,
+    # the user has to fetch one (see the ``piper_hi`` docstring entry
+    # above). Example once downloaded:
+    #   piper_hi = {
+    #       "model_path": "data/voice/piper/voice_hi.onnx",
+    #       "config_path": "data/voice/piper/voice_hi.onnx.json",
+    #   }
+    piper_hi: dict[str, Any] | None = None
+
+    openai: dict[str, Any] = field(default_factory=dict)
