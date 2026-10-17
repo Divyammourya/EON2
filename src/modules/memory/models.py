@@ -56,6 +56,15 @@ class MemoryEntry:
     metadata: dict[str, Any] = field(default_factory=dict)
 
 
+# How similar a stored memory must be to count as relevant to the
+# current topic. Cosine similarity against this embedding model gives
+# *unrelated* text scores around 0.3–0.5, so a low bar returns memories
+# that have nothing to do with the question — and recalled memories are
+# injected into the prompt, so that noise changes EON's answers rather
+# than just cluttering the log.
+DEFAULT_MIN_SCORE = 0.55
+
+
 @dataclass(slots=True)
 class MemoryQuery:
     """
@@ -65,6 +74,8 @@ class MemoryQuery:
     query: str
 
     limit: int = 10
+
+    min_score: float = DEFAULT_MIN_SCORE
 
 
 @dataclass(slots=True)
