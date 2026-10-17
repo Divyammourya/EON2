@@ -136,11 +136,18 @@ def test_the_code_view_shows_the_selected_file(qt_app, project):
     _from_console_thread(lambda: window.show_project(project, "demo"))
     assert _settle(qt_app, lambda: window._window is not None)
 
-    code = window._window._code
+    # A file now opens as a tab rather than replacing a single
+    # preview, so this drives the tab and reads it back. Opening is a
+    # widget call, so it belongs on this thread — the service's
+    # thread-safe entry points are show_project, refresh and
+    # close_window, which go through the bridge.
+    window._window.open_file("README.md")
 
-    # README.md sorts first, so it is selected on load.
-    assert _settle(qt_app, lambda: bool(code.toPlainText()))
-    assert "# Demo" in code.toPlainText()
+    assert window._window._tabs.count() == 1
+
+    editor = window._window._tabs.widget(0)
+
+    assert "# Demo" in editor.toPlainText()
 
 
 def test_refresh_picks_up_a_new_file(qt_app, project):
@@ -256,3 +263,260 @@ def test_stop_on_a_disabled_service_does_nothing(qt_app):
 
     assert window._app is None
     assert window._window is None
+
+
+# --- the sidebar -----------------------------------------------------------
+
+
+class _StubQueries:
+    """Stands in for the workspace, so the layout can be tested alone."""
+
+    def __init__(self, *, search=(), outline=(), git=(None, [])) -> None:
+        self._search = list(search)
+        self._outline = list(outline)
+        self._git = git
+        self.searches: list[str] = []
+
+    def search(self, text: str):
+        self.searches.append(text)
+        return list(self._search)
+
+    def outline(self, relative: str):
+        return list(self._outline)
+
+    def git(self):
+        return self._git
+
+
+def test_the_sidebar_has_the_four_sections(qt_app):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+
+    labels = [
+        window._sidebar.itemText(i) for i in range(window._sidebar.count())
+    ]
+
+    assert labels == ["Explorer", "Search", "Outline", "Git"]
+
+
+def test_opening_a_project_lists_its_files(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+    window.show_project(project, "demo")
+
+    tree = window._tree
+
+    assert tree.topLevelItemCount() == 3
+    assert window._hint.text() == "3 file(s)."
+
+
+def test_the_empty_state_says_it_once(qt_app, tmp_path):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+    window.show_project(tmp_path, "empty")
+
+    assert window._tree.topLevelItemCount() == 0
+    assert window._hint.text() == "This project is empty so far."
+
+
+def test_clicking_a_file_opens_it_in_a_tab(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+    window.show_project(project, "demo")
+
+    assert window._tabs.count() == 0
+
+    window._tree.setCurrentItem(window._tree.topLevelItem(2))  # src/main.py
+
+    assert window._tabs.count() == 1
+    assert window._tabs.tabToolTip(0) == "src/main.py"
+    assert "print('hello')" in window._tabs.widget(0).toPlainText()
+
+
+def test_a_refresh_does_not_yank_you_out_of_your_tab(qt_app, project):
+    """EON writing a file must not move the tab you are reading."""
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+    window.show_project(project, "demo")
+
+    window._tree.setCurrentItem(window._tree.topLevelItem(0))  # README.md
+    assert window.current_relative_path() == "README.md"
+
+    (project / "src" / "extra.py").write_text("x = 1\n", encoding="utf-8")
+    window.refresh()
+
+    assert window._tabs.count() == 1
+    assert window.current_relative_path() == "README.md"
+
+
+def test_the_search_section_lists_what_the_backend_found(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    queries = _StubQueries(
+        search=[("src/main.py", 1), ("docs/notes.md", 4)],
+    )
+    window = CodingWindow(queries=queries)
+    window.show_project(project, "demo")
+
+    window._search_box.setText("hello")
+    window._run_search()
+
+    assert queries.searches == ["hello"]
+    assert window._search_results.count() == 2
+    assert window._search_results.item(0).text() == "src/main.py:1"
+    assert window._search_note.text() == "2 files."
+
+
+def test_a_search_result_opens_the_file_at_its_line(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    (project / "src" / "main.py").write_text(
+        "one\ntwo\nthree\nfour\n", encoding="utf-8"
+    )
+
+    queries = _StubQueries(search=[("src/main.py", 3)])
+    window = CodingWindow(queries=queries)
+    window.show_project(project, "demo")
+
+    window._search_box.setText("three")
+    window._run_search()
+    window._on_search_activated(window._search_results.item(0))
+
+    assert window.current_relative_path() == "src/main.py"
+    assert window._tabs.widget(0).textCursor().blockNumber() == 2
+
+
+def test_a_search_with_nothing_wired_up_is_just_empty(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()  # no queries at all
+    window.show_project(project, "demo")
+
+    window._search_box.setText("hello")
+    window._run_search()
+
+    assert window._search_results.count() == 0
+    assert "Nothing contains" in window._search_note.text()
+
+
+def test_the_outline_follows_the_open_file(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    queries = _StubQueries(
+        outline=[("main", "function", 1), ("Greeter", "class", 8)],
+    )
+    window = CodingWindow(queries=queries)
+    window.show_project(project, "demo")
+
+    assert window._outline.count() == 0
+
+    window.open_file("src/main.py")
+
+    assert window._outline.count() == 2
+    assert "Greeter" in window._outline.item(1).text()
+    assert window._outline_note.text() == "2 symbol(s)."
+
+
+def test_an_outline_entry_jumps_to_its_line(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    (project / "src" / "main.py").write_text(
+        "\n".join(f"line {n}" for n in range(1, 21)) + "\n",
+        encoding="utf-8",
+    )
+
+    queries = _StubQueries(outline=[("main", "function", 12)])
+    window = CodingWindow(queries=queries)
+    window.show_project(project, "demo")
+
+    window.open_file("src/main.py")
+    window._on_outline_activated(window._outline.item(0))
+
+    assert window._tabs.widget(0).textCursor().blockNumber() == 11
+
+
+def test_the_git_section_shows_the_branch_and_the_changes(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    queries = _StubQueries(git=("main", [("src/main.py", "M")]))
+    window = CodingWindow(queries=queries)
+    window.show_project(project, "demo")
+
+    assert window._git_branch.text() == "On branch main"
+    assert window._git_files.count() == 1
+    assert window._git_files.item(0).text() == "M  src/main.py"
+    assert window._status_branch.text() == "main"
+
+
+def test_outside_a_repository_the_git_section_says_so(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow(queries=_StubQueries(git=(None, [])))
+    window.show_project(project, "demo")
+
+    assert window._git_branch.text() == "Not a git repository."
+
+
+def test_the_status_bar_names_the_open_file(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+    window.show_project(project, "demo")
+
+    assert window._status_file.text() == "No file open"
+
+    window.open_file("src/main.py")
+
+    assert window._status_file.text() == "src/main.py"
+
+
+def test_closing_a_tab_removes_it(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+    window.show_project(project, "demo")
+
+    window.open_file("src/main.py")
+    window.open_file("README.md")
+    assert window._tabs.count() == 2
+
+    window.close_tab(0)
+
+    assert window._tabs.count() == 1
+    assert window._tabs.tabToolTip(0) == "README.md"
+
+
+def test_the_same_file_opens_once(qt_app, project):
+    from src.ui.coding.window import CodingWindow
+
+    window = CodingWindow()
+    window.show_project(project, "demo")
+
+    window.open_file("src/main.py")
+    window.open_file("src/main.py")
+
+    assert window._tabs.count() == 1
+
+
+def test_the_queries_reach_the_window_through_the_service(qt_app, project):
+    """The whole chain: service stores them, the window gets them."""
+    from src.ui.coding.window import CodingWindow
+
+    service = CodingWindowService(enabled=True)
+    service.initialize()
+
+    queries = _StubQueries(git=("main", [("src/main.py", "M")]))
+    _from_console_thread(lambda: service.bind_queries(queries))
+    _from_console_thread(lambda: service.show_project(project, "demo"))
+
+    assert _settle(qt_app, lambda: service._window is not None)
+    assert _settle(qt_app, lambda: service._window._git_branch.text() != "")
+
+    window: CodingWindow = service._window
+    assert window._git_branch.text() == "On branch main"
+    assert window._queries is queries
