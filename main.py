@@ -444,11 +444,22 @@ def _run_console(app) -> None:
             except Exception:
                 pass
 
-        # Stops the coding window and, when the overlay isn't running,
-        # quits Qt so the event loop above can return.
-        app.coding_window.stop()
+        # Order matters here, and it is what made ``exit`` hang before.
+        #
+        # The console is not the thread that owns Qt, so every one of
+        # these has to go through the window's signal bridge rather
+        # than touching a widget or the event loop directly. And Qt has
+        # to be quit *last*: shutting the engine down includes the
+        # hologram overlay, whose own teardown still needs a live event
+        # loop to be delivered through. Quitting first left that work
+        # queued with nothing left to run it.
+        app.coding_window.close_window()
 
         app.engine.shutdown()
+
+        # Quits Qt, so the event loop above returns. Harmless when the
+        # overlay has already quit it.
+        app.coding_window.stop()
 
 
 if __name__ == "__main__":

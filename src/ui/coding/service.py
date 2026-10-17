@@ -124,12 +124,14 @@ class CodingWindowService:
             show_requested = Signal(str, str)
             refresh_requested = Signal()
             close_requested = Signal()
+            quit_requested = Signal()
 
         bridge = _Bridge()
 
         bridge.show_requested.connect(self._on_show)
         bridge.refresh_requested.connect(self._on_refresh)
         bridge.close_requested.connect(self._on_close)
+        bridge.quit_requested.connect(self._on_quit)
 
         return bridge
 
@@ -146,17 +148,30 @@ class CodingWindowService:
         return int(self._app.exec())
 
     def stop(self) -> None:
-        """Quits Qt if this service is what is keeping it alive."""
+        """Asks Qt to shut down, on the thread that owns it.
+
+        Called at exit from the console thread, which is *not* the
+        thread that owns Qt. This used to call ``_on_close()`` and
+        ``self._app.quit()`` directly — widget work and an event-loop
+        call from a thread Qt never granted them to. That is what made
+        ``exit`` print "Goodbye!" and then never shut down.
+
+        It now goes through the bridge like everything else, so the
+        hiding and the quitting both happen on the main thread.
+        """
         if self._app is None:
             return
 
+        if self._bridge is None:
+            # ``initialize`` never got as far as Qt, so there is no
+            # event loop to quit.
+            self._app = None
+            return
+
         try:
-            self._on_close()
-            self._app.quit()
+            self._bridge.quit_requested.emit()
         except Exception as error:  # pragma: no cover - shutdown safety net
             logger.warning("Could not stop the coding window: %s", error)
-
-        self._app = None
 
     def shutdown(self) -> None:
         """Alias for ``stop``, for symmetry with the other services."""
@@ -231,3 +246,14 @@ class CodingWindowService:
             self._window.hide()
         except Exception as error:  # pragma: no cover - UI safety net
             logger.warning("Could not hide the coding window: %s", error)
+
+    def _on_quit(self) -> None:
+        """Hides the window and quits Qt. Runs on the main thread."""
+        self._on_close()
+
+        if self._app is not None:
+            self._app.quit()
+
+        # Set here rather than in ``stop`` so it reflects what Qt has
+        # actually done, not what another thread has asked for.
+        self._app = None
