@@ -259,8 +259,7 @@ class SQLiteMemoryStore(MemoryStore):
                 ),
             )
 
-            # if score > 0.55:
-            if score > 0.30:
+            if score > query.min_score:
                 results.append(
                     MemorySearchResult(
                         memory=memory,
