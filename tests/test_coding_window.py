@@ -187,3 +187,72 @@ def test_a_disabled_service_does_nothing(qt_app, project):
     window.close_window()
 
     assert window._window is None
+
+
+# --- stopping, which is where ``exit`` hung --------------------------------
+
+
+def test_stop_does_not_touch_the_window_on_the_calling_thread(qt_app, project):
+    """The bug behind "exit is not working".
+
+    ``stop`` is called from the console thread at exit. It used to call
+    ``_on_close()`` and ``self._app.quit()`` directly from there —
+    hiding a widget and calling into the event loop on a thread Qt
+    never granted either to. EON printed "Goodbye!" and then never shut
+    down.
+
+    The tell is that nothing happens *synchronously* any more: after
+    ``stop`` returns, the window is still up and Qt is still ours,
+    because the request is sitting in the main thread's queue.
+    """
+    window = CodingWindowService(enabled=True)
+    window.initialize()
+
+    _from_console_thread(lambda: window.show_project(project, "demo"))
+    assert _settle(
+        qt_app,
+        lambda: window._window is not None and window._window.isVisible(),
+    )
+
+    _from_console_thread(window.stop)
+
+    # Nothing yet: the work has been asked for, not done.
+    assert window._window.isVisible()
+    assert window._app is not None
+
+
+def test_stop_then_hides_the_window_and_releases_qt(qt_app, project):
+    window = CodingWindowService(enabled=True)
+    window.initialize()
+
+    _from_console_thread(lambda: window.show_project(project, "demo"))
+    assert _settle(
+        qt_app,
+        lambda: window._window is not None and window._window.isVisible(),
+    )
+
+    _from_console_thread(window.stop)
+
+    # Once the main thread gets to it, both happen there.
+    assert _settle(qt_app, lambda: not window._window.isVisible())
+    assert not window._window.isVisible()
+    assert window._app is None
+
+
+def test_stop_is_harmless_when_nothing_was_shown(qt_app):
+    window = CodingWindowService(enabled=True)
+    window.initialize()
+
+    _from_console_thread(window.stop)
+
+    assert _settle(qt_app, lambda: window._app is None)
+
+
+def test_stop_on_a_disabled_service_does_nothing(qt_app):
+    window = CodingWindowService(enabled=False)
+    window.initialize()
+
+    window.stop()
+
+    assert window._app is None
+    assert window._window is None
