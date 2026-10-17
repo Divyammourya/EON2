@@ -26,7 +26,7 @@ from src.modules.tools.launcher.resolver_engine import ApplicationResolver
 from src.modules.workspace.workspaces.coding.mode import parse_coding_request
 
 
-def _resolver"*apps: Application) -> ApplicationResolver:
+def _resolver(*apps: Application) -> ApplicationResolver:
     registry = ApplicationRegistry()
 
     for app in apps:
