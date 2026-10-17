@@ -109,6 +109,15 @@ class CodingWindowService:
         else:
             self._app = QApplication(["EON"])
 
+        # Imported here rather than at module scope for the same reason
+        # PySide6 is: the assets module needs Qt, and EON has to start
+        # on a machine that hasn't got it.
+        from src.ui.assets import install_app_icon
+
+        # On the application rather than on the window, so anything
+        # EON opens later inherits it without having to remember.
+        install_app_icon(self._app)
+
         self._bridge = self._make_bridge()
 
         logger.info("Coding window is ready.")
