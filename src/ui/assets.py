@@ -44,7 +44,7 @@ ICON_SIZES = (16, 24, 32, 48, 64, 128, 256)
 #: The orb's palette, taken from the hologram's cyan theme.
 CORE = QColor("#f4fffd")
 MID = QColor("#7ff0e0")
-RING = AColor("#5eead4")
+RING = QColor("#5eead4")
 EDGE = QColor("#0f766e")
 
 #: The inner ring is nearly white on purpose. Drawn in the same teal as
