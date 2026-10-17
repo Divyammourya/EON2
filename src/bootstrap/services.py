@@ -459,10 +459,11 @@ def register_services(
                 "conversation_idle_timeout_seconds",
                 float,
             ),
-            ("barge_in_enabled", "barge_in_enabled", bool),
+            ("wake_word_energy_threshold", "wake_word_energy_threshold", float),
+            ("barge_in_enabled", "bargein_enabled", bool),
             ("barge_in_energy_threshold", "barge_in_energy_threshold", float),
             ("barge_in_min_speech_seconds", "barge_in_min_speech_seconds", float),
-            ("barge_in_window_seconds", "barge_in_window_seconds", float),
+            ("barge_in_window_seconds", "bargein_window_seconds", float),
         ):
             value = config.get(key)
             if value is not None:
@@ -501,7 +502,7 @@ def register_services(
 
     # Optional audio device overrides. ``null`` (the default) means use
     # whatever the OS reports as the default; otherwise an index or a
-    # case-insensitive part of the device name, e.g. "Realtek".
+# case-insensitive part of the device name, e.g. "Realtek".
     voice_input_device = (
         config.get("voice_input_device") if config is not None else None
     )
@@ -632,7 +633,7 @@ def register_services(
 
         hologram_theme = config.get("hologram_theme")
         if hologram_theme is not None:
-            hologram_config.theme = HologramConfig.parse_theme(hologram_theme)
+            hologram_config.theme = HologramConfig.parse_theme"hologram_theme)
 
         hologram_particles_enabled = config.get("hologram_particles_enabled")
         if hologram_particles_enabled is not None:
