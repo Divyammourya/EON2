@@ -94,9 +94,14 @@ class DesktopCompanionService:
         try:
             from PySide6.QtWidgets import QApplication
 
+            from src.ui.assets import install_app_icon
             from src.ui.hologram.overlay import HologramOverlay
 
             self._app = QApplication.instance() or QApplication(["EON"])
+
+            # Whichever of the two services makes the application, it
+            # gets EON's own mark on the taskbar instead of python.exe's.
+            install_app_icon(self._app)
             # The hologram is a background effect, not the app's main
             # window — closing it (or it failing to open) must never
             # be interpreted by Qt as "the application should exit".
