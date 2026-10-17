@@ -4,18 +4,18 @@ A small built-in editor, laid out the way an editor is normally laid
 out: a sidebar down the left with sections you switch between, and the
 project's files open as tabs on the right.
 
-    ┌────────────┬──────────────────────────┐
-    │ EXPLORER   │  main.py | README.md     │
-    │  file tree │──────────────────────────│
-    │ ─────────  │  the open file's text    │
-    │ SEARCH     │                          │
-    │ ─────────  │                          │
-    │ OUTLINE    │                          │
-    │ ─────────  │                          │
-    │ GIT        │                          │
-    ├────────────┴──────────────────────────┤
-    │ main ● 2 changed │ src/main.py │ Ln 4 │
-    └──────────────────────────────────────┘
+    +------------+--------------------------+
+    | EXPLORER   |  main.py | README.md     |
+    |  file tree |--------------------------|
+    | ---------  |  the open file's text    |
+    | SEARCH     |                          |
+    | ---------  |                          |
+    | OUTLINE    |                          |
+    | ---------  |                          |
+    | GIT        |                          |
+    +------------+--------------------------+
+    | main, 2 changed | src/main.py | Ln 4 |
+    +---------------------------------------+
 
 The three sidebar sections beyond Explorer are not new features — EON
 could already search a project, list a file's symbols, and read git
@@ -44,7 +44,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from PySide6.QtCore import Qt
-from PySide6.QtGu import QFont
+from PySide6.QtGui import QFont
 from PySide6.QtWidgets import (
     QHBoxLayout,
     QLabel,
@@ -57,8 +57,8 @@ from PySide6.QtWidgets import (
     QTabWidget,
     QToolBox,
     QTreeWidget,
-    ATreeWidgetItem,
-    QVboxLayout,
+    QTreeWidgetItem,
+    QVBoxLayout,
     QWidget,
 )
 
@@ -183,7 +183,7 @@ class CodingWindow(QMainWindow):
 
         self._build_status_bar()
 
-    # --- the sidebar pages ------------------------------------------------
+    # --- the sidebar pages ---
 
     def _build_explorer(self) -> QWidget:
         """The file tree, which is what the window has always had."""
@@ -196,7 +196,7 @@ class CodingWindow(QMainWindow):
         self._hint.setObjectName("hint")
 
         page = QWidget()
-        layout = QVboxLayout()
+        layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self._tree)
         layout.addWidget(self._hint)
@@ -223,7 +223,7 @@ class CodingWindow(QMainWindow):
         self._search_note.setObjectName("hint")
 
         page = QWidget()
-        layout = QVboxLayout()
+        layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self._search_box)
         layout.addWidget(self._search_results)
@@ -247,7 +247,7 @@ class CodingWindow(QMainWindow):
         self._outline_note.setObjectName("hint")
 
         page = QWidget()
-        layout = QVboxLayout()
+        layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self._outline)
         layout.addWidget(self._outline_note)
@@ -265,7 +265,7 @@ class CodingWindow(QMainWindow):
         self._git_files.itemClicked.connect(self._on_git_activated)
 
         page = QWidget()
-        layout = QVboxLayout()
+        layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         layout.addWidget(self._git_branch)
         layout.addWidget(self._git_files)
@@ -284,7 +284,7 @@ class CodingWindow(QMainWindow):
         bar.addPermanentWidget(self._status_branch)
         bar.addPermanentWidget(self._status_position)
 
-    # --- showing ----------------------------------------------------------
+    # --- showing ---
 
     def set_queries(self, queries) -> None:
         """Points the sidebar sections at something that can answer them.
@@ -358,7 +358,7 @@ class CodingWindow(QMainWindow):
         self._refresh_outline()
         self._refresh_git()
 
-    # --- tabs ------------------------------------------------------------
+    # --- tabs ---
 
     def open_file(self, relative: str, line: int | None = None) -> None:
         """Opens a file in a tab, or focuses it if it is already open.
@@ -448,7 +448,7 @@ class CodingWindow(QMainWindow):
         editor.setTextCursor(cursor)
         editor.centerCursor()
 
-    # --- the explorer ----------------------------------------------------
+    # --- the explorer ---
 
     def _list_files(self) -> list[tuple[str, int]]:
         """Every file in the project, as (relative path, size)."""
@@ -520,7 +520,7 @@ class CodingWindow(QMainWindow):
         if relative is not None:
             self.open_file(relative)
 
-    # --- search -----------------------------------------------------------
+    # --- search ---
 
     def _run_search(self) -> None:
         """Asks the backend what contains the query, and lists it."""
@@ -566,7 +566,7 @@ class CodingWindow(QMainWindow):
         relative, line = payload
         self.open_file(relative, line)
 
-    # --- outline ----------------------------------------------------------
+    # --- outline ---
 
     def _refresh_outline(self) -> None:
         """Lists the symbols in whichever file is open."""
@@ -609,7 +609,7 @@ class CodingWindow(QMainWindow):
 
         self._go_to_line(self._tabs.currentWidget(), int(line))
 
-    # --- git --------------------------------------------------------------
+    # --- git ---
 
     def _refresh_git(self) -> None:
         """Shows the branch and the files that changed on it."""
@@ -650,7 +650,7 @@ class CodingWindow(QMainWindow):
         if relative:
             self.open_file(str(relative))
 
-    # --- the status bar ---------------------------------------------------
+    # --- the status bar ---
 
     def _update_status(self, changed: int | None = None) -> None:
         """Refreshes the bottom strip."""
