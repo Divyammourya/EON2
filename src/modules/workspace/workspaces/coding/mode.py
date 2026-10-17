@@ -50,7 +50,18 @@ logger = get_logger("CodingMode")
 
 # Typed on its own to enter the mode.
 ENTER_WORDS = frozenset(
-    {"coding", "code", "coding mode", "start coding", "lets code", "let's code"}
+    {
+        "coding",
+        "code",
+        "coding mode",
+        "coding workspace",
+        "the coding workspace",
+        "code mode",
+        "code workspace",
+        "start coding",
+        "lets code",
+        "let's code",
+    }
 )
 
 # Typed to leave it.
@@ -89,7 +100,10 @@ def parse_coding_request(text: str) -> CodingRequest | None:
 
     lowered = stripped.lower()
 
-    for prefix in ("start ", "let's ", "lets ", "let us "):
+    # "open coding workspace" is how someone naturally asks for this,
+    # and without stripping the "open" it fell through to the brain,
+    # which read "workspace" as an application to launch.
+    for prefix in ("open ", "start ", "let's ", "lets ", "let us "):
         if lowered.startswith(prefix):
             lowered = lowered[len(prefix):].strip()
             stripped = stripped[len(prefix):].strip()
