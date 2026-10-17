@@ -1,7 +1,7 @@
 """
 Voice Configuration.
 
-Configuration models for the Voice Subsystem.
+Configuration models for the Voice subsystem.
 
 This module contains only configuration data: no provider
 construction, no I/O, and no third-party imports. Concrete providers
@@ -87,13 +87,7 @@ class VoiceServiceConfig:
     wake_word_enabled: bool = True
     wake_word_window_seconds: float = 2.0
     wake_word_check_interval_seconds: float = 0.5
-    # Minimum RMS energy a window must reach before the listener even
-    # bothers transcribing it. This is the gate that stops EON
-    # transcribing the room: measured speech sits around 1200-3800 RMS,
-    # so 300 let ordinary background noise through and the listener was
-    # transcribing something every few seconds. Raise it if EON still
-    # reacts to noise; lower it if it misses you when you speak quietly.
-    wake_word_energy_threshold: float = 700.0
+    wake_word_energy_threshold: float = 300.0
 
     # Per-utterance listening (endpointing). Instead of recording for a
     # fixed number of seconds, EON records until the speaker has been
@@ -147,13 +141,7 @@ class VoiceServiceConfig:
     # Raise ``barge_in_energy_threshold`` until that stops, or set
     # ``barge_in_enabled`` to False. See voice/bargein.py.
     barge_in_enabled: bool = True
-    # Interrupting EON by talking over it. Measured speech during
-    # playback peaked around 364 RMS, so 1000 could never be reached
-    # and barge-in never fired at all. 250 is low enough to catch real
-    # speech and still well clear of silence (measured around 58). It
-    # is deliberately not echo-cancelled, so raise this if EON
-    # interrupts itself when it is speaking loudly.
-    barge_in_energy_threshold: float = 250.0
+    barge_in_energy_threshold: float = 1000.0
     barge_in_min_speech_seconds: float = 0.4
     barge_in_window_seconds: float = 0.1
 
