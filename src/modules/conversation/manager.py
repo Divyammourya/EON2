@@ -313,13 +313,13 @@ class ConversationManager:
         intent = self.intent.detect(text)
 
         # When the keyword rules find nothing, the message is about to
-        # go to the chat brain — which will happly *talk about* a
+        # go to the chat brain — which will happily *talk about* a
         # request it could have carried out. Give the model one chance
         # to name a tool instead.
         #
         # Only on the miss, so the fast path is untouched, and the
         # choice still goes through ``router.route`` and the permission
-        # layer below: the model decides what the request *means*, not
+        # layer below: the model decides what the request *meant*, not
         # whether it may happen.
         if intent.type is IntentType.CHAT:
             chosen = self.tool_router.choose(text)
@@ -388,8 +388,8 @@ class ConversationManager:
         """
         Builds the message EON shows when first asking for
         confirmation — different wording for a plain CONFIRM (yes/no)
-        vs. a high-risk VERIFY action (needs the
-        authorization passphrase, not just a yes/no).
+        vs. a high-risk VERIFY action (needs the authorization
+        passphrase, not just a yes/no).
         """
         if pending.level == PermissionLevel.VERIFY and self.permissions.passphrase_configured:
             return (
@@ -523,7 +523,7 @@ class ConversationManager:
         if non_chat_response is not None:
             return non_chat_response
 
-        response = self.brain.think
+        response = self.brain.think(
             history=self.history,
             user_message=user_message,
             memories=[
