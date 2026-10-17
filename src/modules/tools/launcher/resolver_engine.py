@@ -6,8 +6,15 @@ Resolves a user query into the best matching application.
 
 from __future__ import annotations
 
+import re
+
 from src.modules.tools.launcher.models import Application
 from src.modules.tools.launcher.registry import ApplicationRegistry
+
+# The shortest app name the "query contains the name" rule will match
+# on. Below this, a name is short enough to appear inside an unrelated
+# word — "od" inside "coding" — and the rule starts inventing matches.
+_MIN_REVERSE_CONTAINS_LENGTH = 3
 
 
 class ApplicationResolver:
@@ -37,8 +44,16 @@ class ApplicationResolver:
         elif query in name:
             score += 70
 
-        # Reverse contains
-        elif name in query:
+        # Reverse contains — the query has extra words around the app's
+        # name ("open the notepad app"). This branch needs a word
+        # boundary and a minimum length, or a short app name matches
+        # almost anything: a registry entry called "od" is a substring
+        # of "coding", so "coding workspace" scored 60 for it and won,
+        # and EON launched a two-letter application instead of the thing
+        # that was asked for.
+        elif len(name) >= _MIN_REVERSE_CONTAINS_LENGTH and re.search(
+            rf"\b{re.escape(name)}\b", query
+        ):
             score += 60
 
         # Word overlap
