@@ -61,6 +61,7 @@ class CodingWindowService:
         self._app = None
         self._window = None
         self._bridge = None
+        self._queries = None
 
     # --- lifecycle --------------------------------------------------------
 
@@ -125,6 +126,7 @@ class CodingWindowService:
             refresh_requested = Signal()
             close_requested = Signal()
             quit_requested = Signal()
+            queries_changed = Signal()
 
         bridge = _Bridge()
 
@@ -132,6 +134,7 @@ class CodingWindowService:
         bridge.refresh_requested.connect(self._on_refresh)
         bridge.close_requested.connect(self._on_close)
         bridge.quit_requested.connect(self._on_quit)
+        bridge.queries_changed.connect(self._on_queries_changed)
 
         return bridge
 
@@ -179,6 +182,30 @@ class CodingWindowService:
 
     # --- the API the mode uses (all thread-safe) --------------------------
 
+    def bind_queries(self, queries) -> None:
+        """Tells the sidebar how to answer its questions.
+
+        Callable from any thread. The object is stored here and handed
+        to the window on the main thread, because the window is only
+        ever touched there — see ``_on_queries_changed``.
+
+        Args:
+            queries: Something with ``search``, ``outline`` and ``git``.
+                ``WindowQueries`` is the real one; the tests pass a
+                stub.
+        """
+        self._queries = queries
+
+        if self._bridge is None:
+            # No Qt yet, so no window to tell. ``_ensure_window`` will
+            # pick the queries up when the window is finally built.
+            return
+
+        try:
+            self._bridge.queries_changed.emit()
+        except Exception as error:  # pragma: no cover - UI safety net
+            logger.warning("Could not hand the window its queries: %s", error)
+
     def show_project(self, project_root: Path | str, title: str) -> None:
         """Shows the window on a project.
 
@@ -216,7 +243,7 @@ class CodingWindowService:
 
         from src.ui.coding.window import CodingWindow
 
-        self._window = CodingWindow()
+        self._window = CodingWindow(queries=self._queries)
 
         return self._window
 
@@ -236,6 +263,17 @@ class CodingWindowService:
             self._window.refresh()
         except Exception as error:  # pragma: no cover - UI safety net
             logger.warning("Could not refresh the coding window: %s", error)
+
+    def _on_queries_changed(self) -> None:
+        """Hands the window the queries. Runs on the main thread."""
+        if self._window is None:
+            return
+
+        try:
+            self._window.set_queries(self._queries)
+            self._window.refresh()
+        except Exception as error:  # pragma: no cover - UI safety net
+            logger.warning("Could not refresh the window's sidebar: %s", error)
 
     def _on_close(self) -> None:
         """Hides the window. Runs on the main thread."""
