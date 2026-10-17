@@ -4,7 +4,7 @@ AI Manager.
 
 from __future__ import annotations
 
-from src.modules.ai.provider import OllamaProvider
+from src.modules.ai.provider import OllamaProvider, get_default_provider
 
 
 class AIManager:
@@ -12,8 +12,22 @@ class AIManager:
     High-level interface for AI interactions.
     """
 
-    def __init__(self) -> None:
-        self._provider = OllamaProvider()
+    def __init__(
+        self,
+        provider: OllamaProvider | None = None,
+    ) -> None:
+        """Configures the manager.
+
+        Args:
+            provider: The provider to use. Defaults to the shared one,
+                which is what every caller wants: this class adds no
+                state of its own, so a manager per caller should not
+                mean a provider per caller. EON builds several managers
+                (the brain, the memory store, embeddings, the vision
+                analyser), and each one used to open its own connection
+                to the same Ollama server.
+        """
+        self._provider = provider or get_default_provider()
 
     def chat(
         self,
