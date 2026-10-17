@@ -65,6 +65,9 @@
   "music_enabled": true,
   "music_folders": [],
 
+  "coding_enabled": true,
+  "coding_workspace_root": "C:/Users/divya/Desktop/EON_workspace",
+
   "voice_input_device": null,
   "voice_output_device": null
 }
