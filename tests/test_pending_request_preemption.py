@@ -174,7 +174,7 @@ class _StubPermissions:
 
 
 def _conversation(permissions) -> ConversationManager:
-    """Only ``permissions`` and `history`` are used on this path."""
+    """Only ``permissions`` and ``history`` are used on this path."""
     return ConversationManager(
         history=_StubHistory(),
         brain=None,
