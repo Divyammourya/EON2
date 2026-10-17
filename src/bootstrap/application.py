@@ -9,6 +9,8 @@ from src.modules.briefing.morning import MorningBriefing
 from src.modules.conversation.manager import ConversationManager
 from src.modules.voice.service import VoiceService
 from src.modules.proactive.service import ProactiveService
+from src.modules.workspace.workspaces.coding.mode import CodingMode
+from src.ui.coding.service import CodingWindowService
 from src.ui.hologram.service import DesktopCompanionService
 
 
@@ -22,6 +24,8 @@ class Application:
         proactive: ProactiveService,
         hologram: DesktopCompanionService,
         briefing: MorningBriefing,
+        coding_window: CodingWindowService,
+        coding: CodingMode,
     ) -> None:
 
         self.engine = engine
@@ -30,3 +34,5 @@ class Application:
         self.proactive = proactive
         self.hologram = hologram
         self.briefing = briefing
+        self.coding_window = coding_window
+        self.coding = coding

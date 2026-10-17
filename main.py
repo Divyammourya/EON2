@@ -9,6 +9,7 @@ from uuid import UUID
 from src.bootstrap import ApplicationBuilder
 from src.modules.voice.exceptions import VoiceError
 from src.modules.voice.service import VoiceService
+from src.modules.workspace.workspaces.coding.mode import parse_coding_request
 
 # msvcrt (Windows-only) lets us poll for a keypress without blocking,
 # which is what makes "press Enter to interrupt" possible while EON is
@@ -184,7 +185,7 @@ def main() -> None:
     builder = ApplicationBuilder()
     app = builder.build()
 
-    if app.hologram.is_running:
+    if app.hologram.is_running or app.coding_window.is_running:
         # Qt's event loop needs to run on the process's actual main
         # thread for the overlay to reliably paint (see the docstring
         # in DesktopCompanionService for why) — so when the hologram is
@@ -193,6 +194,10 @@ def main() -> None:
         # until that thread finishes (typing 'exit' triggers
         # engine.shutdown(), which quits the Qt app, which is what
         # makes run_event_loop() below return).
+        #
+        # The coding window needs the same arrangement, for the same
+        # reason, even when the overlay is off: a blocking input() on
+        # the thread owning Qt would freeze the window while you type.
         console_thread = threading.Thread(
             target=_run_console,
             args=(app,),
@@ -200,7 +205,14 @@ def main() -> None:
             daemon=True,
         )
         console_thread.start()
-        app.hologram.run_event_loop()
+
+        if app.hologram.is_running:
+            # One QApplication, one event loop — this serves the
+            # coding window too when both are up.
+            app.hologram.run_event_loop()
+        else:
+            app.coding_window.run_event_loop()
+
         console_thread.join(timeout=5.0)
     else:
         _run_console(app)
@@ -318,15 +330,45 @@ def _run_console(app) -> None:
 
             print()
 
-            prompt = "You (or 'listen'): " if voice_available else "You: "
+            if app.coding.active:
+                session = app.coding.session
+                name = session.name if session is not None else "?"
+                prompt = f"coding[{name}]> "
+            else:
+                prompt = "You (or 'listen'): " if voice_available else "You: "
+
             raw = input(prompt).strip()
 
             if not raw:
                 continue
 
+            # 'exit'/'quit' mean quit EON in either mode — leaving
+            # coding mode is 'done'.
             if raw.lower() in ("exit", "quit"):
                 print("EON: Goodbye!")
                 break
+
+            if app.coding.active:
+                # Everything typed in coding mode goes to the coding
+                # workspace, not to the chat brain. See CodingMode for
+                # why commands are gated and file writes are not.
+                reply = app.coding.handle(raw)
+
+                if reply:
+                    print()
+                    print(f"EON: {reply}")
+
+                continue
+
+            coding_request = parse_coding_request(raw)
+
+            if coding_request is not None:
+                reply = app.coding.enter(coding_request.project)
+
+                print()
+                print(f"EON: {reply}")
+
+                continue
 
             if raw.lower().startswith("remind "):
                 # Demo hook for Proactive Speech: "remind 0.5 stretch your legs"
@@ -401,6 +443,10 @@ def _run_console(app) -> None:
                 app.voice.stop_session(voice_session_id)
             except Exception:
                 pass
+
+        # Stops the coding window and, when the overlay isn't running,
+        # quits Qt so the event loop above can return.
+        app.coding_window.stop()
 
         app.engine.shutdown()
 

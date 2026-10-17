@@ -95,8 +95,13 @@ class CodingCommandParser:
         # Read/Open File
         # --------------------------
 
+        # "read file src/main.py" is how someone naturally asks, and
+        # without the optional "file"/"the file" here the path was
+        # captured as "file src/main.py" — a file that never exists, so
+        # every read of a named file failed. "open project X" is
+        # matched earlier, so this doesn't shadow it.
         match = re.match(
-            r"^(read|open|show)\s+(.+)$",
+            r"^(read|open|show)\s+(?:the\s+)?(?:file\s+)?(.+)$",
             message,
             re.IGNORECASE,
         )
@@ -157,8 +162,11 @@ class CodingCommandParser:
         # Run command
         # --------------------------
 
+        # Same trap as the read branch above: "run command python x"
+        # used to capture "command python x", so EON would have tried to
+        # execute a program called "command".
         match = re.match(
-            r"^(run|execute)\s+(.+)$",
+            r"^(run|execute)\s+(?:the\s+)?(?:command\s+)?(.+)$",
             message,
             re.IGNORECASE,
         )

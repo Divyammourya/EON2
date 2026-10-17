@@ -12,12 +12,21 @@ from src.bootstrap.services import register_services
 
 from src.core.container import ServiceContainer
 from src.core.engine import Engine
+from src.core.logger import get_logger
 
 from src.modules.automation.weather import WeatherTool
 from src.modules.briefing.morning import MorningBriefing
 from src.modules.conversation.manager import ConversationManager
+from src.modules.workspace.workspaces.coding.mode import CodingMode
+from src.modules.workspace.workspaces.coding.session import (
+    DEFAULT_WORKSPACE_ROOT,
+)
+from src.ui.coding.service import CodingWindowService
 
 from typing import Any
+
+
+logger = get_logger("Bootstrap")
 
 
 def _build_weather_tool(config) -> WeatherTool:
@@ -107,6 +116,29 @@ class ApplicationBuilder:
 
         engine.start()
 
+        # Built after engine.start() on purpose: the hologram overlay
+        # creates the process's single QApplication during startup, and
+        # the coding window has to adopt that instance rather than
+        # trying to make its own.
+        coding_enabled = config.get("coding_enabled") is not False
+
+        coding_window = CodingWindowService(enabled=coding_enabled)
+
+        coding_window.initialize()
+
+        coding = CodingMode(
+            workspace=container.get("workspace_manager").get_workspace("coding"),
+            window=coding_window,
+            enabled=coding_enabled,
+            root=config.get("coding_workspace_root") or DEFAULT_WORKSPACE_ROOT,
+        )
+
+        logger.info(
+            "Coding mode is %s (projects in %s).",
+            "enabled" if coding_enabled else "disabled (set coding_enabled=true in config/settings.json)",
+            coding.root,
+        )
+
         return Application(
             engine=engine,
             conversation=conversation,
@@ -114,4 +146,6 @@ class ApplicationBuilder:
             proactive=container.get("proactive"),
             hologram=container.get("hologram"),
             briefing=briefing,
+            coding_window=coding_window,
+            coding=coding,
         )
