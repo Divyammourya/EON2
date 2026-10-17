@@ -180,15 +180,25 @@ class ConversationManager:
             return None
 
         # NOT_A_RESPONSE: something's still pending, but this message
-        # doesn't read as a yes/no. Re-prompt instead of guessing —
-        # silently dropping the pending action (or silently running
-        # it) would defeat the point of asking in the first place.
-        reminder = self.permissions.describe_pending()
+        # doesn't read as a yes/no — so the user has moved on to
+        # something else. Drop the pending action and answer what they
+        # actually asked.
+        #
+        # This used to re-prompt instead, reasoning that silently
+        # dropping the action would defeat the point of asking. That
+        # was wrong in practice, and the logs showed why: dropping is
+        # the *safe* direction (the action doesn't run), while
+        # re-prompting meant one unanswered question blocked every
+        # later request. The user could not ask for the weather, or
+        # for music, or for anything at all, until they worked out
+        # that they had to say "no" to a question they had already
+        # stopped caring about.
+        #
+        # So: a pending confirmation outranks a *yes or no*. It does
+        # not outrank a new request.
+        self.permissions.discard()
 
-        self.history.add(Message(role="user", content=user_message))
-        self.history.add(Message(role="assistant", content=reminder))
-
-        return reminder
+        return None
 
     def _run_pipeline(self, user_message: str):
         """
@@ -303,13 +313,13 @@ class ConversationManager:
         intent = self.intent.detect(text)
 
         # When the keyword rules find nothing, the message is about to
-        # go to the chat brain — which will happily *talk about* a
+        # go to the chat brain — which will happly *talk about* a
         # request it could have carried out. Give the model one chance
         # to name a tool instead.
         #
         # Only on the miss, so the fast path is untouched, and the
         # choice still goes through ``router.route`` and the permission
-        # layer below: the model decides what the request *meant*, not
+        # layer below: the model decides what the request *means*, not
         # whether it may happen.
         if intent.type is IntentType.CHAT:
             chosen = self.tool_router.choose(text)
@@ -378,8 +388,8 @@ class ConversationManager:
         """
         Builds the message EON shows when first asking for
         confirmation — different wording for a plain CONFIRM (yes/no)
-        vs. a high-risk VERIFY action (needs the authorization
-        passphrase, not just a yes/no).
+        vs. a high-risk VERIFY action (needs the
+        authorization passphrase, not just a yes/no).
         """
         if pending.level == PermissionLevel.VERIFY and self.permissions.passphrase_configured:
             return (
@@ -513,7 +523,7 @@ class ConversationManager:
         if non_chat_response is not None:
             return non_chat_response
 
-        response = self.brain.think(
+        response = self.brain.think
             history=self.history,
             user_message=user_message,
             memories=[
