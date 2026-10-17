@@ -45,6 +45,7 @@ from src.modules.workspace.workspaces.coding.session import (
     list_projects,
     sanitise_project_name,
 )
+from src.modules.workspace.workspaces.coding.window_queries import WindowQueries
 
 logger = get_logger("CodingMode")
 
@@ -228,6 +229,7 @@ class CodingMode:
         self._pending = None
 
         self._open_project_in_workspace()
+        self._bind_window_queries()
         self._show_window()
 
         return (
@@ -319,6 +321,7 @@ class CodingMode:
 
         self._last_project = self._session.name
         self._open_project_in_workspace()
+        self._bind_window_queries()
         self._show_window()
 
         return f"Now in '{self._session.name}' ({self._session.project_root_display})."
@@ -462,6 +465,31 @@ class CodingMode:
         return message or "Done."
 
     # --- the window -------------------------------------------------------
+
+    def _bind_window_queries(self) -> None:
+        """Points the window's sidebar at this workspace.
+
+        The Search, Outline and Git sections are backed by the
+        workspace's own managers, which EON already had — they were
+        only reachable from the console. Binding them here, where the
+        workspace is, keeps ``window.py`` free of any knowledge of the
+        workspace at all: the window asks questions, this answers them.
+
+        Called before the window is shown, so the very first refresh
+        already has something to ask.
+        """
+        if self._window is None:
+            return
+
+        bind = getattr(self._window, "bind_queries", None)
+
+        if bind is None:
+            return
+
+        try:
+            bind(WindowQueries(self._workspace))
+        except Exception as error:  # pragma: no cover - UI safety net
+            logger.warning("Could not bind the window's sidebar: %s", error)
 
     def _show_window(self) -> None:
         """Opens the window on the current project."""
