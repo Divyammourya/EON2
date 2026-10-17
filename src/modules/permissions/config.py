@@ -43,6 +43,13 @@ DEFAULT_AUTO_ACTION_TYPES: frozenset[ActionType] = frozenset(
         # Leaving it out would mean a yes/no prompt before every
         # "play music", which is friction for no safety gain.
         ActionType.MUSIC,
+        # A forecast is the same kind of act as CALENDAR_READ and
+        # EMAIL_READ above: EON reads something and says it back.
+        # There is nothing to leak and nothing to destroy, so a
+        # yes/no before every weather question is friction for no
+        # safety gain. Leaving it out is why "do I need an umbrella
+        # today" asked for confirmation instead of answering.
+        ActionType.WEATHER,
     }
 )
 
