@@ -1,7 +1,6 @@
 {
   "version": "1.0",
   "wake_word": "EON",
-  "voice_enabled": false,
   "piper_hi_model_path": "C:\\Users\\divya\\Desktop\\EONdemo10\\models\\piper\\hi_IN-rohan-medium\\hi_IN-rohan-medium.onnx",
   "piper_hi_config_path": "C:\\Users\\divya\\Desktop\\EONdemo10\\models\\piper\\hi_IN-rohan-medium\\hi_IN-rohan-medium.onnx.json",
   "memory_enabled": true,
@@ -49,9 +48,11 @@
   "conversation_idle_timeout_seconds": 12.0,
 
   "barge_in_enabled": true,
-  "barge_in_energy_threshold": 1000.0,
+  "barge_in_energy_threshold": 250.0,
   "barge_in_min_speech_seconds": 0.4,
   "barge_in_window_seconds": 0.1,
+
+  "tool_routing_enabled": true,
 
   "web_grounding_enabled": true,
   "web_grounding_max_results": 3,
