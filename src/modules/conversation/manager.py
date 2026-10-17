@@ -9,6 +9,8 @@ from src.modules.conversation.history import ConversationHistory
 from src.modules.conversation.message import Message
 
 from src.modules.intent import IntentManager
+from src.modules.intent.models import IntentType
+from src.modules.intent.tool_router import ToolRouter
 from src.modules.actions import ActionRouter
 from src.modules.actions.models import Action, ActionType
 
@@ -56,6 +58,7 @@ class ConversationManager:
         reflection: ReflectionManager,
         permissions: PermissionManager,
         memory: MemoryService | None = None,
+        tool_router: ToolRouter | None = None,
     ) -> None:
 
         self.history = history
@@ -73,6 +76,11 @@ class ConversationManager:
         self.reflection = reflection
         self.permissions = permissions
         self.memory = memory
+
+        # Built on first use rather than here: it needs the AI provider,
+        # and a session that never sees an unmatched message should not
+        # pay for one. See ``tool_router``.
+        self._tool_router = tool_router
 
         # Stateless — constructed here rather than injected, since it
         # has no dependencies of its own (see MultiStepSplitter).
@@ -238,6 +246,14 @@ class ConversationManager:
 
         return recall_result, action, plan, reasoning
 
+    @property
+    def tool_router(self) -> ToolRouter:
+        """The fallback that lets the model pick a tool. Built on use."""
+        if self._tool_router is None:
+            self._tool_router = ToolRouter()
+
+        return self._tool_router
+
     def _detect_action(self, text: str) -> Action:
         """
         Resolves ``text`` to an Action, checking the learned-phrase
@@ -285,6 +301,22 @@ class ConversationManager:
                     pass
 
         intent = self.intent.detect(text)
+
+        # When the keyword rules find nothing, the message is about to
+        # go to the chat brain — which will happily *talk about* a
+        # request it could have carried out. Give the model one chance
+        # to name a tool instead.
+        #
+        # Only on the miss, so the fast path is untouched, and the
+        # choice still goes through ``router.route`` and the permission
+        # layer below: the model decides what the request *meant*, not
+        # whether it may happen.
+        if intent.type is IntentType.CHAT:
+            chosen = self.tool_router.choose(text)
+
+            if chosen is not None:
+                intent = chosen
+
         return self.router.route(intent)
 
     def _build_plan_and_action(self, user_message: str) -> tuple[Plan, Action]:
