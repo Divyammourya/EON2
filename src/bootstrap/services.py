@@ -52,6 +52,7 @@ from src.modules.reflection import ReflectionManager
 
 from src.modules.context import ContextManager
 
+from src.modules.memory.models import DEFAULT_MIN_SCORE
 from src.modules.recall import RecallManager
 
 from src.modules.store import StoreManager
@@ -671,8 +672,21 @@ def register_services(
 
     perception = PerceptionManager()
 
+    # How similar a memory must be to the current topic to be recalled.
+    # This was hardcoded at 0.30 with 0.55 commented out above it, which
+    # meant an unrelated memory came back on almost every turn and was
+    # then fed into the prompt.
+    recall_min_score = (
+        config.get("memory_recall_min_score") if config is not None else None
+    )
+
     recall = RecallManager(
         memory=memory_service,
+        min_score=(
+            DEFAULT_MIN_SCORE
+            if recall_min_score is None
+            else float(recall_min_score)
+        ),
     )
 
     store = StoreManager(
