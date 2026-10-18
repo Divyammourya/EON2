@@ -106,13 +106,15 @@ class SQLiteMemoryStore(MemoryStore):
         """
         database = Path(self._config.database_path)
 
-        database.parent.mkddir(
+        database.parent.mkdir(
             parents=True,
             exist_ok=True,
         )
 
         # check_same_thread=False: EON calls into this store from more than
-        # one thread (main loop + not yet)
+        # one thread (main loop + wake-word callback thread). We serialize
+        # actual access with self._lock instead, which is the safe way to
+        # share one sqlite3.Connection across threads.
         self._connection = sqlite3.connect(
             database,
             check_same_thread=False,
