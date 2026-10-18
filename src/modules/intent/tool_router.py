@@ -290,7 +290,7 @@ class ToolRouter:
         ]
 
         return [
-            {"role": "system", "content": _SYSTEM_,
+            {"role": "system", "content": _SYSTEM},
             {
                 "role": "user",
                 "content": (
