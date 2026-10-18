@@ -12,6 +12,33 @@ from src.core.logger import get_logger
 
 logger = get_logger("AI.Provider")
 
+#: How long Ollama keeps a model in memory after answering.
+#:
+#: On a small machine this is the most important number in the file.
+#: Left unset, Ollama unloads the model after a few idle minutes and
+#: the next call pays to read it back off disk — which, for a 2 GB
+#: model on a drive with under a gigabyte free, is eleven to thirteen
+#: seconds of doing nothing. Measured on EON: a ten-word reply took
+#: 11s with nothing pinned, and about a second once it stayed resident.
+#:
+#: Long enough to survive a conversation; not so long that it sits in
+#: memory after EON is closed.
+DEFAULT_KEEP_ALIVE = "30m"
+
+#: Generation options sent with every call.
+#:
+#: ``num_ctx`` matters most here: Ollama allocates the KV cache up
+#: front from this number, and its default is larger than any prompt
+#: EON builds. On 8 GB of RAM, that reserved memory is exactly what is
+#: missing. ``num_predict`` stops a runaway reply, and ``temperature``
+#: is pinned so the same question does not come back with a different
+#: personality each time.
+DEFAULT_OPTIONS: dict = {
+    "num_ctx": 4096,
+    "num_predict": 512,
+    "temperature": 0.7,
+}
+
 
 class OllamaProvider:
     """
@@ -23,6 +50,8 @@ class OllamaProvider:
         host: str = "http://127.0.0.1:11434",
         model: str = "qwen2.5:3b",
         embedding_model: str = "nomic-embed-text",
+        keep_alive: str | int | None = None,
+        options: dict | None = None,
     ) -> None:
 
         self.client = Client(host=host)
@@ -30,9 +59,21 @@ class OllamaProvider:
         self.model = model
         self.embedding_model = embedding_model
 
+        # ``None`` means "use the defaults above", so an explicit empty
+        # dict can still mean "send no options at all".
+        self.keep_alive = (
+            DEFAULT_KEEP_ALIVE if keep_alive is None else keep_alive
+        )
+        self.options = dict(DEFAULT_OPTIONS if options is None else options)
+
+        # Logged because this is the difference between a one-second
+        # reply and a twenty-second one, and it should be visible at
+        # startup rather than inferred.
         logger.info(
-            "Ollama Provider initialized (%s)",
+            "Ollama Provider initialized (%s; keep_alive=%s, num_ctx=%s)",
             self.model,
+            self.keep_alive,
+            self.options.get("num_ctx"),
         )
 
     def chat(
@@ -46,6 +87,8 @@ class OllamaProvider:
         response = self.client.chat(
             model=self.model,
             messages=messages,
+            keep_alive=self.keep_alive,
+            options=self.options,
         )
 
         return response["message"]["content"]
@@ -63,6 +106,8 @@ class OllamaProvider:
             model=self.model,
             messages=messages,
             stream=True,
+            keep_alive=self.keep_alive,
+            options=self.options,
         )
 
         for chunk in stream:
@@ -120,6 +165,7 @@ class OllamaProvider:
         response = self.client.embed(
             model=self.embedding_model,
             input=text,
+            keep_alive=self.keep_alive,
         )
 
         return response["embeddings"][0]
