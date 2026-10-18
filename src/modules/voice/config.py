@@ -25,8 +25,8 @@ class VoiceServiceConfig:
     Attributes:
         stt_provider: Which speech-to-text provider to construct.
             One of "faster_whisper", "openai".
-        tts_provider: Which text-to-speech provider to construct.
-            One of "piper", "openai".
+        tts_provider: Which text-to-speech provider to
+            construct. One of "piper", "openai".
         language_code: Default BCP-47 language code for new sessions,
             or ``None``/``"auto"`` to let the STT provider auto-detect
             the spoken language per utterance instead of forcing one.
@@ -87,7 +87,19 @@ class VoiceServiceConfig:
     wake_word_enabled: bool = True
     wake_word_window_seconds: float = 2.0
     wake_word_check_interval_seconds: float = 0.5
-    wake_word_energy_threshold: float = 300.0
+    #: How loud a window has to be before it is worth transcribing.
+    #:
+    #: Measured on EON's own microphone: room noise and EON's own speech
+    #: coming back through the speakers both sit around 300, and ordinary
+    #: speech runs 1200-3800. At 300 the listener fired on both — the log
+    #: shows it transcribing "how may i assist you?" (EON's own line) and
+    #: running Whisper on a two-second window every two seconds, which is
+    #: both a constant CPU drain competing with the model and a feedback
+    #: loop waiting to happen.
+    #:
+    #: 700 is above the noise floor and well below speech. If the wake
+    #: word stops hearing you, lower it; if it still hears itself, raise it.
+    wake_word_energy_threshold: float = 700.0
 
     # Per-utterance listening (endpointing). Instead of recording for a
     # fixed number of seconds, EON records until the speaker has been
@@ -141,7 +153,14 @@ class VoiceServiceConfig:
     # Raise ``barge_in_energy_threshold`` until that stops, or set
     # ``barge_in_enabled`` to False. See voice/bargein.py.
     barge_in_enabled: bool = True
-    barge_in_energy_threshold: float = 1000.0
+    #: How loud the user has to be to interrupt EON mid-reply.
+    #:
+    #: 1000 was unreachable: the quietest speech measured was about 364
+    #: RMS, so barge-in could never fire at the default. 250 is below
+    #: ordinary speech and above the room. ``config/settings.json``
+    #: already carries 250, so this default only matters when the key is
+    #: absent — but a default that cannot be reached is worse than none.
+    barge_in_energy_threshold: float = 250.0
     barge_in_min_speech_seconds: float = 0.4
     barge_in_window_seconds: float = 0.1
 
