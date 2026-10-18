@@ -8,6 +8,7 @@ from src.core.logger import get_logger
 from src.modules.ai.manager import AIManager
 from src.modules.brain.context import ContextBuilder
 from src.modules.brain.decision import DecisionEngine
+from src.modules.brain.verification import Verdict, Verifier, hedged
 from src.modules.conversation.compaction import (
     build_compaction_messages,
     needs_compaction,
@@ -38,6 +39,7 @@ class Brain:
             identity=identity,
         )
         self.decision = DecisionEngine()
+        self.verifier = Verifier()
 
         self.identity = identity
         self.knowledge = knowledge if knowledge is not None else WebSearchClient()
@@ -125,13 +127,48 @@ class Brain:
 
         self._compact_history(history)
 
+        knowledge = self._knowledge_for(user_message)
+
         context = self.context.build(
             history=history,
             memories=memories,
-            knowledge=self._knowledge_for(user_message),
+            knowledge=knowledge,
         )
 
-        return self.ai.chat(context)
+        return self._verified(self.ai.chat(context), knowledge)
+
+    def _verified(
+        self,
+        answer: str,
+        knowledge: list[WebPassage],
+    ) -> str:
+        """Checks an answer against its evidence, and hedges if needed.
+
+        Only runs on turns that actually used the web, since there is
+        nothing to check an ungrounded answer against. Never raises: a
+        check that fails leaves the answer exactly as the model wrote
+        it, which is what EON did before this existed.
+
+        Args:
+            answer: What the model wrote.
+            knowledge: The passages it was grounded in.
+
+        Returns:
+            The answer, prefixed when a claim in it was not backed.
+        """
+        if not knowledge:
+            return answer
+
+        verdict = self.verifier.check(answer, knowledge)
+
+        print(f"[Verify] {verdict.value}")
+
+        if verdict is Verdict.UNSUPPORTED:
+            logger.info(
+                "Answer went beyond the sources found; hedging it."
+            )
+
+        return hedged(answer, verdict)
 
     def think_stream(
         self,
@@ -140,8 +177,16 @@ class Brain:
         memories: list[str],
     ):
         """
-        Same as ``think``, but yields the reply as incremental text
-        deltas instead of waiting for the full reply.
+        Same pipeline and side effects as ``think``, but yields the
+        reply as text deltas.
+
+        The answer is buffered before it is yielded, rather than passed
+        through as it arrives, because the verification check needs the
+        whole thing and the hedge has to be in place before the user
+        hears any of it. That gives up the first-token latency
+        streaming was there for — affordable now that the model stays
+        resident and a turn takes a second or two, and worth it to
+        avoid saying something and then correcting it.
         """
 
         direct = self.skills.answer(user_message)
@@ -161,10 +206,14 @@ class Brain:
 
         self._compact_history(history)
 
+        knowledge = self._knowledge_for(user_message)
+
         context = self.context.build(
             history=history,
             memories=memories,
-            knowledge=self._knowledge_for(user_message),
+            knowledge=knowledge,
         )
 
-        yield from self.ai.chat_stream(context)
+        answer = "".join(self.ai.chat_stream(context))
+
+        yield self._verified(answer, knowledge)
