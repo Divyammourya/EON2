@@ -48,11 +48,13 @@
   "conversation_idle_timeout_seconds": 12.0,
 
   "barge_in_enabled": true,
-  "barge_in_energy_threshold": 250.0,
+  "bargein_energy_threshold": 250.0,
   "barge_in_min_speech_seconds": 0.4,
-  "barge_in_window_seconds": 0.1,
+  "bargein_window_seconds": 0.1,
 
   "tool_routing_enabled": true,
+
+  "verification_enabled": true,
 
   "web_grounding_enabled": true,
   "web_grounding_max_results": 3,
