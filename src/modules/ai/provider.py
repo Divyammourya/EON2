@@ -136,4 +136,70 @@ class OllamaProvider:
             prompt: The question/instruction for the model.
             image_bytes: Encoded image data (e.g. JPEG bytes).
             model: Override the model to use for this call. Needed
-                because ``self.model|` €¡Ñ¡”‘•™…Õ±Ð¡…Ðµ½‘•°°”¹œ¸(€€€€€€€€€€€€€€€ÅÝ•¸È¸ÔèÍ‰€¤¥ÌÙ•Éä±¥­•±ä¹½ÐÙ¥Í¥½¸µ…Á…‰±”ƒŠP(€€€€€€€€€€€€€€€…±±•ÉÌÍ¡½Õ±Á…ÍÌ„Ù¥Í¥½¸µ½‘•°ÍÕ …Ì€‰±±…Ù„‰€¸(€€€€€€€€ˆˆˆ((€€€€€€€É•ÍÁ½¹Í”€ôÍ•±˜¹±¥•¹Ð¹¡…Ð (€€€€€€€€€€€µ½‘•°õµ½‘•°½ÈÍ•±˜¹µ½‘•°°(€€€€€€€€€€€µ•ÍÍ…•Ìõl(€€€€€€€€€€€€€€€ì(€€€€€€€€€€€€€€€€€€€€‰É½±”ˆè€‰ÕÍ•Èˆ°(€€€€€€€€€€€€€€€€€€€€‰½¹Ñ•¹ÐˆèÁÉ½µÁÐ°(€€€€€€€€€€€€€€€€€€€€‰¥µ…•Ìˆèm¥µ…•}‰åÑ•Ít°(€€€€€€€€€€€€€€€ô(€€€€€€€€€€€t°(€€€€€€€€¤((€€€€€€€É•ÑÕÉ¸É•ÍÁ½¹Í•l‰µ•ÍÍ…”‰ul‰½¹Ñ•¹Ð‰t((€€€‘•˜•µ‰• (€€€€€€€Í•±˜°(€€€€€€€Ñ•áÐèÍÑÈ°(€€€€¤€´ø±¥ÍÑm™±½…Ñtè(€€€€€€€€ˆˆˆ(€€€€€€€•¹•É…Ñ”…¸•µ‰•‘‘¥¹œ™½ÈÑ•áÐ¸(€€€€€€€€ˆˆˆ((€€€€€€€É•ÍÁ½¹Í”€ôÍ•±˜¹±¥•¹Ð¹•µ‰• (€€€€€€€€€€€µ½‘•°õÍ•±˜¹•µ‰•‘‘¥¹}µ½‘•°°(€€€€€€€€€€€¥¹ÁÕÐõÑ•áÐ°(€€€€€€€€€€€­••Á}…±¥Ù”õÍ•±˜¹­••Á}…±¥Ù”°(€€€€€€€€¤((€€€€€€€É•ÑÕÉ¸É•ÍÁ½¹Í•l‰•µ‰•‘‘¥¹Ì‰ulÁt(((ŒQ¡”ÁÉ½Ù¥‘•È•Ù•Éä%5…¹…•ÈÍ¡…É•ÌÕ¹±•ÍÌ½¹”¥ÌÁ…ÍÍ•¥¸•áÁ±¥¥Ñ±ä¸)}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•Èè€‰=±±…µ…AÉ½Ù¥‘•Èð9½¹”ˆ€ô9½¹”)}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•É}±½¬€ôÑ¡É•…‘¥¹œ¹1½¬ ¤(()‘•˜•Ñ}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•È ¤€´ø=±±…µ…AÉ½Ù¥‘•Èè(€€€€ˆˆ‰Q¡”Í¡…É•ÁÉ½Ù¥‘•È°É•…Ñ•½¹”½¸™¥ÉÍÐÕÍ”¸((€€€=±±…µ„Í•ÉÙ•Ì„Í¥¹±”½Áä½˜Ñ¡”µ½‘•°°…¹…¸=±±…µ…AÉ½Ù¥‘•É€(€€€¥Ì½¹±ä…¸!QQ@±¥•¹ÐÁ±ÕÌÑÝ¼µ½‘•°¹…µ•ÌƒŠPÍ¼„ÁÉ½Ù¥‘•È€©Á•È(€€€…±±•È¨‰ÕåÌ¹½Ñ¡¥¹œ¸%ÐÉ”µÉ•…‘ÌÑ¡”Í…µ”½¹™¥ÕÉ…Ñ¥½¸…¹½Á•¹Ì(€€€…¹½Ñ¡•È½¹¹•Ñ¥½¸Ñ¼Ñ¡”Í…µ”Í•ÉÙ•È¸=8‰Õ¥±‘ÌÍ•Ù•É…°€¡Ñ¡”(€€€‰É…¥¸°Ñ¡”µ•µ½ÉäÍÑ½É”°•µ‰•‘‘¥¹Ì°Ñ¡”Ù¥Í¥½¸…¹…±åÍ•È¤°Ý¡¥ (€€€Í¡½Ý•ÕÀ…Ì„ÉÕ¸½˜¥‘•¹Ñ¥…°€‰=±±…µ„AÉ½Ù¥‘•È¥¹¥Ñ¥…±¥é•ˆ(€€€±¥¹•Ì½¸•Ù•Éä±…Õ¹ ¸((€€€M¡…É¥¹œ¥ÌÍ…™”‰•…ÕÍ”Ñ¡”ÁÉ½Ù¥‘•È¡½±‘Ì¹¼½¹Ù•ÉÍ…Ñ¥½¸ÍÑ…Ñ”è(€€€•Ù•Éä…±°Á…ÍÍ•Ì¥ÑÌ½Ý¸µ•ÍÍ…•Ì¸((€€€I•ÑÕÉ¹Ìè(€€€€€€€Q¡”ÁÉ½•ÍÌµÝ¥‘”ÁÉ½Ù¥‘•È¸(€€€€ˆˆˆ(€€€±½‰…°}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•È((€€€¥˜}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•È¥Ì9½¹”è(€€€€€€€Ý¥Ñ }‘•™…Õ±Ñ}ÁÉ½Ù¥‘•É}±½¬è(€€€€€€€€€€€€ŒI”µ¡•¬¥¹Í¥‘”Ñ¡”±½¬èÑÝ¼Ñ¡É•…‘Ì…¸‰½Ñ •ÐÁ…ÍÐ(€€€€€€€€€€€€ŒÑ¡”¡•¬…‰½Ù”‰•™½É”•¥Ñ¡•ÈÑ…­•ÌÑ¡”±½¬¸(€€€€€€€€€€€¥˜}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•È¥Ì9½¹”è(€€€€€€€€€€€€€€€}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•È€ô=±±…µ…AÉ½Ù¥‘•È ¤((€€€É•ÑÕÉ¸}‘•™…Õ±Ñ}ÁÉ½Ù¥‘•È(
+                because ``self.model`` (the default chat model, e.g.
+                ``qwen2.5:3b``) is very likely not vision-capable â€”
+                callers should pass a vision model such as ``"llava"``.
+        """
+
+        response = self.client.chat(
+            model=model or self.model,
+            messages=[
+                {
+                    "role": "user",
+                    "content": prompt,
+                    "images": [image_bytes],
+                }
+            ],
+        )
+
+        return response["message"]["content"]
+
+    def embed(
+        self,
+        text: str,
+    ) -> list[float]:
+        """
+        Generate an embedding for text.
+        """
+
+        response = self.client.embed(
+            model=self.embedding_model,
+            input=text,
+            keep_alive=self.keep_alive,
+        )
+
+        return response["embeddings"][0]
+
+
+# The provider every AIManager shares unless one is passed in explicitly.
+_default_provider: "OllamaProvider | None" = None
+_default_provider_lock = threading.Lock()
+
+
+def get_default_provider() -> OllamaProvider:
+    """The shared provider, created once on first use.
+
+    Ollama serves a single copy of the model, and an ``OllamaProvider``
+    is only an HTTP client plus two model names â€” so a provider *per
+    caller* buys nothing. It re-reads the same configuration and opens
+    another connection to the same server. EON builds several (the
+    brain, the memory store, embeddings, the vision analyser), which
+    showed up as a run of identical "Ollama Provider initialized"
+    lines on every launch.
+
+    Sharing is safe because the provider holds no conversation state:
+    every call passes its own messages.
+
+    Returns:
+        The process-wide provider.
+    """
+    global _default_provider
+
+    if _default_provider is None:
+        with _default_provider_lock:
+            # Re-check inside the lock: two threads can both get past
+            # the check above before either takes the lock.
+            if _default_provider is None:
+                _default_provider = OllamaProvider()
+
+    return _default_provider
