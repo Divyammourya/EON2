@@ -130,6 +130,104 @@ _SMALL_TALK = (
 )
 
 
+# Words that mean "I am asking about now". An encyclopedia cannot answer
+# these: its article intros describe *topics* and carry no date, so a
+# question about something recent gets answered with whatever old event
+# happens to share a word with it.
+_RECENCY_WORDS = (
+    "recent",
+    "recently",
+    "latest",
+    "today",
+    "tonight",
+    "yesterday",
+    "this week",
+    "this month",
+    "this year",
+    "right now",
+    "currently",
+    "at the moment",
+    "news",
+    "breaking",
+    "just happened",
+    "going on",
+)
+
+# Stripped before a keyword search. Includes the question words, the
+# polite scaffolding ("can you tell me about"), and the recency words —
+# none of them name anything a search index can match on.
+_STOP_WORDS = frozenset(
+    {
+        "a", "about", "after", "all", "am", "an", "and", "any", "are", "as",
+        "at", "be", "been", "being", "but", "by", "can", "could", "did", "do",
+        "does", "doing", "for", "from", "get", "give", "had", "has", "have",
+        "he", "her", "here", "him", "his", "how", "i", "if", "in", "into",
+        "is", "it", "its", "just", "know", "let", "like", "me", "more", "most",
+        "my", "no", "not", "of", "on", "one", "only", "or", "other", "our",
+        "out", "over", "please", "should", "so", "some", "such", "tell", "than",
+        "that", "the", "their", "them", "then", "there", "these", "they",
+        "this", "those", "to", "too", "up", "us", "very", "was", "we", "were",
+        "what", "when", "where", "which", "while", "who", "whom", "whose",
+        "why", "will", "with", "would", "you", "your",
+    }
+    | set(_RECENCY_WORDS)
+)
+
+
+def _keywords(text: str) -> set[str]:
+    """The content words in a question.
+
+    Everything short, common, or part of the question's scaffolding is
+    dropped, leaving the words that name something a page could be
+    *about*: "can you tell me about the protest that is happened
+    recently in france?" becomes {"protest", "happened", "france"}.
+    """
+    words = re.findall(r"[a-z0-9]+", text.lower())
+
+    return {
+        word for word in words if len(word) > 2 and word not in _STOP_WORDS
+    }
+
+
+def _keyword_query(text: str) -> str:
+    """The question as a search *index* wants it.
+
+    DuckDuckGo takes natural language, which is why
+    ``build_search_query`` leaves the sentence alone. Wikipedia does not:
+    it is a keyword index, and handed the whole sentence it answered a
+    question about protests in France with "Tommy (The Who album)" and
+    "Giovanni's Room".
+    """
+    words = sorted(_keywords(text))
+
+    return " ".join(words) if words else text.strip()
+
+
+def _asks_for_recent(text: str) -> bool:
+    """Whether the question is about *now* rather than about a topic."""
+    lowered = text.lower()
+
+    return any(word in lowered for word in _RECENCY_WORDS)
+
+
+def _is_wikipedia(passage: WebPassage) -> bool:
+    """Whether a passage came from the fallback rather than a search."""
+    return "wikipedia.org" in passage.url
+
+
+def _relevant(passage: WebPassage, keywords: set[str]) -> bool:
+    """Whether a passage touches the question at all.
+
+    Deliberately loose — a real answer often shares only one word with
+    the question — but not *no* words, which is what a page matched on
+    the word "the" looks like.
+    """
+    if not keywords:
+        return True
+
+    return bool(_keywords(f"{passage.title} {passage.snippet}") & keywords)
+
+
 @dataclass(slots=True)
 class WebPassage:
     """One search result: a title, a snippet, and the source URL."""
@@ -369,16 +467,88 @@ class WebSearchClient:
             logger.warning("DuckDuckGo search failed (%s); trying fallback.", error)
 
         if passages:
-            return passages
+            return self._keep_relevant(passages, query)
 
         # Either DuckDuckGo errored, rate-limited us (a 202 challenge page
         # parses to nothing), or genuinely had no results. Try the stable
-        # API before giving up on grounding this turn.
+        # API before giving up on grounding this turn. It is a keyword
+        # index, so it gets keywords rather than the sentence.
         logger.info("No DuckDuckGo results; trying Wikipedia fallback.")
-        return _wikipedia_passages(query, self._max_results, self._timeout)
+
+        return self._keep_relevant(
+            _wikipedia_passages(
+                _keyword_query(query), self._max_results, self._timeout
+            ),
+            query,
+        )
+
+    @staticmethod
+    def _keep_relevant(
+        passages: list[WebPassage],
+        query: str,
+    ) -> list[WebPassage]:
+        """Drops passages that share nothing with the question.
+
+        Retrieval is generous; this is what stops a page matched on an
+        incidental word from being handed to the model as *evidence*,
+        where it reads exactly like a real answer.
+
+        Args:
+            passages: What the backend returned.
+            query: The query they were returned for.
+
+        Returns:
+            Only the passages that touch the question.
+        """
+        keywords = _keywords(query)
+
+        relevant = [p for p in passages if _relevant(p, keywords)]
+
+        if passages and not relevant:
+            logger.info(
+                "Dropped %d passage(s) that shared nothing with the question.",
+                len(passages),
+            )
+
+        return relevant
 
     def grounding_for(self, text: str) -> list[WebPassage]:
-        """Returns passages worth grounding ``text`` with, else an empty list."""
+        """Returns passages worth grounding ``text`` with, else an empty list.
+
+        The last check is the important one. A question about something
+        *recent* cannot be answered by an encyclopedia: Wikipedia's
+        intros describe topics and are undated, so "the protest that
+        happened recently in France" came back as the Yellow Vests
+        protests of 2018-2020 and was stated as though it were current.
+        The verification pass would not have caught that either — the
+        passage genuinely does support the sentence; it is simply the
+        wrong passage.
+
+        So if the search engine had nothing and Wikipedia was the only
+        source, and the question was about now, EON grounds on nothing
+        and says it could not find anything recent. That is a worse
+        answer and a better one.
+
+        Args:
+            text: The user's message.
+
+        Returns:
+            Passages to ground with, or an empty list.
+        """
         if not self._enabled or not looks_like_knowledge_question(text):
             return []
-        return self.search(build_search_query(text))
+
+        passages = self.search(build_search_query(text))
+
+        if (
+            passages
+            and _asks_for_recent(text)
+            and all(_is_wikipedia(p) for p in passages)
+        ):
+            logger.info(
+                "Only Wikipedia answered a question about something "
+                "recent; not grounding."
+            )
+            return []
+
+        return passages
