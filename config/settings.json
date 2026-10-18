@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "wake_word": "EON",
-  "piper_hi_model_path": "C:\\Users\\divya\\Desktop\\EONdemo10\\models\\piper\\hi_IN-rohan-medium\\hi_IN-rohan-medium.ongx",
+  "piper_hi_model_path": "C:\\Users\\divya\\Desktop\\EONdemo10\\models\\piper\\hi_IN-rohan-medium\\hi_IN-rohan-medium.onnx",
   "piper_hi_config_path": "C:\\Users\\divya\\Desktop\\EONdemo10\\models\\piper\\hi_IN-rohan-medium\\hi_IN-rohan-medium.onnx.json",
   "memory_enabled": true,
   "vision_enabled": false,
@@ -53,8 +53,6 @@
   "barge_in_window_seconds": 0.1,
 
   "tool_routing_enabled": true,
-
-  "verification_enabled": true,
 
   "web_grounding_enabled": true,
   "web_grounding_max_results": 3,
