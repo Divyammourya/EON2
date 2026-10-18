@@ -53,7 +53,15 @@ logger = get_logger("ToolRouter")
 #: the words a person would actually use rather than the enum's.
 TOOL_DESCRIPTIONS: dict[IntentType, str] = {
     IntentType.OPEN_APP: "open an application or program",
-    IntentType.SEARCH_WEB: "search the web, or look something up online",
+    # ``SEARCH_WEB`` is deliberately absent. It is the *browser* tool —
+    # it opens a browser with the query and reports that it did, and it
+    # answers nothing. Putting it on this menu meant "where is canada"
+    # was routed to it and came back as "Searching the web for 'where is
+    # canada'", when the chat path would have grounded itself in the
+    # results and actually answered. A knowledge question belongs on the
+    # chat path, and an explicit "search the web for X" is caught by the
+    # keyword rules before the router is ever consulted — so offering it
+    # here could only ever make a question worse than not routing it.
     IntentType.OPEN_URL: "open a specific website",
     IntentType.WEATHER: "the weather or the temperature",
     IntentType.MUSIC: "play music",
@@ -282,7 +290,7 @@ class ToolRouter:
         ]
 
         return [
-            {"role": "system", "content": _SYSTEM},
+            {"role": "system", "content": _SYSTEM_,
             {
                 "role": "user",
                 "content": (
