@@ -75,6 +75,24 @@ TOOL_DESCRIPTIONS: dict[IntentType, str] = {
 #: What the model says when none of them fit.
 NONE = "none"
 
+#: Messages that are plainly conversation. A model call to check "hi"
+#: against the tool catalogue costs eleven seconds on EON's machine and
+#: can only ever come back "no tool" — so these never reach it.
+_CONVERSATIONAL = frozenset(
+    {
+        "hi", "hii", "hello", "hey", "yo", "sup", "greetings",
+        "thanks", "thank you", "thankyou", "thx", "ty",
+        "ok", "okay", "k", "kk", "cool", "nice", "great", "good",
+        "fine", "sure", "yeah", "yep", "nope", "hmm", "hm", "oh", "ah",
+        "wow", "lol", "haha", "ha", "bye", "goodbye", "cya",
+        "good morning", "good afternoon", "good evening", "good night",
+        "how are you", "how are you doing", "how's it going",
+        "hows it going", "what's up", "whats up", "who are you",
+        "what is your name", "what's your name", "whats your name",
+        "hi there", "hello there", "hey there", "good to see you",
+    }
+)
+
 _SYSTEM = (
     "You decide which tool should handle a request. "
     "Reply with exactly one tool name from the list, and nothing else. "
@@ -165,6 +183,12 @@ class ToolRouter:
         if not text or not text.strip():
             return None
 
+        # Before the model is touched at all. On EON's machine this call
+        # is eleven seconds, so it must not be spent on "hi" — see
+        # _worth_asking for why the filter is drawn where it is.
+        if not self._worth_asking(text):
+            return None
+
         if self._ai is None:
             self._ai = AIManager()
 
@@ -175,6 +199,39 @@ class ToolRouter:
             return None
 
         return self._interpret(reply, text)
+
+    @staticmethod
+    def _worth_asking(text: str) -> bool:
+        """Whether ``text`` could plausibly be a request for a tool.
+
+        This is a cost filter, not a classifier. Consulting the model
+        costs a full call, and on a small machine that is eleven
+        seconds — so a message that can only ever come back "no tool"
+        should never be sent.
+
+        Deliberately narrow. It drops a whole message that is *only*
+        an acknowledgement or a greeting, and nothing else.
+
+        An earlier version of this also skipped short messages, on the
+        theory that brevity means small talk. That was wrong, and the
+        tests caught it: "start notepad" is a two-word request and
+        "screenshot" is a one-word one. Length says nothing about
+        intent, so length is not used here. The only thing this filter
+        knows is a fixed list of phrases that cannot be requests,
+        because the catalogue has no tool any of them could want.
+
+        Args:
+            text: What the user said.
+
+        Returns:
+            ``True`` if the model should be asked.
+        """
+        stripped = text.strip()
+
+        if not stripped:
+            return False
+
+        return stripped.rstrip("!.?,").lower() not in _CONVERSATIONAL
 
     def _interpret(self, reply: str, text: str) -> Intent | None:
         """Turns the model's reply into an Intent, or nothing.
@@ -225,7 +282,7 @@ class ToolRouter:
         ]
 
         return [
-            {"role": "system", "content": _SYSTEM},
+            {"role": "system", "content": _SYSTEM_,
             {
                 "role": "user",
                 "content": (
