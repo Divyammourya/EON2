@@ -40,6 +40,17 @@ DEFAULT_OPTIONS: dict = {
 }
 
 
+#: Whether to load the model into memory as soon as EON starts.
+#:
+#: Ollama loads a model on first use. On a machine without spare RAM
+#: that read stalls everything else for as long as it takes — measured
+#: on EON: the first question after a cold start took 22 seconds,
+#: against 2 for every question after it, and the whole desktop stuttered
+#: while it happened. Doing it at startup moves the cost to a moment
+#: where a pause is expected, instead of the middle of a conversation.
+DEFAULT_WARM_UP = True
+
+
 class OllamaProvider:
     """
     Handles communication with Ollama.
@@ -52,6 +63,7 @@ class OllamaProvider:
         embedding_model: str = "nomic-embed-text",
         keep_alive: str | int | None = None,
         options: dict | None = None,
+        warm_up_on_start: bool | None = None,
     ) -> None:
 
         self.client = Client(host=host)
@@ -75,6 +87,51 @@ class OllamaProvider:
             self.keep_alive,
             self.options.get("num_ctx"),
         )
+
+        self._warmed_up = False
+
+        if DEFAULT_WARM_UP if warm_up_on_start is None else warm_up_on_start:
+            # In the background, and a daemon thread, so a load in
+            # flight never holds the process open at shutdown.
+            logger.info(
+                "Loading %s into memory now, so the first question "
+                "does not have to wait for it.",
+                self.model,
+            )
+            threading.Thread(
+                target=self.warm_up,
+                name="eon-model-warmup",
+                daemon=True,
+            ).start()
+
+    def warm_up(self) -> bool:
+        """Loads the model into memory, so the first question is fast.
+
+        Asks for a single token, so the work is the load and not the
+        generation. Never raises: a warm-up that fails simply means the
+        first real call pays for the load, which is what used to happen
+        anyway.
+
+        Returns:
+            Whether the model is now resident.
+        """
+        try:
+            self.client.chat(
+                model=self.model,
+                messages=[{"role": "user", "content": "hi"}],
+                options={**self.options, "num_predict": 1},
+                keep_alive=self.keep_alive,
+            )
+        except Exception as error:
+            logger.info(
+                "Model warm-up failed (%s); the first call will load it.",
+                error,
+            )
+            return False
+
+        self._warmed_up = True
+        logger.info("Model warm-up done: %s is resident.", self.model)
+        return True
 
     def chat(
         self,
@@ -183,7 +240,7 @@ def get_default_provider() -> OllamaProvider:
     is only an HTTP client plus two model names — so a provider *per
     caller* buys nothing. It re-reads the same configuration and opens
     another connection to the same server. EON builds several (the
-    brain, the memory store, embeddings, the vision analyser), which
+    brain, the memory store, embeddings, the vision analyzer), which
     showed up as a run of identical "Ollama Provider initialized"
     lines on every launch.
 
