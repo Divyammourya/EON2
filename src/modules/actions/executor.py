@@ -45,6 +45,18 @@ _AUTOMATED_ACTION_TYPES = {
 
 _SEARCH_URL_TEMPLATE = "https://www.google.com/search?q={query}"
 
+#: The ``accessibility`` tool speaks element names — "click Save" — not
+#: the ``verb:`` prefix convention this executor uses for the positional
+#: tool, so the element command is written out per action.
+#:
+#: ``UI_TYPE`` is absent deliberately: typing needs a field *and* a
+#: value, which that convention cannot express, so it stays on the
+#: positional tool until the element tool grows the same shape.
+_ELEMENT_COMMANDS = {
+    ActionType.UI_CLICK: "click {target}",
+    ActionType.UI_LIST_ELEMENTS: "list ui elements",
+}
+
 
 class ActionExecutor:
 
@@ -57,6 +69,7 @@ class ActionExecutor:
     ) -> None:
         self.resources = resources
         self.tools = tools
+        self._element_tool_instance = None
         self.vision = vision
         self.automation_enabled = automation_enabled
 
@@ -247,8 +260,9 @@ class ActionExecutor:
         # apart by a prefix — same convention as CALENDAR_READ/CREATE
         # and EMAIL_READ/SEND below.
         if action.type == ActionType.UI_CLICK:
-            return self._run_tool(
-                "ui_control",
+            return self._run_ui_action(
+                ActionType.UI_CLICK,
+                action.target,
                 f"click:{action.target}",
                 "UI control tool is not available.",
             )
@@ -261,8 +275,11 @@ class ActionExecutor:
             )
 
         if action.type == ActionType.UI_LIST_ELEMENTS:
-            return self._run_tool(
-                "ui_control", "list:", "UI control tool is not available."
+            return self._run_ui_action(
+                ActionType.UI_LIST_ELEMENTS,
+                action.target,
+                "list:",
+                "UI control tool is not available.",
             )
 
         # Calendar / Email / Messaging (integrations/). Read/create
@@ -316,6 +333,75 @@ class ActionExecutor:
             )
 
         return None
+
+    def _run_ui_action(
+        self,
+        action_type: ActionType,
+        target: str,
+        fallback_target: str,
+        missing_message: str,
+    ) -> ActionResult:
+        """Runs a UI action, preferring element targeting over position.
+
+        ``accessibility`` finds an element by its accessible name, so
+        "click the Save button" survives a window being moved or
+        resized. ``ui_control`` drives the same operations positionally,
+        which does not. So the element tool is tried first and the
+        positional one is the fallback — which is also what happens on a
+        machine where UI Automation is unavailable, and on anything that
+        is not Windows.
+
+        Args:
+            action_type: Which UI action this is.
+            target: The element name to act on.
+            fallback_target: The positional tool's command, unchanged.
+            missing_message: Reported when neither tool can run.
+
+        Returns:
+            The first successful result, or the fallback's.
+        """
+        element_command = _ELEMENT_COMMANDS.get(action_type)
+        element_tool = self._element_tool()
+
+        if element_command is not None and element_tool is not None:
+            result = element_tool.execute(
+                element_command.format(target=target)
+            )
+
+            if result.success:
+                return ActionResult(
+                    success=True, message=result.message
+                )
+
+        return self._run_tool("ui_control", fallback_target, missing_message)
+
+    def _element_tool(self):
+        """The element-based UI tool, built on first use.
+
+        It is not in the shared tool registry, so the executor builds it
+        here rather than never using it. Lazily, because it is only
+        useful on Windows and constructing it costs a UI Automation
+        lookup, and defensively, because the import must not break a
+        machine that has no UI Automation at all.
+        """
+        if self._element_tool_instance is not None:
+            return self._element_tool_instance
+
+        if self.tools is not None:
+            registered = self.tools.get("accessibility")
+
+            if registered is not None:
+                self._element_tool_instance = registered
+                return registered
+
+        try:
+            from src.modules.automation.accessibility import AccessibilityTool
+
+            self._element_tool_instance = AccessibilityTool()
+        except Exception:
+            return None
+
+        return self._element_tool_instance
 
     def _run_tool(
         self,
